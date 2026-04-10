@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B & Institutional Payments — A Complete Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/motion.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--cover-bg);
+    color: var(--cover-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--cover-grid) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, var(--cover-grid) 80px);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .cover-logo {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cover-accent);
+  }
+
+  .cover-date {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--cover-muted);
+  }
+
+  .cover-body {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 60px;
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cover-accent);
+    margin-bottom: 24px;
+  }
+
+  .cover-title {
+    font-family: var(--font-sans);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--cover-text);
+    letter-spacing: -0.02em;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--cover-accent-soft);
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--cover-accent);
+    margin: 40px 0;
+  }
+
+  .cover-desc {
+    max-width: 520px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cover-muted);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    border-top: 1px solid var(--cover-rule);
+    padding-top: 28px;
+  }
+
+  .cover-chapters {
+    display: flex;
+    gap: 40px;
+  }
+
+  .cover-chapter {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cover-chapter-dim);
+  }
+
+  .cover-chapter span {
+    display: block;
+    color: var(--cover-accent);
+    margin-bottom: 4px;
+  }
+
+  .cover-pg {
+    font-size: 11px;
+    color: var(--cover-chapter-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 72px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 48px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: var(--font-sans);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--section-num-color);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-title-wrap {}
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: var(--font-sans);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--section-title-color);
+  }
+
+  /* ── LEAD TEXT ── */
+  .lead {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 40px;
+    max-width: 680px;
+  }
+
+  /* ── BODY TEXT ── */
+  p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-rule {
+    border: none;
+    border-top: 1px solid var(--gold);
+    margin: 56px 0;
+    opacity: var(--gold-rule-op);
+  }
+
+  .thin-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin: 40px 0;
+  }
+
+  .stat-cell {
+    padding: 28px 24px;
+    border-right: 1px solid var(--line-strong);
+    position: relative;
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-cell::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .stat-value {
+    font-family: var(--font-sans);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── ECOSYSTEM TABLE ── */
+  .layer-block {
+    border: 1px solid var(--line-strong);
+    margin: 40px 0;
+    overflow: hidden;
+  }
+
+  .layer-header {
+    background: var(--inv-header-bg);
+    color: var(--inv-header-fg);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .layer-header-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .layer-header-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--inv-header-fg);
+    letter-spacing: 0.02em;
+  }
+
+  .layer-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .layer-cell {
+    padding: 24px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .layer-cell:nth-child(3n) { border-right: none; }
+  .layer-cell:nth-last-child(-n+3) { border-bottom: none; }
+
+  .layer-cell-name {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--heading);
+    margin-bottom: 6px;
+  }
+
+  .layer-cell-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: none;
+  }
+
+  .layer-cell-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    background: var(--gold-pale);
+    padding: 2px 7px;
+    margin-top: 8px;
+    border-radius: 2px;
+  }
+
+  /* ── PROCESS FLOW ── */
+  .flow-container {
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .flow-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 48px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .flow-number-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+  }
+
+  .flow-num {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--heading);
+    background: var(--surface);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-step.highlighted .flow-num {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--heading);
+  }
+
+  .flow-content {
+    padding: 8px 0 36px 24px;
+  }
+
+  .flow-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--heading);
+    margin-bottom: 6px;
+  }
+
+  .flow-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0 0 8px;
+    max-width: none;
+  }
+
+  .flow-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .flow-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+
+  .flow-tag.gold {
+    border-color: var(--gold);
+    color: var(--gold-dark);
+    background: var(--gold-pale);
+  }
+
+  .flow-timing {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--gold-dark);
+    margin-top: 4px;
+  }
+
+  /* ── RAILS TABLE ── */
+  .rails-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+    font-size: 12px;
+  }
+
+  .rails-table thead tr {
+    background: var(--inv-header-bg);
+    color: var(--inv-header-fg);
+  }
+
+  .rails-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .rails-table thead th:first-child {
+    color: var(--inv-header-fg);
+  }
+
+  .rails-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rails-table tbody tr:hover {
+    background: var(--gold-pale);
+  }
+
+  .rails-table tbody td {
+    padding: 14px 16px;
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .rails-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  .badge-rt { background: #E6F5EE; color: #1D9E75; }
+  .badge-batch { background: #FFF3E0; color: #8B5000; }
+  .badge-large { background: #EEF2FF; color: #3730A3; }
+  .badge-emerging { background: #FFF8E1; color: #7B5800; }
+
+  /* ── CROSS-BORDER FLOW ── */
+  .xborder-flow {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .xb-row {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  .xb-row:first-child { border-radius: 0; }
+  .xb-row:last-child { border-bottom: 1px solid var(--border); }
+
+  .xb-label-col {
+    width: 120px;
+    flex-shrink: 0;
+    background: var(--inv-header-bg);
+    padding: 16px 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .xb-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .xb-nodes {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    gap: 0;
+  }
+
+  .xb-node {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .xb-node-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 3px;
+  }
+
+  .xb-node-sub {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .xb-arrow {
+    width: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  .xb-node.gold-border {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  /* ── PAIN/SOLUTION GRID ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    margin: 40px 0;
+  }
+
+  .two-col-panel {
+    padding: 32px 28px;
+  }
+
+  .two-col-panel:first-child {
+    border-right: 1px solid var(--line-strong);
+  }
+
+  .two-col-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .two-col-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-pain { background: var(--line-strong); }
+  .dot-sol { background: var(--gold); }
+
+  .two-col-heading {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .item-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .item-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .item-bullet {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .item-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 3px;
+  }
+
+  .item-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: none;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--inv-header-bg);
+    color: var(--inv-header-fg);
+    padding: 40px 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  .footer-logo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── PAGE BREAK INDICATOR ── */
+  .page-break {
+    border-top: 2px solid var(--line-strong);
+    margin: 80px 0 0;
+    padding-top: 56px;
+    position: relative;
+  }
+
+  .page-break::before {
+    content: attr(data-page);
+    position: absolute;
+    top: -10px;
+    right: 0;
+    background: var(--gold);
+    color: var(--line-strong);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    background: var(--gold-pale);
+    margin: 32px 0;
+  }
+
+  .callout p {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--heading);
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    margin: 40px 0;
+  }
+
+  .table-scroll .rails-table {
+    margin: 0;
+    min-width: 640px;
+  }
+
+  @media (max-width: 768px) {
+    .cover {
+      min-height: auto;
+      padding: 40px 20px 32px;
+    }
+
+    .cover-body {
+      padding: 48px 0 40px;
+    }
+
+    .cover-title {
+      font-size: clamp(28px, 9vw, 48px);
+    }
+
+    .cover-chapters {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .cover-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .page {
+      padding: 48px 18px 64px;
+    }
+
+    .section-header {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-number {
+      font-size: 48px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 6vw, 32px);
+    }
+
+    .lead {
+      font-size: 17px;
+    }
+
+    .stat-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat-cell {
+      padding: 20px 16px;
+    }
+
+    .stat-cell:nth-child(2n) {
+      border-right: none;
+    }
+
+    .stat-cell:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .layer-body {
+      grid-template-columns: 1fr;
+    }
+
+    .layer-cell {
+      border-right: none !important;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .layer-cell:last-child {
+      border-bottom: none;
+    }
+
+    .flow-content {
+      padding: 8px 0 28px 16px;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .two-col-panel:first-child {
+      border-right: none;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .two-col-panel {
+      padding: 24px 18px;
+    }
+
+    .xb-row {
+      flex-direction: column;
+    }
+
+    .xb-label-col {
+      width: 100%;
+      flex-shrink: 0;
+      justify-content: center;
+      padding: 12px 14px;
+    }
+
+    .xb-label {
+      writing-mode: horizontal-tb;
+      transform: none;
+      letter-spacing: 0.12em;
+    }
+
+    .xb-nodes {
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .xb-arrow {
+      width: 100%;
+      height: auto;
+      padding: 6px 0;
+      transform: rotate(90deg);
+    }
+
+    .doc-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 28px 20px;
+    }
+
+    .page-break {
+      margin: 56px 0 0;
+      padding-top: 40px;
+    }
+
+    .callout p {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cover {
+      padding: 32px 16px 28px;
+    }
+
+    .page {
+      padding: 36px 14px 48px;
+    }
+
+    .stat-row {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-cell {
+      border-right: none !important;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .stat-cell:last-child {
+      border-bottom: none;
+    }
+
+    .stat-value {
+      font-size: 28px;
+    }
+
+    .layer-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 12px 16px;
+    }
+
+    .gold-rule,
+    .thin-rule {
+      margin: 32px 0;
+    }
+  }
+
+  /* Print-friendly */
+  @media print {
+    .cover { min-height: auto; page-break-after: always; }
+    .page-break { page-break-before: always; }
+  }
+</style>
+</head>
+<body class="br-site institutional-doc">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="consumer_payments.html">Consumer</a>
+        <a href="institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════ COVER ═══════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-logo">Global Payments Intelligence</div>
+    <div class="cover-date">April 2026 &nbsp;·&nbsp; Edition IV</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Research Brief</div>
+    <h1 class="cover-title">
+      B2B &amp; <em>Institutional</em><br>Payments Today
+    </h1>
+    <div class="cover-divider"></div>
+    <p class="cover-desc">
+      A comprehensive overview of how money moves between corporations and financial institutions — covering ecosystem structure, end-to-end process flows, payment rails, cross-border mechanics, and the forces reshaping the $120 trillion annual market.
+    </p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-chapters">
+      <div class="cover-chapter"><span>I</span>Ecosystem</div>
+      <div class="cover-chapter"><span>II</span>Process Flow</div>
+      <div class="cover-chapter"><span>III</span>Payment Rails</div>
+      <div class="cover-chapter"><span>IV</span>Cross-Border</div>
+      <div class="cover-chapter"><span>V</span>Outlook</div>
+    </div>
+    <div class="cover-pg">Confidential &nbsp;·&nbsp; 2026</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PAGE 1 ═══════════════════════════════════ -->
+<div class="page">
+
+  <!-- Stat Row -->
+  <div class="stat-row" data-reveal>
+    <div class="stat-cell">
+      <div class="stat-value">$120T</div>
+      <div class="stat-label">Global B2B payments annually</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">45%</div>
+      <div class="stat-label">US B2B payments still by check</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">T+3</div>
+      <div class="stat-label">Average cross-border settlement</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">6%</div>
+      <div class="stat-label">Average cost of cross-border value</div>
+    </div>
+  </div>
+
+  <!-- Section I -->
+  <div class="section-header" data-reveal>
+    <div class="section-number">I</div>
+    <div class="section-title-wrap">
+      <div class="section-eyebrow">Foundation</div>
+      <h2 class="section-title">The Ecosystem</h2>
+    </div>
+  </div>
+
+  <p class="lead">B2B and institutional payments operate across two interconnected layers — an institutional/interbank layer governed by central banks and clearinghouses, and a corporate layer where buyers, suppliers, and service providers transact.</p>
+
+  <p>Unlike consumer payments, B2B transactions are characterised by high value, multi-party approval chains, rich remittance data requirements, and complex compliance obligations. A single payment instruction may touch six or more entities before funds reach their destination.</p>
+
+  <!-- Institutional Layer -->
+  <div class="layer-block" data-reveal>
+    <div class="layer-header">
+      <span class="layer-header-tag">Layer I</span>
+      <span class="layer-header-title">Institutional &amp; Interbank Layer</span>
+    </div>
+    <div class="layer-body">
+      <div class="layer-cell">
+        <div class="layer-cell-name">Central Banks</div>
+        <p class="layer-cell-desc">Operate RTGS systems for final settlement. Provide liquidity to commercial banks. Set monetary policy and reserve requirements.</p>
+        <span class="layer-cell-tag">Settlement authority</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Clearinghouses</div>
+        <p class="layer-cell-desc">Net and batch payment obligations between member banks. Key institutions: CHIPS (US), EBA Clearing (EU), HKICL (HK), CIPS (China).</p>
+        <span class="layer-cell-tag">Netting &amp; clearing</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">SWIFT Network</div>
+        <p class="layer-cell-desc">Global messaging cooperative connecting 11,000+ institutions. Migrating from legacy MT formats to ISO 20022 (MX) for richer data carriage.</p>
+        <span class="layer-cell-tag">Messaging infrastructure</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Correspondent Banks</div>
+        <p class="layer-cell-desc">Maintain nostro/vostro accounts to facilitate cross-border flows. Form the chain through which international wires are routed and de-risked.</p>
+        <span class="layer-cell-tag">Cross-border routing</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Custodians &amp; CSDs</div>
+        <p class="layer-cell-desc">Hold securities and facilitate delivery-versus-payment (DvP) for institutional trades. Link financial markets to the payment system.</p>
+        <span class="layer-cell-tag">Securities settlement</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Regulatory Bodies</div>
+        <p class="layer-cell-desc">BIS, FATF, FSB, national regulators — set capital, AML, and operational resilience standards that govern every participant in the chain.</p>
+        <span class="layer-cell-tag">Oversight</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corporate Layer -->
+  <div class="layer-block" data-reveal>
+    <div class="layer-header">
+      <span class="layer-header-tag">Layer II</span>
+      <span class="layer-header-title">Corporate B2B Layer</span>
+    </div>
+    <div class="layer-body">
+      <div class="layer-cell">
+        <div class="layer-cell-name">Buyer / Payer</div>
+        <p class="layer-cell-desc">Initiates payment via ERP or treasury management system (TMS). Manages spend controls, approval hierarchies, and cash forecasting.</p>
+        <span class="layer-cell-tag">AP function</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Payment Service Providers</div>
+        <p class="layer-cell-desc">Banks, fintech platforms, and payment networks that process, route, and settle corporate payments. Often provide FX, fraud, and data services.</p>
+        <span class="layer-cell-tag">Processing</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Supplier / Payee</div>
+        <p class="layer-cell-desc">Receives funds into their AR system. Matches incoming payments to open invoices. Reconciliation quality depends on remittance data richness.</p>
+        <span class="layer-cell-tag">AR function</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Compliance &amp; KYB</div>
+        <p class="layer-cell-desc">Know-Your-Business screening, AML monitoring, OFAC/EU sanctions checking, and PEP screening — often duplicated across each institution in the chain.</p>
+        <span class="layer-cell-tag">Risk &amp; compliance</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">FX &amp; Treasury</div>
+        <p class="layer-cell-desc">Cross-currency conversion, forward hedging, and cash pooling. FX spread is a significant hidden cost in cross-border B2B flows.</p>
+        <span class="layer-cell-tag">Currency management</span>
+      </div>
+      <div class="layer-cell">
+        <div class="layer-cell-name">Reconciliation Systems</div>
+        <p class="layer-cell-desc">Match incoming funds to invoices and purchase orders. Manual reconciliation remains widespread, driving demand for AI-powered matching tools.</p>
+        <span class="layer-cell-tag">Data matching</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section II -->
+  <div class="page-break" data-page="Process Flow">
+    <div class="section-header">
+      <div class="section-number">II</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">End-to-End</div>
+        <h2 class="section-title">The Payment Process</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">From invoice issuance to final reconciliation, a B2B payment passes through eight distinct stages. Total elapsed time ranges from same-day to T+5 depending on the rail and geography.</p>
+
+  <div class="callout">
+    <p>"The bottleneck is rarely the payment network itself — it is the compliance, approval, and data-matching processes that surround it."</p>
+  </div>
+
+  <div class="flow-container">
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">1</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Invoice issuance &amp; PO matching</div>
+        <p class="flow-desc">Supplier issues invoice. Buyer's AP system performs three-way match: purchase order, goods receipt, and invoice. Discrepancies trigger manual review and can delay payment by days.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">ERP</span>
+          <span class="flow-tag">AP automation</span>
+          <span class="flow-tag gold">T+0 to hours</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step highlighted">
+      <div class="flow-number-col"><div class="flow-num">2</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Internal approval workflow</div>
+        <p class="flow-desc">Payment routed through spend-limit controls and multi-signatory approval chains. Large payments often require treasury, CFO, or board-level sign-off. Most delays in the overall cycle originate here.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">Workflow automation</span>
+          <span class="flow-tag">Spend controls</span>
+          <span class="flow-tag gold">Hours to days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">3</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Compliance &amp; fraud screening</div>
+        <p class="flow-desc">AML checks, sanctions screening against OFAC, EU, and UN lists, KYB verification of the beneficiary, and anomaly-scoring against transaction history. Automated in leading platforms but still manual-heavy at smaller institutions.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">AML</span>
+          <span class="flow-tag">OFAC / sanctions</span>
+          <span class="flow-tag">KYB</span>
+          <span class="flow-tag gold">Minutes to hours</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">4</div></div>
+      <div class="flow-content">
+        <div class="flow-title">FX conversion &amp; liquidity check</div>
+        <p class="flow-desc">If cross-currency, FX rate is locked (spot or pre-hedged forward). Treasury verifies available cash position. Netting centres aggregate offsetting flows to reduce gross settlement volume.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">Spot FX</span>
+          <span class="flow-tag">Forward hedging</span>
+          <span class="flow-tag">Cash netting</span>
+          <span class="flow-tag gold">Real-time if hedged</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step highlighted">
+      <div class="flow-number-col"><div class="flow-num">5</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Payment initiation</div>
+        <p class="flow-desc">Payment instruction formatted and transmitted via the chosen rail — SWIFT wire, ACH, RTP, SEPA, or internal book transfer. ISO 20022 MX messages carry structured remittance data alongside the payment.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">SWIFT MT/MX</span>
+          <span class="flow-tag">ACH</span>
+          <span class="flow-tag">RTP / FedNow</span>
+          <span class="flow-tag gold">T+0 to T+1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">6</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Interbank clearing</div>
+        <p class="flow-desc">Payment obligations netted and exchanged between sending and receiving institutions via clearinghouse (CHIPS, ACH, EBA) or correspondent banking chain. Each correspondent hop adds latency and potential fee deduction.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">CHIPS</span>
+          <span class="flow-tag">ACH batch</span>
+          <span class="flow-tag">Correspondent chain</span>
+          <span class="flow-tag gold">Same/next day</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">7</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Settlement</div>
+        <p class="flow-desc">Final irrevocable transfer of funds across central bank accounts (RTGS). For securities, Delivery-versus-Payment (DvP) ensures simultaneous exchange of assets and cash, eliminating settlement risk.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">RTGS</span>
+          <span class="flow-tag">DvP</span>
+          <span class="flow-tag gold">T+0 (RTGS) / T+1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-number-col"><div class="flow-num">8</div></div>
+      <div class="flow-content">
+        <div class="flow-title">Reconciliation &amp; reporting</div>
+        <p class="flow-desc">Beneficiary matches received funds to open invoices. Both parties update ERP records. Regulatory reporting (Basel III, EMIR), tax documentation, and audit trail generation complete the cycle.</p>
+        <div class="flow-tags">
+          <span class="flow-tag">AR matching</span>
+          <span class="flow-tag">ERP sync</span>
+          <span class="flow-tag">Audit trail</span>
+          <span class="flow-tag gold">Post-settlement</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Section III -->
+  <div class="page-break" data-page="Payment Rails">
+    <div class="section-header">
+      <div class="section-number">III</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Infrastructure</div>
+        <h2 class="section-title">Payment Rails</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Businesses select payment rails based on urgency, transaction size, geography, and cost tolerance. Each rail represents a distinct infrastructure with its own settlement mechanics, message formats, and risk profile.</p>
+
+  <div class="table-scroll" role="region" aria-label="Payment rails comparison" tabindex="0">
+  <table class="rails-table">
+    <thead>
+      <tr>
+        <th>Rail</th>
+        <th>Type</th>
+        <th>Speed</th>
+        <th>Limit</th>
+        <th>Cost</th>
+        <th>Best use case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SWIFT / International Wire</td>
+        <td><span class="badge badge-large">Large value</span></td>
+        <td>1–5 business days</td>
+        <td>Unlimited</td>
+        <td>$15–$50+</td>
+        <td>Cross-border supplier payments, treasury flows</td>
+      </tr>
+      <tr>
+        <td>ACH (US domestic)</td>
+        <td><span class="badge badge-batch">Batch</span></td>
+        <td>Same / next day</td>
+        <td>$1M (same-day)</td>
+        <td>$0.20–$1.50</td>
+        <td>Payroll, recurring vendor payments, low urgency</td>
+      </tr>
+      <tr>
+        <td>RTP / FedNow (US)</td>
+        <td><span class="badge badge-rt">Real-time</span></td>
+        <td>Seconds (24/7)</td>
+        <td>$1M (RTP)</td>
+        <td>$0.01–$0.45</td>
+        <td>Urgent B2B, just-in-time payables, payouts</td>
+      </tr>
+      <tr>
+        <td>SEPA / SEPA Instant (EU)</td>
+        <td><span class="badge badge-rt">Real-time</span></td>
+        <td>10 seconds (Instant)</td>
+        <td>€100K (Instant)</td>
+        <td>€0.20–€2.00</td>
+        <td>EU domestic and intra-European cross-border</td>
+      </tr>
+      <tr>
+        <td>RTGS / CHAPS (UK)</td>
+        <td><span class="badge badge-large">High value</span></td>
+        <td>Minutes (intraday)</td>
+        <td>Unlimited</td>
+        <td>£25–£35</td>
+        <td>Large institutional flows, property transactions</td>
+      </tr>
+      <tr>
+        <td>CIPS (China)</td>
+        <td><span class="badge badge-large">High value</span></td>
+        <td>Intraday</td>
+        <td>Unlimited</td>
+        <td>Institutional</td>
+        <td>RMB cross-border, Belt &amp; Road settlement</td>
+      </tr>
+      <tr>
+        <td>CBDC / Tokenised rails</td>
+        <td><span class="badge badge-emerging">Emerging</span></td>
+        <td>Seconds–minutes</td>
+        <td>Pilot stage</td>
+        <td>Near zero</td>
+        <td>Wholesale cross-border pilots (mBridge, Project Dunbar)</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Section IV -->
+  <div class="page-break" data-page="Cross-Border">
+    <div class="section-header">
+      <div class="section-number">IV</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Mechanics</div>
+        <h2 class="section-title">Cross-Border Flows</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">International B2B payments are the most complex and costly category. A payment from Singapore to Germany can traverse four banks and two clearinghouses before arriving — each hop adding time, cost, and a compliance check.</p>
+
+  <p>The correspondent banking model — built on bilateral nostro/vostro account relationships — has been the backbone of cross-border payments for over a century. It is effective but inefficient: fees accumulate at each correspondent hop, transparency is limited, and settlement can span multiple business days.</p>
+
+  <div class="xborder-flow">
+    <div class="xb-row">
+      <div class="xb-label-col"><span class="xb-label">Corporate</span></div>
+      <div class="xb-nodes">
+        <div class="xb-node gold-border">
+          <div class="xb-node-name">Originating company</div>
+          <div class="xb-node-sub">Payment instruction via ERP / TMS</div>
+        </div>
+        <div class="xb-arrow">→</div>
+        <div class="xb-node">
+          <div class="xb-node-name">Domestic bank</div>
+          <div class="xb-node-sub">KYB, FX initiation, SWIFT formatting</div>
+        </div>
+        <div class="xb-arrow">→</div>
+        <div class="xb-node" style="opacity:0.2; border-style:dashed;"></div>
+        <div class="xb-arrow" style="opacity:0;"></div>
+        <div class="xb-node" style="opacity:0.2; border-style:dashed;"></div>
+      </div>
+    </div>
+
+    <div class="xb-row">
+      <div class="xb-label-col"><span class="xb-label">SWIFT</span></div>
+      <div class="xb-nodes">
+        <div class="xb-node" style="opacity:0.2; border-style:dashed;"></div>
+        <div class="xb-arrow" style="opacity:0;"></div>
+        <div class="xb-node">
+          <div class="xb-node-name">SWIFT network</div>
+          <div class="xb-node-sub">Message routing via ISO 20022 MX format</div>
+        </div>
+        <div class="xb-arrow">→</div>
+        <div class="xb-node">
+          <div class="xb-node-name">Hub correspondent</div>
+          <div class="xb-node-sub">Nostro debit, AML screen</div>
+        </div>
+        <div class="xb-arrow">→</div>
+        <div class="xb-node">
+          <div class="xb-node-name">Local correspondent</div>
+          <div class="xb-node-sub">Vostro credit, local compliance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="xb-row">
+      <div class="xb-label-col"><span class="xb-label">Receiving</span></div>
+      <div class="xb-nodes">
+        <div class="xb-node gold-border">
+          <div class="xb-node-name">Beneficiary company</div>
+          <div class="xb-node-sub">Funds credited, AR reconciliation</div>
+        </div>
+        <div class="xb-arrow" style="transform:rotate(180deg)">→</div>
+        <div class="xb-node">
+          <div class="xb-node-name">Beneficiary bank</div>
+          <div class="xb-node-sub">Final AML check, account credit</div>
+        </div>
+        <div class="xb-arrow" style="opacity:0;"></div>
+        <div class="xb-node" style="opacity:0.2; border-style:dashed;"></div>
+        <div class="xb-arrow" style="opacity:0;"></div>
+        <div class="xb-node" style="opacity:0.2; border-style:dashed;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p>SWIFT GPI (Global Payments Innovation) has improved this significantly since 2017 — today over 90% of SWIFT GPI payments are credited within 24 hours, with end-to-end tracking and fee transparency. The ISO 20022 migration (SWIFT deadline: November 2025) will further enrich the data carried in each message.</p>
+
+  <!-- Section V -->
+  <div class="page-break" data-page="Outlook">
+    <div class="section-header">
+      <div class="section-number">V</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Strategic View</div>
+        <h2 class="section-title">Pain Points &amp; the Road Ahead</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Despite a century of incremental improvement, the B2B payments industry still bears structural inefficiencies. The following represents the landscape of friction versus the forces addressing it.</p>
+
+  <div class="two-col">
+    <div class="two-col-panel">
+      <div class="two-col-header">
+        <div class="two-col-dot dot-pain"></div>
+        <div class="two-col-heading">Persistent pain points</div>
+      </div>
+
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">Slow cross-border settlement</div>
+          <p class="item-desc">Capital locked in correspondent chain for 1–5 days. For companies managing tight working capital, this represents a material cost of float.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">Opaque, compounding fees</div>
+          <p class="item-desc">Each correspondent hop may deduct fees from principal. Receiving amount is often uncertain at time of initiation — a compliance and accounting problem.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">Remittance data separation</div>
+          <p class="item-desc">Legacy MT format truncates invoice references and structured data, forcing manual reconciliation at the beneficiary. Estimated cost: $21B annually.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">Duplicate compliance overhead</div>
+          <p class="item-desc">Each institution in a payment chain independently screens the same transaction. There is no shared compliance intelligence across the network.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">FX spread opacity</div>
+          <p class="item-desc">Correspondent banks embed margin into exchange rates. Mid-market spreads are rarely disclosed, obscuring the true cost of cross-border transactions.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">—</div>
+        <div>
+          <div class="item-name">Cheque persistence</div>
+          <p class="item-desc">45% of US B2B payments still use paper cheques, creating processing delays, fraud exposure, and manual handling costs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col-panel">
+      <div class="two-col-header">
+        <div class="two-col-dot dot-sol"></div>
+        <div class="two-col-heading">Emerging solutions</div>
+      </div>
+
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">ISO 20022 global migration</div>
+          <p class="item-desc">Structured, rich data fields travel with every payment. Enables automated reconciliation, regulatory reporting, and enhanced fraud analytics.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">Real-time rail expansion</div>
+          <p class="item-desc">FedNow (US, 2023), PIX (Brazil), UPI (India), and SEPA Instant are enabling 24/7/365 settlement. Adoption in B2B is accelerating past consumer use cases.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">SWIFT GPI &amp; tracking</div>
+          <p class="item-desc">Unique end-to-end transaction reference (UETR) enables real-time status tracking across the correspondent chain. 90% of GPI payments settle within 24 hours.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">Embedded finance &amp; API banking</div>
+          <p class="item-desc">Payment capabilities integrated directly into ERP, procurement, and supply chain platforms. Removes friction at initiation and reduces manual handoffs.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">CBDC &amp; tokenised settlement</div>
+          <p class="item-desc">Wholesale CBDC pilots (mBridge, Project Dunbar) aim to eliminate the correspondent layer entirely — enabling atomic cross-border settlement in seconds.</p>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="item-bullet">+</div>
+        <div>
+          <div class="item-name">AI-driven reconciliation</div>
+          <p class="item-desc">Machine learning models match remittances to invoices at scale, reducing DSO and eliminating the largest manual workload in corporate treasury teams.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="gold-rule">
+
+  <p style="font-size:11px; color:var(--muted); font-style:italic;">
+    This document is prepared for informational purposes. All figures are approximate market estimates as of Q1 2026. Payment limits, costs, and speeds reflect representative ranges and may vary by institution and jurisdiction.
+  </p>
+
+</div>
+
+<!-- ═══════════════ SECTION VI: USE CASE URGENCY BY RAIL ═══════════════ -->
+<style>
+  /* ── Rail urgency tables ── */
+  .rail-section { margin: 40px 0; }
+
+  .rail-section-header {
+    background: var(--inv-header-bg);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .rail-section-name {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--inv-header-fg);
+    letter-spacing: 0.01em;
+  }
+
+  .rail-section-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .usecase-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line-strong);
+    border-top: none;
+    font-size: 12px;
+  }
+
+  .usecase-table thead tr { background: var(--gold-pale); }
+
+  .usecase-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    border-right: 1px solid var(--border);
+  }
+
+  .usecase-table thead th:last-child { border-right: none; }
+
+  .usecase-table tbody tr { border-bottom: 1px solid var(--border); }
+  .usecase-table tbody tr:last-child { border-bottom: none; }
+  .usecase-table tbody tr:hover { background: var(--gold-pale); }
+
+  .usecase-table tbody td {
+    padding: 12px 14px;
+    vertical-align: middle;
+    border-right: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .usecase-table tbody td:first-child { font-weight: 600; color: var(--heading); }
+  .usecase-table tbody td:last-child { border-right: none; }
+
+  .urg-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .urg-highest { background: var(--inv-header-bg); color: var(--gold); border: 1px solid var(--gold); }
+  .urg-veryhigh { background: var(--gold); color: var(--inv-header-bg); }
+  .urg-high     { background: var(--gold-pale); color: var(--gold-dark); border: 1px solid var(--gold); }
+  .urg-medium   { background: var(--border); color: var(--text); }
+  .urg-low      { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .urg-lowest   { background: transparent; color: var(--muted); border: 1px solid var(--border); opacity: 0.5; }
+
+  /* ── Priority matrix ── */
+  .matrix-wrap { margin: 40px 0; overflow-x: auto; }
+
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line-strong);
+    font-size: 12px;
+    min-width: 580px;
+  }
+
+  .matrix-table thead tr { background: var(--inv-header-bg); }
+
+  .matrix-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .matrix-table thead th:first-child { color: var(--inv-header-fg); width: 36px; text-align: center; }
+  .matrix-table thead th:last-child { border-right: none; }
+
+  .matrix-table tbody tr { border-bottom: 1px solid var(--border); }
+  .matrix-table tbody tr:last-child { border-bottom: none; }
+
+  .matrix-table tbody td {
+    padding: 12px 16px;
+    color: var(--text);
+    border-right: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .matrix-table tbody td:first-child {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .matrix-table tbody td:last-child { border-right: none; }
+
+  /* top 3 rows highlighted */
+  .matrix-table tbody tr:nth-child(1) { background: var(--inv-header-bg); }
+  .matrix-table tbody tr:nth-child(1) td { color: var(--gold); font-weight: 500; }
+  .matrix-table tbody tr:nth-child(1) td:first-child { color: var(--gold); font-weight: 700; }
+
+  .matrix-table tbody tr:nth-child(2) { background: var(--gold); }
+  .matrix-table tbody tr:nth-child(2) td { color: var(--inv-header-bg); font-weight: 500; }
+
+  .matrix-table tbody tr:nth-child(3) { background: var(--gold-pale); }
+  .matrix-table tbody tr:nth-child(3) td { color: var(--gold-dark); font-weight: 500; }
+
+  /* ── Target use case cards ── */
+  .target-card {
+    border: 1px solid var(--line-strong);
+    margin: 48px 0;
+    overflow: hidden;
+  }
+
+  .target-card-header {
+    background: var(--inv-header-bg);
+    padding: 28px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .target-card-num {
+    font-family: var(--font-sans);
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .target-card-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .target-card-title {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--inv-header-fg);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .target-card-stats {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .target-stat {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .target-stat span {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--inv-header-fg);
+    letter-spacing: -0.01em;
+    text-transform: none;
+    margin-top: 3px;
+  }
+
+  .target-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .target-quadrant {
+    padding: 28px 28px 24px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .target-quadrant:nth-child(2n) { border-right: none; }
+  .target-quadrant:nth-last-child(-n+2) { border-bottom: none; }
+
+  .tq-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    background: var(--gold-pale);
+    display: inline-block;
+    padding: 2px 8px;
+    margin-bottom: 18px;
+    border-radius: 2px;
+  }
+
+  .tq-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .tq-item:last-child { margin-bottom: 0; }
+
+  .tq-bullet {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1.4;
+    font-family: var(--font-mono);
+  }
+
+  .tq-item-name {
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 2px;
+  }
+
+  .tq-item-desc {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 0;
+    line-height: 1.55;
+  }
+
+  .target-card-footer {
+    background: var(--gold-pale);
+    border-top: 1px solid var(--gold);
+    padding: 16px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .tcf-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .tcf-text {
+    font-size: 12px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  /* responsive for new sections */
+  @media (max-width: 768px) {
+    .target-card-body { grid-template-columns: 1fr; }
+    .target-quadrant { border-right: none !important; }
+    .target-quadrant:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .target-quadrant:last-child { border-bottom: none; }
+    .target-card-header { flex-direction: column; gap: 12px; }
+    .target-card-num { font-size: 36px; }
+    .target-card-stats { gap: 16px; }
+    .rail-section-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .rail-section-meta { text-align: left; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="page-break" data-page="Urgency Analysis">
+    <div class="section-header">
+      <div class="section-number">VI</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Blockchain Opportunity</div>
+        <h2 class="section-title">Use Case Urgency by Rail</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Not all payment use cases benefit equally from blockchain adoption. Urgency is highest where friction is acute relative to transaction size — and lowest where existing infrastructure already performs well.</p>
+
+  <div class="callout">
+    <p>"The strongest case for blockchain is not where volumes are largest, but where pain per dollar is highest — and where incumbent rails lack the incentive and architecture to self-correct."</p>
+  </div>
+
+  <!-- Rail I: ACH -->
+  <div class="rail-section">
+    <div class="rail-section-header">
+      <span class="rail-section-name">Rail I &nbsp;—&nbsp; ACH (US Domestic)</span>
+      <span class="rail-section-meta">35.2B payments &nbsp;·&nbsp; $93T annually (2025)</span>
+    </div>
+    <div class="table-scroll">
+    <table class="usecase-table">
+      <thead><tr>
+        <th style="width:28%">Use case</th>
+        <th style="width:14%">Annual count</th>
+        <th style="width:14%">Annual value</th>
+        <th style="width:28%">Core friction</th>
+        <th style="width:16%">Urgency</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Vendor / supplier payments</td><td>~8.1B</td><td>~$58T</td><td>Reconciliation data quality; check migration</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Payroll direct deposit</td><td>~6B</td><td>~$9T</td><td>None material — predictable, well-automated</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+        <tr><td>Healthcare claim payments</td><td>~500M</td><td>~$1.5T</td><td>High reconciliation friction; ERA mismatches</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Tax &amp; government payments</td><td>~300M</td><td>~$4T</td><td>Scheduled, predictable, regulatory-governed</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+        <tr><td>Subscription / recurring billing</td><td>~15B consumer</td><td>~$1.5T</td><td>Well-automated; low cost already</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Rail II: SWIFT -->
+  <div class="rail-section">
+    <div class="rail-section-header">
+      <span class="rail-section-name">Rail II &nbsp;—&nbsp; SWIFT (Cross-Border)</span>
+      <span class="rail-section-meta">~45M messages/day &nbsp;·&nbsp; $32T B2B cross-border (2024)</span>
+    </div>
+    <div class="table-scroll">
+    <table class="usecase-table">
+      <thead><tr>
+        <th style="width:28%">Use case</th>
+        <th style="width:14%">Annual count</th>
+        <th style="width:14%">Annual value</th>
+        <th style="width:28%">Core friction</th>
+        <th style="width:16%">Urgency</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>SME cross-border supplier payments</td><td>~200M</td><td>~$2T</td><td>Fees disproportionate; 1–5 day delays; FX opacity</td><td><span class="urg-pill urg-highest">Highest</span></td></tr>
+        <tr><td>Mid-market multinational supplier payments</td><td>~300M</td><td>~$15T</td><td>Correspondent chain delays; 15–20% exception rate</td><td><span class="urg-pill urg-veryhigh">Very High</span></td></tr>
+        <tr><td>Intercompany treasury transfers</td><td>~150M</td><td>~$8T</td><td>Predictable; internal — lower urgency</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Trade finance (LC, guarantees)</td><td>~50M</td><td>~$3T</td><td>Paper-heavy, but incumbents deeply entrenched</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Large institutional wires ($100M+)</td><td>~10M</td><td>~$4T</td><td>SWIFT works fine; switching cost enormous</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Rail III: Fedwire/CHIPS -->
+  <div class="rail-section">
+    <div class="rail-section-header">
+      <span class="rail-section-name">Rail III &nbsp;—&nbsp; Fedwire &amp; CHIPS (US High-Value RTGS)</span>
+      <span class="rail-section-meta">~1.4M transactions/day &nbsp;·&nbsp; ~$6.3T daily value</span>
+    </div>
+    <div class="table-scroll">
+    <table class="usecase-table">
+      <thead><tr>
+        <th style="width:28%">Use case</th>
+        <th style="width:14%">Daily count</th>
+        <th style="width:14%">Daily value</th>
+        <th style="width:28%">Core friction</th>
+        <th style="width:16%">Urgency</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Nostro / vostro prefunding</td><td>~daily pool</td><td>~$5T trapped</td><td>Capital locked overnight; no atomic rebalancing</td><td><span class="urg-pill urg-high">High</span></td></tr>
+        <tr><td>Securities DvP settlement</td><td>~100K</td><td>~$500B</td><td>T+1 still has settlement risk; DLT eliminates it</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>FX settlement (USD leg)</td><td>~200K</td><td>~$1.2T</td><td>CHIPS 29:1 netting is highly efficient</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+        <tr><td>Interbank liquidity management</td><td>~150K</td><td>~$900B</td><td>Intraday credit well-managed; low pain</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+        <tr><td>Corporate large wires ($5M+)</td><td>~50K</td><td>~$250B</td><td>Same-day RTGS — already solved</td><td><span class="urg-pill urg-lowest">Lowest</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Rail IV: RTP/FedNow -->
+  <div class="rail-section">
+    <div class="rail-section-header">
+      <span class="rail-section-name">Rail IV &nbsp;—&nbsp; RTP &amp; FedNow (US Real-Time)</span>
+      <span class="rail-section-meta">~$260B combined (2024) &nbsp;·&nbsp; Nascent in B2B</span>
+    </div>
+    <div class="table-scroll">
+    <table class="usecase-table">
+      <thead><tr>
+        <th style="width:28%">Use case</th>
+        <th style="width:14%">Annual count</th>
+        <th style="width:14%">Annual value</th>
+        <th style="width:28%">Core friction</th>
+        <th style="width:16%">Urgency</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Urgent vendor payments</td><td>~50M</td><td>~$150B</td><td>RTP/FedNow already solves speed domestically</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+        <tr><td>Gig &amp; contractor same-day payouts</td><td>~100M</td><td>~$80B</td><td>Well-served; $1M limit adequate</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+        <tr><td>B2B marketplace settlements</td><td>~20M</td><td>~$30B</td><td>Programmability gap — blockchain adds smart logic</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Real estate closings</td><td>~5M</td><td>~$3T</td><td>Irrevocability already provided by RTP</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+        <tr><td>Insurance claims disbursement</td><td>~30M</td><td>~$50B</td><td>Pain is in claims processing, not the rail itself</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Rail V: SEPA -->
+  <div class="rail-section">
+    <div class="rail-section-header">
+      <span class="rail-section-name">Rail V &nbsp;—&nbsp; SEPA &amp; SEPA Instant (Europe)</span>
+      <span class="rail-section-meta">~20B transactions/year &nbsp;·&nbsp; Eurozone B2B</span>
+    </div>
+    <div class="table-scroll">
+    <table class="usecase-table">
+      <thead><tr>
+        <th style="width:28%">Use case</th>
+        <th style="width:14%">Annual count</th>
+        <th style="width:14%">Annual value</th>
+        <th style="width:28%">Core friction</th>
+        <th style="width:16%">Urgency</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>EU domestic supplier payments</td><td>~8B</td><td>~€15T</td><td>SEPA Instant at 10s — largely solved for EUR</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+        <tr><td>SME payments outside Eurozone</td><td>~500M</td><td>~€1T</td><td>Falls back to SWIFT outside EUR; full friction</td><td><span class="urg-pill urg-high">High</span></td></tr>
+        <tr><td>Supply chain finance</td><td>~200M</td><td>~€2T</td><td>Smart contracts add conditional payment logic</td><td><span class="urg-pill urg-high">High</span></td></tr>
+        <tr><td>Cross-EU B2B (non-EUR currencies)</td><td>~4B</td><td>~€8T</td><td>FX gaps persist; multi-currency still fragmented</td><td><span class="urg-pill urg-medium">Medium</span></td></tr>
+        <tr><td>Treasury pooling (notional)</td><td>~100M</td><td>~€5T</td><td>Well-served by banking infrastructure</td><td><span class="urg-pill urg-low">Low</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════ SECTION VII: PRIORITY MATRIX ═══════════════════ -->
+<div class="page">
+
+  <div class="page-break" data-page="Priority Matrix">
+    <div class="section-header">
+      <div class="section-number">VII</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Ranked Shortlist</div>
+        <h2 class="section-title">Use Case Priority Matrix</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">Ranked by the intersection of transaction frequency, pain severity, and blockchain's structural advantage over the incumbent rail. The top three are the primary targets for deployment.</p>
+
+  <p>Urgency is inversely proportional to transaction size for cross-border flows — where fees are trivial relative to a $500M wire, they are ruinous for a $50K SME payment. The highest-urgency targets sit in the middle of the market: frequent enough that pain compounds materially, cross-border enough that the correspondent chain adds cost and delay, but not large enough that legacy infrastructure is "good enough."</p>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Use case</th>
+          <th>Rail</th>
+          <th>Annual count</th>
+          <th>Annual value</th>
+          <th>Urgency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>SME cross-border supplier payments</td>
+          <td>SWIFT</td>
+          <td>~200M</td>
+          <td>~$2T</td>
+          <td>Highest</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Mid-market multinational supplier payments</td>
+          <td>SWIFT</td>
+          <td>~300M</td>
+          <td>~$15T</td>
+          <td>Very High</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Nostro / vostro prefunding (interbank)</td>
+          <td>CHIPS / Correspondent</td>
+          <td>Daily pool</td>
+          <td>~$5T trapped</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Supply chain finance &amp; trade credit</td>
+          <td>SEPA / SWIFT</td>
+          <td>~300M</td>
+          <td>~$5T</td>
+          <td><span class="urg-pill urg-high">High</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Securities DvP settlement</td>
+          <td>Fedwire / CSD</td>
+          <td>~100K/day</td>
+          <td>~$500B/day</td>
+          <td><span class="urg-pill urg-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Healthcare claim reconciliation</td>
+          <td>ACH</td>
+          <td>~500M</td>
+          <td>~$1.5T</td>
+          <td><span class="urg-pill urg-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>B2B marketplace settlements</td>
+          <td>RTP / FedNow</td>
+          <td>~20M</td>
+          <td>~$30B</td>
+          <td><span class="urg-pill urg-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Large institutional wires ($100M+)</td>
+          <td>SWIFT / Fedwire</td>
+          <td>~10M</td>
+          <td>~$4T</td>
+          <td><span class="urg-pill urg-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Domestic vendor / payroll ACH</td>
+          <td>ACH</td>
+          <td>~8B+</td>
+          <td>~$58T</td>
+          <td><span class="urg-pill urg-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>CHIPS FX &amp; interbank settlement</td>
+          <td>CHIPS</td>
+          <td>~565K/day</td>
+          <td>~$1.8T/day</td>
+          <td><span class="urg-pill urg-lowest">Lowest</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════ SECTION VIII: THREE TARGET USE CASES ═══════════════════ -->
+<div class="page">
+
+  <div class="page-break" data-page="Target Use Cases">
+    <div class="section-header">
+      <div class="section-number">VIII</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Blockchain Deployment Blueprint</div>
+        <h2 class="section-title">Three Primary Target Use Cases</h2>
+      </div>
+    </div>
+  </div>
+
+  <p class="lead">For each of the three highest-urgency use cases, we define the full deployment picture: who needs to be at the table, what middleware must be built, which systems require integration, and what infrastructure must be established.</p>
+
+  <!-- ── TARGET 01 ── -->
+  <div class="target-card">
+    <div class="target-card-header">
+      <div class="target-card-num">01</div>
+      <div>
+        <div class="target-card-eyebrow">Highest Urgency &nbsp;·&nbsp; SWIFT Rail</div>
+        <div class="target-card-title">SME Cross-Border Supplier Payments</div>
+        <div class="target-card-stats">
+          <div class="target-stat">Annual transactions<span>~200 million</span></div>
+          <div class="target-stat">Annual value<span>~$2 trillion</span></div>
+          <div class="target-stat">Avg size<span>$5K – $500K</span></div>
+          <div class="target-stat">Settlement today<span>1–5 business days</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="target-card-body">
+
+      <div class="target-quadrant">
+        <div class="tq-label">Stakeholders</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SME importers &amp; exporters</div><div class="tq-item-desc">Primary payers and receivers. Need simple onboarding, multi-currency wallets, and ERP connectivity without treasury teams.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Regional &amp; digital banks</div><div class="tq-item-desc">Current account holders for SMEs. Must integrate as node operators or relay partners to remain relevant in the flow.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">FX liquidity providers</div><div class="tq-item-desc">Market makers providing on-chain FX pools or off-ramp liquidity in destination currencies across key corridors.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">KYB / compliance providers</div><div class="tq-item-desc">Automated AML and sanctions screening to satisfy regulatory requirements at onboarding and transaction level.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">National regulators (FinCEN, MAS, FCA)</div><div class="tq-item-desc">Licensing, Travel Rule compliance, and cross-border data sharing frameworks must be pre-negotiated per corridor.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Middleware to Build</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Payment abstraction layer</div><div class="tq-item-desc">Hides blockchain complexity. SMEs submit a standard invoice; middleware converts to on-chain payment instruction automatically.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">On-chain FX engine</div><div class="tq-item-desc">AMM or RFQ-based FX conversion at initiation. Rate locked atomically with settlement — no post-trade FX risk.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Compliance oracle</div><div class="tq-item-desc">Real-time sanctions and AML screening injected into the transaction flow before on-chain execution is finalised.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Remittance data carrier</div><div class="tq-item-desc">Structured ISO 20022 remittance data encoded on-chain alongside payment for automated AR matching at beneficiary.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Fiat on/off-ramp gateway</div><div class="tq-item-desc">Connects blockchain settlement to local bank accounts in destination markets. Covers 30+ initial corridors at launch.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Integrations Required</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">ERP / accounting APIs</div><div class="tq-item-desc">QuickBooks, Xero, SAP Business One, Odoo — invoice pull, payment push, reconciliation sync with no manual export.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Bank account verification</div><div class="tq-item-desc">Open Banking APIs (PSD2, CDR) to verify beneficiary accounts and pre-validate routing before settlement executes.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SWIFT GPI interoperability</div><div class="tq-item-desc">Fallback routing for uncovered corridors. UETR tracking maintained end-to-end across both blockchain and SWIFT legs.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Travel Rule data exchange</div><div class="tq-item-desc">VASP-to-VASP originator / beneficiary data sharing via TRISA or OpenVASP protocol for regulatory compliance.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Infrastructure to Establish</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Permissioned blockchain network</div><div class="tq-item-desc">KYB-gated validator nodes. High throughput (&gt;10,000 TPS), 3–5 second finality, sub-cent transaction fees at scale.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Stablecoin / CBDC settlement layer</div><div class="tq-item-desc">USD, EUR, SGD stablecoins as settlement medium. Eliminates crypto volatility. Redeemable 1:1 at regulated off-ramp.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Multi-jurisdiction licensing</div><div class="tq-item-desc">Money transmitter licenses or regulated partnerships in US, EU, UK, SG, HK as minimum viable corridor set at launch.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Liquidity reserve pools</div><div class="tq-item-desc">Pre-funded liquidity in key currencies to guarantee same-day settlement without float risk to the payer at any time.</div></div></div>
+      </div>
+
+    </div>
+    <div class="target-card-footer">
+      <span class="tcf-label">Why blockchain wins here</span>
+      <span class="tcf-text">The correspondent chain adds 3–5 hops, each charging fees and consuming settlement days. For a $50K SME wire, a $45 fee is 0.09% — but combined with FX spread opacity and 3-day float, the true cost reaches 2–4%. Blockchain eliminates intermediaries atomically, settling in seconds at near-zero marginal cost.</span>
+    </div>
+  </div>
+
+  <!-- ── TARGET 02 ── -->
+  <div class="target-card">
+    <div class="target-card-header">
+      <div class="target-card-num">02</div>
+      <div>
+        <div class="target-card-eyebrow">Very High Urgency &nbsp;·&nbsp; SWIFT Rail</div>
+        <div class="target-card-title">Mid-Market Multinational Supplier Payments</div>
+        <div class="target-card-stats">
+          <div class="target-stat">Annual transactions<span>~300 million</span></div>
+          <div class="target-stat">Annual value<span>~$15 trillion</span></div>
+          <div class="target-stat">Avg size<span>$500K – $5M</span></div>
+          <div class="target-stat">Exception rate<span>15–20% of flows</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="target-card-body">
+
+      <div class="target-quadrant">
+        <div class="tq-label">Stakeholders</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Corporate treasury teams</div><div class="tq-item-desc">Decision-makers for payment rail selection. Need real-time visibility, FX certainty, and clean audit trails for compliance.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Tier 2 &amp; 3 banks</div><div class="tq-item-desc">Serve mid-market corporates. Lack CHIPS direct access — most reliant on correspondent relationships that blockchain replaces.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">AP automation platforms</div><div class="tq-item-desc">Coupa, Tipalti, Bill.com — embedded payment rails need blockchain as a first-class settlement option in their workflow.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Correspondent banks</div><div class="tq-item-desc">Disrupted but necessary during transition. Can be repositioned as liquidity nodes rather than payment routing intermediaries.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Enterprise ERP vendors (SAP, Oracle)</div><div class="tq-item-desc">Blockchain payment instructions must be natively triggerable from within S/4HANA or Oracle Fusion AP workflows.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Middleware to Build</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Treasury management connector</div><div class="tq-item-desc">Bidirectional sync with TMS platforms (Kyriba, GTreasury, FIS). Cash position, FX hedge status, and payment scheduling.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Multi-rail payment orchestrator</div><div class="tq-item-desc">Routes payments across blockchain, SWIFT, and ACH based on cost, speed, and corridor — with automatic fallback logic.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Exception handling engine</div><div class="tq-item-desc">Automated resolution for the 15–20% exception rate: mismatches, sanction holds, formatting errors — surfaced in real time.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Netting &amp; aggregation layer</div><div class="tq-item-desc">Batches offsetting cross-border flows between counterparties before on-chain settlement to reduce gross settlement volume.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Integrations Required</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SAP / Oracle ERP deep integration</div><div class="tq-item-desc">Payment approval workflows, GL coding, and bank reconciliation must be native to the ERP — not a separate portal.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SWIFT ISO 20022 gateway</div><div class="tq-item-desc">Bidirectional translation between on-chain payment data and ISO 20022 MX messages for hybrid corridor routing.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">FX hedging platform APIs</div><div class="tq-item-desc">Connect to Kyriba FX, 360T, or Bloomberg FXGO to lock rates pre-settlement and hedge on-chain currency flows.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Corporate bank APIs</div><div class="tq-item-desc">Citibank, HSBC, JPMorgan treasury APIs for balance reporting, debit authorisation, and beneficiary account validation.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Infrastructure to Establish</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Institutional-grade node network</div><div class="tq-item-desc">Banks and large corporates operate validator nodes. Governance model aligned with existing correspondent relationships.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Programmable payment contracts</div><div class="tq-item-desc">Smart contracts encoding payment terms: release on delivery confirmation, multi-sig approval, FX rate locks at execution.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Regulatory reporting layer</div><div class="tq-item-desc">Automated generation of FinCEN, EMIR, and local FX reports from on-chain transaction data — reducing compliance burden.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">HSM-based key custody</div><div class="tq-item-desc">Hardware security module integration for corporate key management. Must meet SOC 2 Type II and ISO 27001 standards.</div></div></div>
+      </div>
+
+    </div>
+    <div class="target-card-footer">
+      <span class="tcf-label">Why blockchain wins here</span>
+      <span class="tcf-text">A 15–20% exception rate on $15 trillion in annual flows means $2.25–$3 trillion touches manual intervention every year. Each exception costs $40–$100 in bank operations. Programmable payments with pre-validated counterparty data and atomic FX conversion can eliminate this failure category entirely.</span>
+    </div>
+  </div>
+
+  <!-- ── TARGET 03 ── -->
+  <div class="target-card">
+    <div class="target-card-header">
+      <div class="target-card-num">03</div>
+      <div>
+        <div class="target-card-eyebrow">High Urgency &nbsp;·&nbsp; Interbank / Correspondent Rail</div>
+        <div class="target-card-title">Nostro &amp; Vostro Prefunding Optimisation</div>
+        <div class="target-card-stats">
+          <div class="target-stat">Capital trapped daily<span>~$5 trillion</span></div>
+          <div class="target-stat">Opportunity cost<span>~$27B / year</span></div>
+          <div class="target-stat">Active corridors<span>~1,800</span></div>
+          <div class="target-stat">Settlement window<span>End-of-day batch</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="target-card-body">
+
+      <div class="target-quadrant">
+        <div class="tq-label">Stakeholders</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Correspondent banks (Tier 1)</div><div class="tq-item-desc">JPMorgan, Citi, HSBC, Deutsche Bank — operate nostro accounts globally. Primary infrastructure gatekeepers and key node operators.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Respondent banks (Tier 2 / 3)</div><div class="tq-item-desc">Smaller banks that maintain balances at correspondents. Direct beneficiaries of capital efficiency gains from atomic settlement.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Central banks</div><div class="tq-item-desc">Must sanction use of blockchain for intraday liquidity and provide RTGS interoperability or CBDC settlement layer.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Liquidity &amp; repo desks</div><div class="tq-item-desc">Manage intraday liquidity. Blockchain enables real-time visibility and instant rebalancing across all currency corridors.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SWIFT / The Clearing House</div><div class="tq-item-desc">Existing infrastructure operators. Must be engaged as partners or face being disintermediated entirely by the new layer.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Middleware to Build</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Real-time nostro visibility engine</div><div class="tq-item-desc">Aggregates on-chain balances across all currency corridors. Replaces end-of-day MT940 statement with live position data.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Predictive liquidity allocator</div><div class="tq-item-desc">ML model forecasting intraday payment flows per corridor. Pre-positions liquidity before peak payment windows open.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Atomic swap settlement module</div><div class="tq-item-desc">Simultaneous exchange of two tokenised currency positions between counterparty banks — no float, no bilateral credit risk.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Intraday netting engine</div><div class="tq-item-desc">Continuous bilateral and multilateral netting across all participating banks throughout the business day in real time.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Integrations Required</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Core banking system APIs</div><div class="tq-item-desc">Temenos, Finacle, Thought Machine — real-time debit/credit of nostro accounts triggered by on-chain settlement events.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">RTGS / central bank connectivity</div><div class="tq-item-desc">Final settlement leg must interface with Fedwire, TARGET2, or MAS MEPS+ to achieve legally binding payment finality.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">SWIFT MT / MX message bridge</div><div class="tq-item-desc">Parallel SWIFT message generation for audit and compliance during transition period. Full deprecation planned in phase 2.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">CHIPS interoperability adapter</div><div class="tq-item-desc">For USD corridors, on-chain settlement must be provably equivalent to CHIPS finality for regulatory acceptance.</div></div></div>
+      </div>
+
+      <div class="target-quadrant">
+        <div class="tq-label">Infrastructure to Establish</div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Tokenised reserve asset layer</div><div class="tq-item-desc">Tokenised representations of central bank reserves or wholesale CBDCs used as the on-chain settlement asset.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Multi-currency liquidity pools</div><div class="tq-item-desc">Shared liquidity contributed by consortium banks across USD, EUR, GBP, JPY, SGD corridors. Governed by smart contract rules.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Zero-knowledge compliance layer</div><div class="tq-item-desc">Banks prove AML/sanctions compliance without revealing counterparty data to competing institutions on the shared network.</div></div></div>
+        <div class="tq-item"><span class="tq-bullet">//</span><div><div class="tq-item-name">Central bank sandbox &amp; MOU</div><div class="tq-item-desc">Formal engagement with Fed, ECB, MAS to run parallel operations before live migration. Minimum 18–24 month runway required.</div></div></div>
+      </div>
+
+    </div>
+    <div class="target-card-footer">
+      <span class="tcf-label">Why blockchain wins here</span>
+      <span class="tcf-text">An estimated $5 trillion is pre-positioned daily in nostro accounts worldwide to guarantee payment flows — capital that earns nothing and is locked until end-of-day netting. Blockchain-based atomic settlement releases this capital intraday, representing ~$27B in annual opportunity cost savings across the correspondent banking system.</span>
+    </div>
+  </div>
+
+  <hr class="gold-rule">
+
+  <p style="font-size:11px; color:var(--muted); font-style:italic;">
+    Transaction counts and values are approximate estimates derived from NACHA, SWIFT, Federal Reserve, BIS, and Mastercard published data as of 2024–2025. Urgency ratings reflect the authors' assessment of blockchain's structural advantage relative to incumbent rail performance and switching cost.
+  </p>
+
+</div>
+
+<!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<div class="doc-footer">
+  <div class="footer-text">B2B &amp; Institutional Payments &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; All rights reserved</div>
+  <div class="footer-logo">Global Payments Intelligence</div>
+</div>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

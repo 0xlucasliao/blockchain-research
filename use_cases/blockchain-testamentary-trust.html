@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain testamentary trust — use case</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 22px 100px;
+    }
+    .uc-back {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-bottom: 24px;
+    }
+    .uc-back a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .uc-back a:hover { text-decoration: underline; }
+    .uc-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .uc-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .uc-panel h2 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .uc-panel p, .uc-panel li {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .uc-panel ul { padding-left: 1.1em; margin: 0; }
+    .uc-panel li:last-child { margin-bottom: 0; }
+    .uc-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      border-left: 2px solid var(--gold-border);
+      padding-left: 14px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body class="br-site">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Use cases</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="../sector_research/consumer_payments.html">Consumer</a>
+        <a href="../sector_research/institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main>
+  <p class="uc-back"><a href="index.html">← Use cases</a></p>
+
+  <div data-reveal>
+    <div class="uc-eyebrow">Use case · draft</div>
+    <h1>Blockchain testamentary trust</h1>
+  </div>
+
+  <div class="uc-panel" data-reveal>
+    <h2>Problem frame</h2>
+    <p>Testamentary trusts depend on clear intent, reliable custody of keys or signing authority, and eventual alignment with probate or equivalent processes. A chain-based design must say explicitly what is evidenced on-ledger versus what still requires court or trustee discretion.</p>
+  </div>
+
+  <div class="uc-panel" data-reveal>
+    <h2>Questions to resolve in a full note</h2>
+    <ul>
+      <li>Identity of settlor / testator and revocability windows.</li>
+      <li>Key recovery, social recovery, or institutional custody — and legal standing of each.</li>
+      <li>Oracle or off-chain evidence for death or incapacity triggers.</li>
+      <li>Conflict of laws when domicile and validators differ.</li>
+      <li>Minimization of sensitive personal data on a public ledger.</li>
+    </ul>
+  </div>
+
+  <p class="uc-note" data-reveal>This page is a structural placeholder. Replace sections with jurisdiction-specific research and citations as you develop the brief.</p>
+</main>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

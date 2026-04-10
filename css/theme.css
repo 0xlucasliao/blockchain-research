@@ -1,0 +1,166 @@
+/**
+ * Site-wide theme: IBM Plex Sans + Mono only.
+ * Default: light. Toggle sets html[data-br-theme="dark"].
+ */
+
+:root {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  /* Default = light (before JS runs) */
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --card: #eef1f7;
+  --border: #d5dde8;
+  --border-hi: #b3bfd4;
+  --text: #334155;
+  --muted: #64748b;
+  --heading: #0f172a;
+  --nav-bg: rgba(255, 255, 255, 0.94);
+  --nav-link-hover: #0f172a;
+  --nav-link-hover-bg: #e2e8f0;
+  --site-dot-fg: #0f172a;
+  --gold: #b45309;
+  --gold-dim: rgba(180, 83, 9, 0.12);
+  --gold-border: rgba(180, 83, 9, 0.35);
+  --green: #047857;
+  --green-dim: rgba(4, 120, 87, 0.1);
+  --green-border: rgba(4, 120, 87, 0.28);
+  --blue: #1d4ed8;
+  --blue-dim: rgba(29, 78, 216, 0.1);
+  --blue-border: rgba(29, 78, 216, 0.28);
+  --diagram-blue-fg: #1e40af;
+  --diagram-green-fg: #047857;
+  --purple: #6d28d9;
+  --purple-dim: rgba(109, 40, 217, 0.1);
+  --purple-border: rgba(109, 40, 217, 0.28);
+  --red: #b91c1c;
+  --red-dim: rgba(185, 28, 28, 0.08);
+  --node-grey-bg: rgba(226, 232, 240, 0.95);
+  --fn-muted-bg: rgba(226, 232, 240, 0.85);
+  --kpi-header-bg: rgba(241, 245, 249, 0.95);
+  --perf-hero-grad-mid: rgba(255, 255, 255, 0);
+  --insight-strip-color: #92400e;
+  --ft-grey-bg: rgba(100, 116, 139, 0.15);
+  --masthead-bg: rgba(255, 255, 255, 0.94);
+  --masthead-border: rgba(15, 23, 42, 0.08);
+  --masthead-fg: #475569;
+  --masthead-brand: #0f172a;
+  --masthead-hover-bg: rgba(15, 23, 42, 0.07);
+  --masthead-current: #b45309;
+  --cover-bg: #ffffff;
+  --cover-text: #0f172a;
+  --cover-muted: #64748b;
+  --cover-accent: #b45309;
+  --cover-accent-soft: #d97706;
+  --cover-rule: rgba(180, 83, 9, 0.35);
+  --cover-chapter-dim: #64748b;
+  --cover-grid: rgba(180, 83, 9, 0.07);
+  --stat-border: #0f172a;
+  --section-num-color: #cbd5e1;
+  --section-title-color: #0f172a;
+  --gold-rule-op: 0.45;
+  --gold-pale: #fef3c7;
+  --gold-light: #fde68a;
+  --gold-dark: #92400e;
+  --line-strong: #0f172a;
+  --inv-header-bg: #111827;
+  --inv-header-fg: #f8fafc;
+}
+
+html[data-br-theme='dark'] {
+  --bg: #09090e;
+  --surface: #0f1018;
+  --card: #13151f;
+  --border: #1c1f2e;
+  --border-hi: #2a2f45;
+  --text: #c8d0e0;
+  --muted: #525870;
+  --heading: #eef0f8;
+  --nav-bg: rgba(9, 9, 14, 0.94);
+  --nav-link-hover: #eef0f8;
+  --nav-link-hover-bg: #13151f;
+  --site-dot-fg: #000000;
+  --gold: #f0b90b;
+  --gold-dim: rgba(240, 185, 11, 0.12);
+  --gold-border: rgba(240, 185, 11, 0.28);
+  --green: #10b981;
+  --green-dim: rgba(16, 185, 129, 0.1);
+  --green-border: rgba(16, 185, 129, 0.28);
+  --blue: #3b82f6;
+  --blue-dim: rgba(59, 130, 246, 0.1);
+  --blue-border: rgba(59, 130, 246, 0.28);
+  --diagram-blue-fg: #93c5fd;
+  --diagram-green-fg: #6ee7b7;
+  --purple: #a855f7;
+  --purple-dim: rgba(168, 85, 247, 0.1);
+  --purple-border: rgba(168, 85, 247, 0.28);
+  --red: #ef4444;
+  --red-dim: rgba(239, 68, 68, 0.08);
+  --node-grey-bg: rgba(28, 31, 46, 0.9);
+  --fn-muted-bg: rgba(28, 31, 46, 0.6);
+  --kpi-header-bg: rgba(15, 16, 24, 0.8);
+  --perf-hero-grad-mid: rgba(15, 16, 24, 0);
+  --insight-strip-color: #a87c00;
+  --ft-grey-bg: rgba(82, 88, 112, 0.2);
+  --masthead-bg: rgba(9, 9, 14, 0.92);
+  --masthead-border: rgba(255, 255, 255, 0.06);
+  --masthead-fg: rgba(200, 208, 224, 0.88);
+  --masthead-brand: #eef0f8;
+  --masthead-hover-bg: rgba(255, 255, 255, 0.08);
+  --masthead-current: #f0b90b;
+  --cover-bg: #0d1118;
+  --cover-text: #f1f5f9;
+  --cover-muted: #94a3b8;
+  --cover-accent: #f0b90b;
+  --cover-accent-soft: #fcd34d;
+  --cover-rule: rgba(240, 185, 11, 0.25);
+  --cover-chapter-dim: #64748b;
+  --cover-grid: rgba(240, 185, 11, 0.06);
+  --stat-border: #0f172a;
+  --section-num-color: rgba(240, 185, 11, 0.25);
+  --gold-rule-op: 0.3;
+  --gold-pale: rgba(251, 191, 36, 0.14);
+  --gold-light: #fcd34d;
+  --gold-dark: #fbbf24;
+  --line-strong: #64748b;
+  --inv-header-bg: #1e293b;
+  --inv-header-fg: #f1f5f9;
+}
+
+html[data-br-theme='dark'] .institutional-doc .section-title {
+  --section-title-color: #f8fafc;
+}
+
+html[data-br-theme='dark'] .institutional-doc .section-number {
+  --section-num-color: rgba(240, 185, 11, 0.2);
+}
+
+/* Theme toggle (in masthead) */
+.br-theme-toggle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  min-height: 36px;
+  min-width: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--masthead-border);
+  background: var(--masthead-hover-bg);
+  color: var(--masthead-fg);
+  cursor: pointer;
+  margin-left: 4px;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+.br-theme-toggle:hover {
+  color: var(--masthead-brand);
+  border-color: var(--gold-border);
+}
+
+.br-theme-toggle:focus-visible {
+  outline: 2px solid var(--masthead-current);
+  outline-offset: 2px;
+}

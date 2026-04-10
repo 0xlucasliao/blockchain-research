@@ -1,0 +1,313 @@
+/**
+ * Blockchain research — shared motion & chrome
+ * Pair with js/motion.js. Respects prefers-reduced-motion.
+ */
+
+:root {
+  --br-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --br-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --br-duration-instant: 0.12s;
+  --br-duration-fast: 0.2s;
+  --br-duration-med: 0.4s;
+  --br-duration-slow: 0.6s;
+  --br-stagger: 0.07s;
+  /* Updated by motion.js when the masthead wraps (narrow viewports). */
+  --br-masthead-height: 44px;
+}
+
+/* Cross-document view transitions (Chrome 126+; harmless elsewhere) */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.38s;
+    animation-timing-function: var(--br-ease-out);
+  }
+}
+
+/* ─── Page enter ─── */
+@media (prefers-reduced-motion: no-preference) {
+  /* Transform only — avoid animating parent opacity (breaks child opacity for scroll-reveal) */
+  @keyframes br-page-in {
+    from {
+      transform: translate3d(0, 12px, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Targeted layers (avoid animating every body child) */
+  body.br-animate-page-in > main,
+  body.br-animate-page-in > nav:not(.br-masthead),
+  body.br-animate-page-in > .page,
+  body.br-animate-page-in > .cover {
+    animation: br-page-in 0.5s var(--br-ease-out) both;
+  }
+
+  body.br-animate-page-in > .page {
+    animation-delay: 0.05s;
+  }
+
+  body.br-animate-page-in > main {
+    animation-delay: 0.04s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.br-animate-page-in > * {
+    animation: none !important;
+  }
+}
+
+/* ─── Scroll reveal ─── */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not(.br-is-visible) {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity var(--br-duration-slow) var(--br-ease-out),
+      transform var(--br-duration-slow) var(--br-ease-out);
+    transition-delay: var(--br-reveal-delay, 0s);
+  }
+
+  [data-reveal].br-is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ─── Global masthead (all pages) ─── */
+.br-masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 20px;
+  height: 44px;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--masthead-border);
+  background: var(--masthead-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--masthead-fg);
+  transition:
+    background var(--br-duration-fast) var(--br-ease-standard),
+    border-color var(--br-duration-fast) var(--br-ease-standard),
+    backdrop-filter var(--br-duration-fast);
+}
+
+.br-masthead a {
+  color: inherit;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition:
+    background var(--br-duration-instant) var(--br-ease-standard),
+    color var(--br-duration-instant) var(--br-ease-standard);
+}
+
+.br-masthead a:hover {
+  background: var(--masthead-hover-bg);
+}
+
+.br-masthead a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.br-masthead .br-masthead-brand {
+  color: var(--masthead-brand);
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.br-masthead a[aria-current='page'] {
+  color: var(--masthead-current);
+}
+
+.br-masthead-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* Masthead sector links (details/summary) */
+.br-masthead .br-sectors {
+  position: relative;
+}
+
+.br-masthead .br-sectors > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background var(--br-duration-instant) var(--br-ease-standard);
+}
+
+.br-masthead .br-sectors > summary::-webkit-details-marker {
+  display: none;
+}
+
+.br-masthead .br-sectors > summary::marker {
+  content: '';
+}
+
+.br-masthead .br-sectors > summary:hover {
+  background: var(--masthead-hover-bg);
+}
+
+.br-masthead .br-sectors > summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.br-masthead .br-sectors-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  min-width: 11rem;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--masthead-bg);
+  border: 1px solid var(--masthead-border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 310;
+}
+
+html[data-br-theme='dark'] .br-masthead .br-sectors-panel {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.br-masthead .br-sectors-panel a {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .br-masthead {
+    padding: 0 10px 0 12px;
+    gap: 6px;
+    font-size: 10px;
+    height: auto;
+    min-height: 44px;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .br-masthead .br-masthead-brand {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 4px;
+  }
+
+  .br-masthead a {
+    padding: 8px 6px;
+  }
+
+  .br-masthead .br-sectors > summary {
+    padding: 8px 6px;
+  }
+
+  .br-masthead .br-sectors-panel {
+    right: 0;
+    left: auto;
+    max-width: min(11rem, calc(100vw - 24px));
+  }
+}
+
+.br-masthead-spacer {
+  height: var(--br-masthead-height);
+}
+
+/* Pages with their own sticky nav below masthead get extra offset */
+body.has-local-nav .br-masthead-spacer {
+  height: 0;
+}
+
+body.has-local-nav nav {
+  top: var(--br-masthead-height);
+}
+
+/* Institutional cover clears fixed masthead */
+body.institutional-doc .cover {
+  padding-top: calc(64px + var(--br-masthead-height));
+}
+
+/* ─── Institutional cover entrance ─── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes br-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  body.institutional-doc .cover-eyebrow {
+    opacity: 0;
+    animation: br-fade-up 0.65s var(--br-ease-out) 0.05s forwards;
+  }
+
+  body.institutional-doc .cover-title {
+    opacity: 0;
+    animation: br-fade-up 0.75s var(--br-ease-out) 0.12s forwards;
+  }
+
+  body.institutional-doc .cover-divider {
+    opacity: 0;
+    animation: br-fade-up 0.55s var(--br-ease-out) 0.22s forwards;
+  }
+
+  body.institutional-doc .cover-desc {
+    opacity: 0;
+    animation: br-fade-up 0.65s var(--br-ease-out) 0.28s forwards;
+  }
+
+  body.br-site--light .cover-top,
+  body.br-site--light .cover-bottom {
+    opacity: 0;
+    animation: br-fade-up 0.55s var(--br-ease-out) 0.04s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.institutional-doc .cover-eyebrow,
+  body.institutional-doc .cover-title,
+  body.institutional-doc .cover-divider,
+  body.institutional-doc .cover-desc,
+  body.institutional-doc .cover-top,
+  body.institutional-doc .cover-bottom {
+    opacity: 1;
+    animation: none;
+  }
+}

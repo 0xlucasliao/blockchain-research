@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI &amp; design system — blockchain research</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+    .dg-hero h1 {
+      font-size: clamp(26px, 3.5vw, 34px);
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .dg-hero p {
+      color: var(--muted);
+      max-width: 56ch;
+      font-size: 14px;
+    }
+    .dg-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .dg-meta a { color: var(--gold); }
+    .dg-section {
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+    .dg-section h2 {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .dg-section p, .dg-section li {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 10px;
+      max-width: 68ch;
+    }
+    .dg-section ul { padding-left: 1.2em; margin-bottom: 14px; }
+    table.dg-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      margin: 16px 0 8px;
+    }
+    .dg-table th, .dg-table td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .dg-table th { color: var(--muted); font-weight: 600; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .dg-swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .dg-swatch {
+      width: 88px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .dg-swatch span {
+      display: block;
+      height: 40px;
+    }
+    .dg-swatch code {
+      display: block;
+      padding: 6px 8px;
+      font-size: 9px;
+      background: var(--surface);
+      color: var(--muted);
+    }
+    .dg-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-top: 16px;
+    }
+    .dg-panel h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 10px;
+    }
+    .dg-type-sample {
+      margin: 12px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dg-type-sample:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .dg-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .t-display { font-size: 22px; font-weight: 600; color: var(--heading); letter-spacing: -0.02em; }
+    .t-title { font-size: 17px; font-weight: 600; color: var(--heading); }
+    .t-body { font-size: 14px; color: var(--text); }
+    .t-mono { font-family: var(--font-mono); font-size: 12px; color: var(--gold); }
+    .dg-demo-btn {
+      display: inline-block;
+      margin-top: 12px;
+      margin-right: 10px;
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid var(--gold-border);
+      background: var(--gold-dim);
+      color: var(--gold);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .dg-demo-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .dg-demo-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dg-demo-btn { transition: none; }
+      .dg-demo-btn:hover { transform: none; }
+    }
+    .dg-light-preview {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 8px;
+      background: #fafaf7;
+      color: #1a1a1a;
+      border: 1px solid #e0e0dc;
+    }
+    .dg-light-preview h3 {
+      font-family: var(--font-sans);
+      font-size: 20px;
+      font-weight: 600;
+      color: #0d0d0d;
+      margin-bottom: 8px;
+    }
+    .dg-light-preview p {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      line-height: 1.75;
+      color: #3a3a3a;
+      margin: 0;
+    }
+    .dg-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="br-site">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="index.html">Home</a>
+    <a href="use_cases/index.html">Use cases</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="sector_research/consumer_payments.html">Consumer</a>
+        <a href="sector_research/institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main>
+  <div class="dg-hero" data-reveal>
+    <h1>UI &amp; motion design system</h1>
+    <p>
+      Serious, readable, and calm. Motion supports comprehension — it never competes with content.
+      This page documents tokens and behaviour; the canonical written spec is in the repository root as <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">DESIGN_GUIDE.md</code>.
+    </p>
+    <p class="dg-meta">Implementation: <a href="css/theme.css">css/theme.css</a> · <a href="css/motion.css">css/motion.css</a> · <a href="js/motion.js">js/motion.js</a></p>
+  </div>
+
+  <section class="dg-section" data-reveal>
+    <h2>Themes</h2>
+    <p><strong>Shared typography</strong> — IBM Plex Sans (UI and body) and IBM Plex Mono (labels, data, navigation) across sector and institutional reports.</p>
+    <p><strong>Light default, optional dark</strong> — tokens live in <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">css/theme.css</code>; <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">html[data-br-theme="dark"]</code> flips the palette. Preference is stored in <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">localStorage</code> via the masthead toggle.</p>
+    <p><strong>Institutional layout</strong> — same fonts and tokens; cover and section structure stay editorial (large cover title, stat row, layer tables) with colours driven by the same theme variables.</p>
+    <div class="dg-swatch-row">
+      <div class="dg-swatch"><span style="background:#09090e"></span><code>#09090E bg</code></div>
+      <div class="dg-swatch"><span style="background:#13151f"></span><code>#13151F card</code></div>
+      <div class="dg-swatch"><span style="background:#f0b90b"></span><code>#F0B90B gold</code></div>
+      <div class="dg-swatch"><span style="background:#fafaf7"></span><code>#FAFAF7 paper</code></div>
+      <div class="dg-swatch"><span style="background:#c9a84c"></span><code>#C9A84C gold</code></div>
+    </div>
+    <div class="dg-light-preview">
+      <h3>Institutional preview</h3>
+      <p>Serif display for section openings; sans body at 13px with generous line height (~1.85) for extended reading.</p>
+    </div>
+  </section>
+
+  <section class="dg-section" data-reveal>
+    <h2>Typography</h2>
+    <div class="dg-panel">
+      <div class="dg-type-sample">
+        <div class="dg-label">Display / page title</div>
+        <div class="t-display">Payments &amp; settlement</div>
+      </div>
+      <div class="dg-type-sample">
+        <div class="dg-label">Section title</div>
+        <div class="t-title">Infrastructure &amp; tools</div>
+      </div>
+      <div class="dg-type-sample">
+        <div class="dg-label">Body</div>
+        <div class="t-body">Line length capped near 68–72 characters where possible. Prefer sentence case for headings; avoid all-caps paragraphs.</div>
+      </div>
+      <div class="dg-type-sample">
+        <div class="dg-label">Mono / data</div>
+        <div class="t-mono">KPI · 10.78M · +150% YoY</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dg-section" data-reveal>
+    <h2>Motion &amp; transitions</h2>
+    <p>All motion respects <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">prefers-reduced-motion</code>. Users who disable animation get static layouts with no scroll-driven opacity tricks.</p>
+    <table class="dg-table">
+      <thead>
+        <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>--br-ease-out</td><td>cubic-bezier(0.22,1,0.36,1)</td><td>Page enter, reveals</td></tr>
+        <tr><td>--br-duration-slow</td><td>0.6s</td><td>Scroll reveal</td></tr>
+        <tr><td>--br-duration-fast</td><td>0.2s</td><td>Chrome / masthead</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><strong>Page enter</strong> — short translate on <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">nav</code>, <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">main</code>, <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">.page</code>, or <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">.cover</code> after load (no parent opacity animation).</li>
+      <li><strong>Cross-page</strong> — when supported, <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">document.startViewTransition</code> wraps same-origin navigation to <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">*.html</code> links.</li>
+      <li><strong>Scroll reveal</strong> — add <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">data-reveal</code>; <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">motion.js</code> toggles <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">.br-is-visible</code> once the block enters the viewport.</li>
+      <li><strong>Optional delay per block</strong> — set <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">style="--br-reveal-delay: 0.1s"</code> on a <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">[data-reveal]</code> node.</li>
+    </ul>
+    <div class="dg-panel">
+      <h3>Interactive demo</h3>
+      <p style="margin:0;font-size:12px;color:var(--muted)">Hover uses a 1px lift — subtle, not playful.</p>
+      <button type="button" class="dg-demo-btn">Primary action</button>
+      <button type="button" class="dg-demo-btn" style="opacity:0.75">Secondary</button>
+    </div>
+  </section>
+
+  <section class="dg-section" data-reveal>
+    <h2>Layout &amp; chrome</h2>
+    <ul>
+      <li><strong>Masthead</strong> — fixed 44px bar (<code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">.br-masthead</code>) on every page; document body uses <code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">.br-masthead-spacer</code> to offset content.</li>
+      <li><strong>Consumer in-page nav</strong> — second sticky row under masthead (<code style="font-family:IBM Plex Mono;font-size:11px;color:var(--gold)">body.has-local-nav nav { top: 44px }</code>).</li>
+      <li><strong>Focus</strong> — visible focus rings on links and controls; gold on dark theme, dark gold on light masthead.</li>
+    </ul>
+    <div class="dg-code">Root: css/theme.css then css/motion.css · js/motion.js<br>Nested: ../css/theme.css · ../css/motion.css · ../js/motion.js<br>Sector briefs: sector_research/ · Use cases: use_cases/</div>
+  </section>
+
+  <section class="dg-section" data-reveal>
+    <h2>Content rules</h2>
+    <p>Editorial voice and naming (MPP SDK, neutral chain language) live in <strong>AGENTS.md</strong>. Keep diagrams and tables numerically honest; label worked-example metrics clearly.</p>
+  </section>
+</main>
+
+<script src="js/motion.js" defer></script>
+</body>
+</html>

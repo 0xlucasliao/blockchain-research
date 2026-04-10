@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumer crypto payments — research</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/motion.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 52px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-dot {
+    width: 22px; height: 22px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--site-dot-fg);
+    line-height: 1;
+  }
+
+  .nav-brand span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: 0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--nav-link-hover); background: var(--nav-link-hover-bg); }
+
+  .nav-links a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    color: var(--heading);
+  }
+
+  /* PAGE */
+  .page { max-width: 1100px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  /* SECTION TITLES */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    margin-top: 56px;
+  }
+
+  .section-title:first-of-type { margin-top: 0; }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+  }
+
+  .section-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -0.3px;
+  }
+
+  .section-title hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    margin-top: -16px;
+    font-family: var(--font-mono);
+    padding-left: 2px;
+  }
+
+  /* ─── FLOW DIAGRAMS ─────────────────────────────────────── */
+  .flow-group {
+    margin-bottom: 12px;
+  }
+
+  .flow-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-left: 2px;
+  }
+
+  .flow-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 22px 16px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .flow-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .fc-grey::before  { background: var(--border-hi); }
+  .fc-gold::before  { background: var(--gold); }
+  .fc-green::before { background: var(--green); }
+  .fc-purple::before { background: var(--purple); }
+
+  .flow-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .flow-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .flow-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-family: var(--font-mono);
+  }
+
+  .flow-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ft-grey   { background: var(--ft-grey-bg); color: var(--muted); border: 1px solid var(--border-hi); }
+  .ft-gold   { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+  .ft-green  { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+  .ft-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple-border); }
+  .ft-blue   { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+
+  /* FLOW CHAIN */
+  .flow-chain {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .node-box {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .nb-grey    { background: var(--node-grey-bg); border-color: var(--border-hi); color: var(--text); }
+  .nb-blue    { background: var(--blue-dim); border-color: var(--blue-border); color: var(--diagram-blue-fg); }
+  .nb-gold    { background: rgba(240,185,11,0.1); border-color: rgba(240,185,11,0.4); color: var(--gold); }
+  .nb-chain   { background: rgba(240,185,11,0.18); border-color: var(--gold); color: var(--gold); font-weight: 600; }
+  .nb-green   { background: var(--green-dim); border-color: var(--green-border); color: var(--diagram-green-fg); }
+  .nb-purple  { background: rgba(168,85,247,0.12); border-color: rgba(168,85,247,0.4); color: #D8B4FE; }
+  .nb-red     { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.35); color: #FCA5A5; }
+  .nb-network { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.35); color: #D8B4FE; }
+
+  .node-sub {
+    font-size: 9px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    text-align: center;
+  }
+
+  /* ARROWS */
+  .arr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 4px;
+    flex-shrink: 0;
+    gap: 2px;
+    margin-top: 8px;
+  }
+
+  .arr-line {
+    display: flex;
+    align-items: center;
+  }
+
+  .arr-shaft {
+    height: 1.5px;
+    width: 28px;
+  }
+
+  .arr-head {
+    width: 0; height: 0;
+    border-top: 3.5px solid transparent;
+    border-bottom: 3.5px solid transparent;
+  }
+
+  .ac-grey   { background: var(--border-hi); }
+  .ac-grey-h { border-left-color: var(--border-hi); }
+  .ac-gold   { background: rgba(240,185,11,0.5); }
+  .ac-gold-h { border-left-color: rgba(240,185,11,0.7); }
+  .ac-green  { background: rgba(16,185,129,0.5); }
+  .ac-green-h { border-left-color: rgba(16,185,129,0.7); }
+  .ac-purple { background: rgba(168,85,247,0.5); }
+  .ac-purple-h { border-left-color: rgba(168,85,247,0.7); }
+
+  .arr-lbl {
+    font-size: 8.5px;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    color: var(--muted);
+  }
+
+  .arr-lbl.gold   { color: rgba(240,185,11,0.65); }
+  .arr-lbl.green  { color: rgba(16,185,129,0.65); }
+  .arr-lbl.purple { color: rgba(168,85,247,0.65); }
+
+  /* NOTE */
+  .flow-note {
+    margin-top: 12px;
+    padding: 9px 13px;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.55;
+    border-left: 2px solid;
+  }
+
+  .fn-muted  { background: var(--fn-muted-bg); border-color: var(--border-hi); color: var(--muted); }
+  .fn-gold   { background: var(--gold-dim); border-color: var(--gold); color: var(--insight-strip-color); }
+  .fn-green  { background: var(--green-dim); border-color: var(--green); color: #059669; }
+  .fn-purple { background: var(--purple-dim); border-color: var(--purple); color: #9333EA; }
+
+  .fn-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .two-col .flow-card { margin-bottom: 0; }
+
+  /* Insight callout under flow diagrams */
+  .insight-strip {
+    margin-top: 12px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    padding: 8px 12px;
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    font-size: 11px;
+    color: var(--insight-strip-color);
+    line-height: 1.5;
+  }
+
+  .insight-icon {
+    width: 16px; height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 9px; font-weight: 700;
+    color: var(--site-dot-fg);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* VISION COMPARE */
+  .vision-compare {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .vc-side {
+    padding: 20px 22px;
+  }
+
+  .vc-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .vc-divider {
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    writing-mode: vertical-lr;
+  }
+
+  .hops {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hops-label { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+
+  .hop-dots { display: flex; gap: 5px; margin-bottom: 10px; }
+  .hop-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border-hi);
+  }
+  .hop-dot.on { background: var(--green); }
+  .hop-dot.off { background: var(--red-dim); border: 1px solid var(--red); }
+
+  /* ─── TOOLS SECTION ─────────────────────────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tool-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .tc-wallet::after  { background: linear-gradient(90deg, var(--blue), transparent); }
+  .tc-issuer::after  { background: linear-gradient(90deg, var(--gold), transparent); }
+  .tc-psp::after     { background: linear-gradient(90deg, var(--green), transparent); }
+  .tc-agent::after   { background: linear-gradient(90deg, var(--purple), transparent); }
+  .tc-infra::after   { background: linear-gradient(90deg, var(--red), transparent); }
+  .tc-protocol::after { background: linear-gradient(90deg, #F97316, transparent); }
+
+  .tool-stakeholder {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .ts-wallet  { color: var(--blue); }
+  .ts-issuer  { color: var(--gold); }
+  .ts-psp     { color: var(--green); }
+  .ts-agent   { color: var(--purple); }
+  .ts-infra   { color: var(--red); }
+  .ts-protocol { color: #F97316; }
+
+  .tool-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+  }
+
+  .tool-row {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tool-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .tool-row-label {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .tool-row-text {
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .ref-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .ref-pill {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: var(--fn-muted-bg);
+    border: 1px solid var(--border-hi);
+    color: var(--muted);
+  }
+
+  /* ─── GTM SECTION ─────────────────────────────────────── */
+  .gtm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .gtm-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .gtm-tier {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .gt-1 { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+  .gt-2 { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+  .gt-3 { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+  .gt-infra { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple-border); }
+
+  .gtm-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .gtm-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .gtm-list li {
+    font-size: 11.5px;
+    color: var(--text);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .gtm-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+
+  .gtm-list.gl-gold li::before  { background: var(--gold); }
+  .gtm-list.gl-blue li::before  { background: var(--blue); }
+  .gtm-list.gl-green li::before { background: var(--green); }
+  .gtm-list.gl-purple li::before { background: var(--purple); }
+
+  .gtm-list li span {
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  /* PARTNER CHIPS */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--border-hi);
+    color: var(--text);
+    background: var(--node-grey-bg);
+  }
+
+  .chip.active {
+    border-color: var(--gold-border);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  /* FULL WIDTH CARD */
+  .full-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+
+  .full-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 12px;
+  }
+
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .narrative-item {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+
+  .ni-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .ni-hook {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .ni-body {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  /* REFERENCE ROW */
+  .reference-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ref-card {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .ref-chain {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .ref-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 8px;
+  }
+
+  .ref-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ref-items li {
+    font-size: 11px;
+    color: var(--text);
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .ref-items li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 6px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--border-hi);
+  }
+
+  .learn-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+
+  .learn-text {
+    font-size: 11px;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: 8px;
+      height: auto;
+      min-height: 52px;
+      padding: 10px 16px;
+    }
+
+    .nav-brand {
+      flex: 1 1 100%;
+      min-width: 0;
+    }
+
+    .nav-brand span {
+      font-size: 11px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 4px 6px;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+    }
+
+    .page {
+      padding: 28px 16px 56px;
+    }
+
+    .section-title {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-title hr {
+      flex: 1 1 100%;
+      min-width: 0;
+    }
+
+    .flow-head {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .flow-tag {
+      white-space: normal;
+      text-align: center;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .vision-compare {
+      grid-template-columns: 1fr;
+    }
+
+    .vc-divider {
+      writing-mode: horizontal-tb;
+      min-height: 40px;
+      padding: 8px;
+    }
+
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gtm-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .narrative-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .reference-row {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      padding: 10px 12px;
+    }
+
+    .page {
+      padding: 24px 12px 48px;
+    }
+  }
+</style>
+</head>
+<body class="br-site has-local-nav">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="consumer_payments.html">Consumer</a>
+        <a href="institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-brand">
+    <div class="site-dot">◇</div>
+    <span>Blockchain research &mdash; consumer payments</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html">Hub</a>
+    <a href="#perf">Performance</a>
+    <a href="#flows">Payment Flows</a>
+    <a href="#tools">Tools & SDKs</a>
+    <a href="#gtm">Go-to-Market</a>
+    <a href="#kpi">KPIs</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 0: CURRENT PERFORMANCE
+  ═══════════════════════════════════════════════════════ -->
+  <style>
+    /* PERF SECTION STYLES */
+    .perf-hero {
+      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--perf-hero-grad-mid) 60%);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 24px 28px 20px;
+      margin-bottom: 12px;
+    }
+    .perf-hero-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .perf-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .perf-stat {
+      padding: 16px 18px;
+      border-right: 1px solid var(--border);
+      background: var(--card);
+    }
+    .perf-stat:last-child { border-right: none; }
+    .perf-stat-val {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--heading);
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .perf-stat-val .unit {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .perf-stat-label {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+    .perf-stat-delta {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 1px 6px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .delta-up { background: rgba(16,185,129,0.12); color: var(--green); }
+    .delta-neutral { background: var(--ft-grey-bg); color: var(--muted); }
+
+    .perf-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .perf-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .perf-card-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .perf-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .perf-row:last-child { border-bottom: none; }
+    .perf-row-label { font-size: 11.5px; color: var(--text); }
+    .perf-row-val {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .perf-row-val.gold { color: var(--gold); }
+    .perf-row-val.green { color: var(--green); }
+    .perf-row-val.muted { color: var(--muted); }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+    .comp-table th {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .comp-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-mono);
+    }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table td.ranked-1 { color: var(--green); font-weight: 600; }
+    .comp-table td.ranked-low { color: var(--muted); }
+
+    .gap-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .gap-banner-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #EF4444;
+      margin-bottom: 8px;
+    }
+    .gap-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .gap-item {
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+    }
+    .gap-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+    .gap-item span { color: var(--heading); font-weight: 600; }
+
+    /* KPI SECTION */
+    .kpi-initiative {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--kpi-header-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-init-num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 2px;
+      letter-spacing: 0.8px;
+    }
+    .kpi-init-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.2px;
+    }
+    .kpi-init-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      margin-left: auto;
+    }
+    .kpi-body {
+      padding: 16px 18px;
+    }
+    .kpi-requires {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .kpi-req-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 4px;
+      margin-right: 4px;
+    }
+    .kpi-req-chip {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: var(--fn-muted-bg);
+      border: 1px solid var(--border-hi);
+      color: var(--text);
+    }
+    .kpi-goals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .kpi-goal-col { }
+    .kpi-goal-col-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .kpi-st { background: rgba(59,130,246,0.1); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+    .kpi-lt { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+    .kpi-metric {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-metric:last-child { border-bottom: none; }
+    .kpi-metric-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 70px;
+    }
+    .kpi-metric-desc {
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .kpi-metric-desc strong {
+      color: var(--heading);
+      display: block;
+      font-size: 11.5px;
+      margin-bottom: 1px;
+    }
+
+    @media (max-width: 720px) {
+      .perf-hero {
+        padding: 18px 16px 16px;
+      }
+
+      .perf-hero-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        border: none;
+        overflow: visible;
+      }
+
+      .perf-stat {
+        border: 1px solid var(--border) !important;
+        border-radius: 4px;
+        border-right: 1px solid var(--border) !important;
+      }
+
+      .perf-stat:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+
+      .perf-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .gap-list {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-header {
+        flex-wrap: wrap;
+      }
+
+      .kpi-init-sub {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .kpi-goals {
+        grid-template-columns: 1fr;
+      }
+
+      .perf-card:has(table.comp-table) {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+      }
+
+      table.comp-table {
+        min-width: 480px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .perf-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .perf-stat:last-child:nth-child(odd) {
+        grid-column: auto;
+      }
+
+      .perf-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .perf-row-val {
+        align-self: flex-start;
+      }
+    }
+  </style>
+
+  <div id="perf" data-reveal>
+  <div class="section-title" style="margin-top:0">
+    <div class="section-num">00</div>
+    <h2>Current Performance</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Worked-example metrics and peer comparison — patterns apply across programmable L1/L2s</p>
+
+  <!-- HERO STATS -->
+  <div class="perf-hero">
+    <div class="perf-hero-label">Worked example: BNB Smart Chain — public on-chain metrics (2025 full year / latest available)</div>
+    <div class="perf-hero-grid">
+      <div class="perf-stat">
+        <div class="perf-stat-val">10.78<span class="unit">M</span></div>
+        <div class="perf-stat-label">Avg. daily transactions</div>
+        <div class="perf-stat-delta delta-up">+150% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">4.32<span class="unit">M</span></div>
+        <div class="perf-stat-label">Peak daily active wallets</div>
+        <div class="perf-stat-delta delta-up">#1 among all L1s</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">700<span class="unit">M+</span></div>
+        <div class="perf-stat-label">Total unique addresses</div>
+        <div class="perf-stat-delta delta-up">+40% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">$16.3<span class="unit">B</span></div>
+        <div class="perf-stat-label">Stablecoin supply (this network)</div>
+        <div class="perf-stat-delta delta-up">+133% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">$5.3<span class="unit">B</span></div>
+        <div class="perf-stat-label">Total Value Locked (TVL)</div>
+        <div class="perf-stat-delta delta-up">+40.5% YoY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO COL: PAYMENT METRICS + COMPETITIVE POSITION -->
+  <div class="perf-two-col">
+
+    <div class="perf-card">
+      <div class="perf-card-title">Payment & Stablecoin Metrics</div>
+      <div class="perf-row">
+        <div class="perf-row-label">Share of global stablecoin txns by count</div>
+        <div class="perf-row-val gold">40%</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Unique monthly stablecoin senders</div>
+        <div class="perf-row-val gold">15.1M</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Monthly stablecoin payment volume</div>
+        <div class="perf-row-val">$10B+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Stablecoin transfers under $1,000</div>
+        <div class="perf-row-val">82%</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Gasless stablecoin txns (sponsored / paymaster)</div>
+        <div class="perf-row-val green">25M+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Avg. transaction cost</div>
+        <div class="perf-row-val green">~$0.005</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Binance Pay merchant locations</div>
+        <div class="perf-row-val">21M+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Binance Pay users</div>
+        <div class="perf-row-val">45M</div>
+      </div>
+    </div>
+
+    <div class="perf-card">
+      <div class="perf-card-title">Competitive Position vs Peers (2025)</div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Chain</th>
+            <th>Daily TXs</th>
+            <th>Daily Active</th>
+            <th>Stablecoin Tx%</th>
+            <th>Avg Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BNB Smart Chain</strong></td>
+            <td class="ranked-1">10.78M avg</td>
+            <td class="ranked-1">4.32M peak</td>
+            <td class="ranked-1">40% global</td>
+            <td class="ranked-1">$0.005</td>
+          </tr>
+          <tr>
+            <td>Solana</td>
+            <td>75M+ (incl. vote)</td>
+            <td>~2M</td>
+            <td>~15%</td>
+            <td>$0.00025</td>
+          </tr>
+          <tr>
+            <td>Ethereum</td>
+            <td>~1.2M</td>
+            <td>~400K</td>
+            <td>~27% vol</td>
+            <td class="ranked-low">~$0.44</td>
+          </tr>
+          <tr>
+            <td>Base</td>
+            <td>7–12M</td>
+            <td>~800K</td>
+            <td>Growing</td>
+            <td>~$0.01</td>
+          </tr>
+          <tr>
+            <td>Tron</td>
+            <td>~7M</td>
+            <td>~2M</td>
+            <td>~45% vol</td>
+            <td>$0.001</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- THE GAP: WHERE PAYMENTS IS UNDERDEVELOPED -->
+  <div class="gap-banner">
+    <div class="gap-banner-title">The Gap: Strong Infrastructure, Underdeveloped Payment Utility</div>
+    <div class="gap-list">
+      <div class="gap-item"><span>Thin card rails.</span> Many high-throughput EVM networks lack native, network-aligned debit-card programs; users depend on generic crypto cards with little chain-specific distribution or UX.</div>
+      <div class="gap-item"><span>Uneven PSP coverage.</span> Some ecosystems (e.g. Base with Stripe, Solana with Shopify/Circle) have major acquirer paths; others still have no first-class PSP or checkout integration despite high stablecoin throughput.</div>
+      <div class="gap-item"><span>Agentic tooling early.</span> Few places offer an end-to-end SDK plus virtual-card and policy primitives for non-custodial, payment-capable agents on a given chain.</div>
+      <div class="gap-item"><span>MPP / UCP still sparse.</span> Machine Payment Protocol and Universal Commerce Protocol implementations are not yet ubiquitous; early movers can contribute reference code and extensions.</div>
+      <div class="gap-item"><span>Checkout vs P2P.</span> High stablecoin transfer counts rarely translate into broad merchant checkout acceptance; off-exchange retail often still flows through a small set of closed-loop apps.</div>
+      <div class="gap-item"><span>Non-technical users.</span> Hosted agents and one-click deployment are not yet standard; large address counts do not by themselves onboard mainstream users to agentic wallets.</div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 1: PAYMENT FLOWS
+  ═══════════════════════════════════════════════════════ -->
+  <div id="flows" data-reveal>
+  <div class="section-title">
+    <div class="section-num">01</div>
+    <h2>Payment Flows</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Existing rails, Web3 adapter paths, and the final vision</p>
+
+  <!-- EXISTING WEB2 -->
+  <div class="flow-group">
+    <div class="flow-label">Existing Web2 Payment Rails</div>
+
+    <div class="flow-card fc-grey">
+      <div class="flow-head">
+        <div>
+          <div class="flow-name">Traditional Card Payment</div>
+          <div class="flow-desc">The dominant global flow — 5 intermediary hops, 1–3 day settlement</div>
+        </div>
+        <div class="flow-tag ft-grey">Baseline</div>
+      </div>
+      <div class="flow-chain">
+        <div class="node"><div class="node-box nb-blue">Customer</div><div class="node-sub">initiates</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">card</div></div>
+        <div class="node"><div class="node-box nb-grey">Issuer</div><div class="node-sub">authorises</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">auth</div></div>
+        <div class="node"><div class="node-box nb-network">Network</div><div class="node-sub">Visa / MC</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">routes</div></div>
+        <div class="node"><div class="node-box nb-grey">Acquirer</div><div class="node-sub">settles</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">fiat</div></div>
+        <div class="node"><div class="node-box nb-green">Merchant</div><div class="node-sub">receives fiat</div></div>
+      </div>
+    </div>
+
+    <div class="flow-card fc-grey">
+      <div class="flow-head">
+        <div>
+          <div class="flow-name">Wallet QR / App Transfer (e.g. GrabPay, Alipay)</div>
+          <div class="flow-desc">Digital wallet payments — still fiat rails underneath, acquirer handles settlement</div>
+        </div>
+        <div class="flow-tag ft-grey">Existing</div>
+      </div>
+      <div class="flow-chain">
+        <div class="node"><div class="node-box nb-blue">Customer</div><div class="node-sub">scans QR / taps</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">wallet app</div></div>
+        <div class="node"><div class="node-box nb-grey">E-Wallet</div><div class="node-sub">deducts balance</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">settles</div></div>
+        <div class="node"><div class="node-box nb-grey">Acquirer / PSP</div><div class="node-sub">processes</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">fiat</div></div>
+        <div class="node"><div class="node-box nb-green">Merchant</div><div class="node-sub">receives fiat</div></div>
+      </div>
+      <div class="flow-note fn-muted">
+        <div class="fn-label">Key insight</div>
+        Both traditional card and e-wallet flows ultimately pass through acquirers to settle in fiat. The merchant never changes. This is the infrastructure Web3 must integrate with — not replace.
+      </div>
+    </div>
+  </div>
+
+  <!-- ADAPTER PATHS -->
+  <div class="flow-group">
+    <div class="flow-label">Web3 Adapter Paths (Today's Bridge)</div>
+
+    <div class="two-col">
+
+      <div class="flow-card fc-gold">
+        <div class="flow-head">
+          <div>
+            <div class="flow-name">Path A: Crypto via Debit Card</div>
+            <div class="flow-desc">Web3 enters at the issuer — swap before the network</div>
+          </div>
+          <div class="flow-tag ft-gold">Issuer Entry</div>
+        </div>
+        <div class="flow-chain">
+          <div class="node"><div class="node-box nb-blue">Customer</div><div class="node-sub">holds crypto</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">funds</div></div>
+          <div class="node"><div class="node-box nb-gold">Crypto Wallet</div><div class="node-sub">L1 token / USDC</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">off-ramp</div></div>
+          <div class="node"><div class="node-box nb-red">Issuer + Swap</div><div class="node-sub">crypto to fiat</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">fiat</div></div>
+          <div class="node"><div class="node-box nb-network">Visa / MC</div><div class="node-sub">network</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">settles</div></div>
+          <div class="node"><div class="node-box nb-green">Merchant</div><div class="node-sub">fiat</div></div>
+        </div>
+        <div class="insight-strip">
+          <div class="insight-icon">»</div>
+          Wallets and issuers can co-issue crypto-linked debit cards: swap at the issuer before Visa/MC. Merchant experience stays the same.
+        </div>
+      </div>
+
+      <div class="flow-card fc-gold">
+        <div class="flow-head">
+          <div>
+            <div class="flow-name">Path B: Crypto Direct to Acquirer</div>
+            <div class="flow-desc">Web3 bypasses issuer and network, connects at the acquirer layer</div>
+          </div>
+          <div class="flow-tag ft-gold">Acquirer Entry</div>
+        </div>
+        <div class="flow-chain">
+          <div class="node"><div class="node-box nb-blue">Customer</div><div class="node-sub">holds crypto</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">pays crypto</div></div>
+          <div class="node"><div class="node-box nb-gold">Crypto Wallet</div><div class="node-sub">L1 token / USDC</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">on-chain tx</div></div>
+          <div class="node"><div class="node-box nb-chain">L1 / L2</div><div class="node-sub">settlement</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">swap</div></div>
+          <div class="node"><div class="node-box nb-red">Acquirer + FX</div><div class="node-sub">crypto to fiat</div></div>
+          <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">fiat</div></div>
+          <div class="node"><div class="node-box nb-green">Merchant</div><div class="node-sub">fiat</div></div>
+        </div>
+        <div class="insight-strip">
+          <div class="insight-icon">»</div>
+          PSPs (Stripe, Adyen, Fiserv) can accept major L1 assets and stablecoins directly; the acquirer handles swap. Merchants often keep the same dashboard they already use.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AGENTIC -->
+    <div class="flow-card fc-purple">
+      <div class="flow-head">
+        <div>
+          <div class="flow-name">Path C: Agentic Payment (Agent Spends on Behalf of User)</div>
+          <div class="flow-desc">AI agent funded by user crypto wallet, issued a virtual card, spends autonomously across Web2 and Web3 merchants</div>
+        </div>
+        <div class="flow-tag ft-purple">Agentic</div>
+      </div>
+      <div class="flow-chain">
+        <div class="node"><div class="node-box nb-blue">Human Owner</div><div class="node-sub">funds + sets policy</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-purple"></div><div class="arr-head ac-purple-h"></div></div><div class="arr-lbl purple">delegates</div></div>
+        <div class="node"><div class="node-box nb-purple">AI Agent</div><div class="node-sub">autonomous</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-gold"></div><div class="arr-head ac-gold-h"></div></div><div class="arr-lbl gold">virtual card</div></div>
+        <div class="node"><div class="node-box nb-gold">Issuer + Swap</div><div class="node-sub">crypto to fiat</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">Visa / MC</div></div>
+        <div class="node"><div class="node-box nb-grey">Acquirer</div><div class="node-sub">settles</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-grey"></div><div class="arr-head ac-grey-h"></div></div><div class="arr-lbl">fiat</div></div>
+        <div class="node"><div class="node-box nb-green">Any Merchant</div><div class="node-sub">Web2 or Web3</div></div>
+      </div>
+      <div class="insight-strip">
+        <div class="insight-icon">»</div>
+        Agent virtual cards are issued via issuer partners: the owner sets limits, categories, and funding (crypto or fiat). The agent gains Visa/MC reach without per-merchant blockchain onboarding.
+      </div>
+    </div>
+  </div>
+
+  <!-- FUTURE VISION -->
+  <div class="flow-group">
+    <div class="flow-label">Final Vision: Native Web3 Commerce</div>
+
+    <div class="vision-compare">
+      <div class="vc-side" style="border-right:1px solid var(--border)">
+        <div class="vc-label">Traditional — today</div>
+        <div class="hops" style="color:var(--red)">5 <span style="font-size:14px;font-weight:400;color:var(--muted)">hops</span></div>
+        <div class="hops-label">Customer &rarr; Issuer &rarr; Network &rarr; Acquirer &rarr; Merchant</div>
+        <div class="hop-dots">
+          <div class="hop-dot off"></div><div class="hop-dot off"></div><div class="hop-dot off"></div><div class="hop-dot off"></div><div class="hop-dot off"></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted)">1–3 day settlement &middot; 1.5–3% fees &middot; zero programmability</div>
+      </div>
+      <div class="vc-divider">VS</div>
+      <div class="vc-side">
+        <div class="vc-label">Web3 vision — final destination</div>
+        <div class="hops" style="color:var(--green)">3 <span style="font-size:14px;font-weight:400;color:var(--muted)">hops</span></div>
+        <div class="hops-label">Wallet &rarr; Blockchain &rarr; Wallet &rarr; Merchant</div>
+        <div class="hop-dots">
+          <div class="hop-dot on"></div><div class="hop-dot on"></div><div class="hop-dot on"></div><div class="hop-dot"></div><div class="hop-dot"></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted)">Seconds &middot; near-zero fees &middot; fully programmable &middot; atomic settlement</div>
+      </div>
+    </div>
+
+    <div class="flow-card fc-green">
+      <div class="flow-head">
+        <div>
+          <div class="flow-name">Wallet to Wallet via Blockchain</div>
+          <div class="flow-desc">No issuer, no network, no acquirer — pure peer-to-peer settlement on-chain</div>
+        </div>
+        <div class="flow-tag ft-green">Target State</div>
+      </div>
+      <div class="flow-chain">
+        <div class="node"><div class="node-box nb-blue">Customer</div><div class="node-sub">holds crypto</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-green"></div><div class="arr-head ac-green-h"></div></div><div class="arr-lbl green">initiates</div></div>
+        <div class="node"><div class="node-box nb-gold">Wallet</div><div class="node-sub">smart contract</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-green"></div><div class="arr-head ac-green-h"></div></div><div class="arr-lbl green">on-chain tx</div></div>
+        <div class="node"><div class="node-box nb-chain">Chain</div><div class="node-sub">settles atomically</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-green"></div><div class="arr-head ac-green-h"></div></div><div class="arr-lbl green">delivered</div></div>
+        <div class="node"><div class="node-box nb-gold">Wallet</div><div class="node-sub">merchant wallet</div></div>
+        <div class="arr"><div class="arr-line"><div class="arr-shaft ac-green"></div><div class="arr-head ac-green-h"></div></div><div class="arr-lbl green">holds</div></div>
+        <div class="node"><div class="node-box nb-green">Merchant</div><div class="node-sub">holds crypto</div></div>
+      </div>
+      <div class="flow-note fn-green">
+        <div class="fn-label">What needs to happen first</div>
+        Merchants must accept and hold crypto natively. Regulatory clarity on stablecoin settlement. Wallet UX reaching parity with tap-to-pay. Adapter paths (A, B, C) build the ecosystem toward this state — each one increases merchant familiarity with crypto and reduces the onboarding barrier.
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 2: TOOLS & SDKs
+  ═══════════════════════════════════════════════════════ -->
+  <div id="tools" data-reveal>
+  <div class="section-title">
+    <div class="section-num">02</div>
+    <h2>Infrastructure & Tools to Build</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Infrastructure gaps to close for each stakeholder — chain-agnostic building blocks</p>
+
+  <!-- REFERENCE MODELS -->
+  <div class="reference-row">
+    <div class="ref-card">
+      <div class="ref-chain">Reference: Base</div>
+      <div class="ref-name">Base Pay SDK + Base Account SDK</div>
+      <ul class="ref-items">
+        <li>Two-line payment integration: <code style="font-family:IBM Plex Mono;font-size:10px;color:var(--gold)">import { pay } from '@base-org/account/pay'</code></li>
+        <li>Drop-in UI components: BasePayButton, SignInWithBaseButton</li>
+        <li>Works without wallet connection — operates independently via Base Account SDK</li>
+        <li>Supports Vue, Preact, Svelte alongside React</li>
+      </ul>
+      <div class="learn-label">What we learn</div>
+      <div class="learn-text">Make the first integration under 5 lines of code. UI components reduce merchant implementation friction to near zero.</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-chain">Reference: Solana</div>
+      <div class="ref-name">Solana Commerce Kit + Solana Pay</div>
+      <ul class="ref-items">
+        <li>Modular packages: kit (all-in-one), react, sdk, headless, connector, solana-pay</li>
+        <li>PaymentButton component — drop-in with merchant wallet address and amount</li>
+        <li>QR code payments via Solana Pay protocol (open standard)</li>
+        <li>Shopify integration live — millions of merchants via one app install</li>
+        <li>Partnership model: Circle (USDC), Phantom (wallet), Checkout.com (PSP)</li>
+      </ul>
+      <div class="learn-label">What we learn</div>
+      <div class="learn-text">Build a payment protocol first, then wrap it in SDKs. A Shopify plugin multiplies reach instantly — one integration unlocks millions of merchants.</div>
+    </div>
+  </div>
+
+  <div class="tools-grid">
+
+    <div class="tool-card tc-wallet">
+      <div class="tool-stakeholder ts-wallet">Wallet Providers</div>
+      <div class="tool-name">Wallet payment integration SDK</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">An SDK that lets any crypto wallet (Trust Wallet, WalletConnect-enabled apps, MetaMask) integrate on-chain payment acceptance, live asset price feeds, and balance management in a few lines of code.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">Wallets are the customer-facing entry point — without wallet integration, users cannot initiate Path A or B flows from software they already trust.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">Each wallet integration is distribution: payment features reach that wallet’s entire user base from day one.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">TypeScript SDK</div>
+        <div class="ref-pill">React components</div>
+        <div class="ref-pill">Price feeds API</div>
+        <div class="ref-pill">Sandbox</div>
+      </div>
+    </div>
+
+    <div class="tool-card tc-issuer">
+      <div class="tool-stakeholder ts-issuer">Issuers (Path A)</div>
+      <div class="tool-name">Card issuance SDK (crypto-funded)</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">A framework for issuers (Marqeta, Galileo, RedotPay) to issue debit and virtual cards funded from on-chain balances, with BIN integration, JIT crypto-to-fiat swap, and spend policy enforcement.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">Card issuance is how crypto-funded users and agents reach the full Visa/Mastercard merchant universe without merchants changing checkout.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">One issuer integration unlocks access to every merchant that accepts Visa/MC globally — the fastest path to broad merchant reach.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">BIN integration</div>
+        <div class="ref-pill">JIT swap API</div>
+        <div class="ref-pill">Spend policy engine</div>
+        <div class="ref-pill">Virtual card mgmt</div>
+      </div>
+    </div>
+
+    <div class="tool-card tc-psp">
+      <div class="tool-stakeholder ts-psp">PSPs / Acquirers (Path B)</div>
+      <div class="tool-name">Acquirer payment SDK</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">An SDK enabling PSPs (Stripe, Adyen, Fiserv) to accept major digital assets and chain-native stablecoins as a payment method, with FX routing and crypto-to-fiat settlement to merchant accounts.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">PSPs control merchant payment acceptance — one PSP integration can expose crypto settlement to many merchants without each merchant building custom chain support.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">Mirrors what newer chains have pursued with Tier-1 PSPs: crypto becomes a selectable payment method inside existing dashboards.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">Checkout plugin</div>
+        <div class="ref-pill">FX routing API</div>
+        <div class="ref-pill">Webhook settlement</div>
+        <div class="ref-pill">Shopify plugin</div>
+      </div>
+    </div>
+
+    <div class="tool-card tc-agent">
+      <div class="tool-stakeholder ts-agent">Agents (Path C)</div>
+      <div class="tool-name">Agent Wallet & Card SDK</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">A TypeScript/Python SDK for AI agents to create and manage virtual cards, set and enforce spend policies, delegate permissions, and route payments across card or on-chain rails automatically.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">Today, virtually no non-technical user has deployed an AI agent because there is no simple payment primitive — this SDK is the missing layer that makes agents commercially useful.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">Every deployed agent with spend authority becomes a recurring transaction generator — a funded agent with a virtual card is effectively a daily active user of whichever rail settles the spend.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">TypeScript + Python</div>
+        <div class="ref-pill">Spend policy engine</div>
+        <div class="ref-pill">Multi-rail routing</div>
+        <div class="ref-pill">Simulation sandbox</div>
+      </div>
+    </div>
+
+    <div class="tool-card tc-infra">
+      <div class="tool-stakeholder ts-infra">Shared Infrastructure</div>
+      <div class="tool-name">Liquidity & Swap Layer</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">A chain-agnostic liquidity integration layer that gives issuers, acquirers, and PSPs access to guaranteed-rate crypto-to-fiat swaps and real-time off-ramp execution.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">Every adapter path (A, B, C) requires a crypto-to-fiat conversion step — without a reliable, low-slippage liquidity layer, no integration is commercially viable.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">A shared liquidity layer means each new PSP or issuer integration gets instant swap capability without negotiating their own liquidity deals.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">Rate lock API</div>
+        <div class="ref-pill">JIT execution</div>
+        <div class="ref-pill">Multi-LP routing</div>
+      </div>
+    </div>
+
+    <div class="tool-card tc-protocol">
+      <div class="tool-stakeholder ts-protocol">Protocols</div>
+      <div class="tool-name">MPP SDK + UCP extension</div>
+      <div class="tool-row">
+        <div class="tool-row-label">What</div>
+        <div class="tool-row-text">Ship an MPP SDK aligned with the Machine Payment Protocol for agent-to-processor messaging, and contribute a Universal Commerce Protocol (UCP) fork or extension that adds a blockchain payment leg — an early on-chain UCP shape others can interoperate with.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Why</div>
+        <div class="tool-row-text">MPP is how agents express payment intent to processors; without it, agents stay outside emerging agentic commerce standards. UCP’s on-chain story is still thin — reference implementations help the whole field.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Impact</div>
+        <div class="tool-row-text">Standard-level contributions outlast any single PSP deal: documentation and working code anchor ecosystems in the next wave of agentic checkout.</div>
+      </div>
+      <div class="ref-pills">
+        <div class="ref-pill">Visa MPP spec</div>
+        <div class="ref-pill">UCP fork (GitHub)</div>
+        <div class="ref-pill">Open source</div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 3: GO-TO-MARKET
+  ═══════════════════════════════════════════════════════ -->
+  <div id="gtm" data-reveal>
+  <div class="section-title">
+    <div class="section-num">03</div>
+    <h2>Go-to-Market Strategy</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Who we target, in what order, and with what narrative</p>
+
+  <div class="gtm-grid">
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-1">Priority 1: Smaller PSPs</div>
+      <div class="gtm-title">Start with smaller PSPs and acquirers — move fast</div>
+      <ul class="gtm-list gl-gold">
+        <li><span>Why smaller first:</span> Large PSPs (Stripe, Adyen) are effectively locked to Base and Polygon via existing agreements. Smaller PSPs move faster, have fewer crypto commitments, and are hungry for differentiation.</li>
+        <li><span>Goal:</span> Use smaller PSPs to validate an acquirer payment SDK, build reference integrations, and generate a working portfolio before approaching Tier 1.</li>
+        <li><span>Campaign hook:</span> "Be the first PSP in your market to settle major digital assets — we provide the SDK, liquidity partners, and co-marketing."</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">Smaller regional PSPs</div>
+        <div class="chip active">Mid-market acquirers</div>
+        <div class="chip active">Emerging market processors</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-2">Priority 2: Tier 1 PSPs</div>
+      <div class="gtm-title">Approach Stripe, Adyen, Fiserv with proven integrations</div>
+      <ul class="gtm-list gl-blue">
+        <li><span>Stripe:</span> Already integrated several L2s — pitch a differentiated chain or bundle of assets with a ready SDK and live pilot volume from smaller PSPs first.</li>
+        <li><span>Adyen + Fiserv:</span> Neither has meaningful crypto acceptance today — first-mover opportunity with enterprise merchants neither Stripe nor Base currently serves well.</li>
+        <li><span>Leverage:</span> Come with live integration data, transaction volume, and a merchant waitlist. Tier 1 PSPs respond to demonstrated demand, not pitches.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip">Stripe</div>
+        <div class="chip">Adyen</div>
+        <div class="chip">Fiserv</div>
+        <div class="chip">Global Payments</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-3">Priority 3: Wallets + Issuers</div>
+      <div class="gtm-title">Enable Path A — crypto debit card issuance</div>
+      <ul class="gtm-list gl-green">
+        <li><span>Wallet partners:</span> Trust Wallet, WalletConnect-compatible wallets, MetaMask, and any wallet with issuer connections. Confirm product roadmap alignment on card issuance.</li>
+        <li><span>Issuer partners:</span> RedotPay (most accessible, immediate), Marqeta, Galileo for enterprise-grade card programs. Need BIN number access and JIT swap capability.</li>
+        <li><span>Agent cards:</span> Every agent deployed via launchpad partners (NodeOps) gets a virtual card — the agent card program is the highest-leverage card issuance volume driver.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">RedotPay</div>
+        <div class="chip">Trust Wallet</div>
+        <div class="chip">W3W</div>
+        <div class="chip">Marqeta</div>
+        <div class="chip">Galileo</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-infra">Parallel: Agent Launchpads</div>
+      <div class="gtm-title">Unlock the non-technical majority — free agent deployment</div>
+      <ul class="gtm-list gl-purple">
+        <li><span>The gap:</span> Despite agentic hype, few non-technical users run their own funded agents. Removing deployment friction is a cross-chain opportunity, not a single-network exclusive.</li>
+        <li><span>Model:</span> Partner with agent launchpad platforms to offer one-click agent deployment tied to wallet balances; infrastructure partners (e.g. NodeOps-style hosts) can lower backend cost.</li>
+        <li><span>Flywheel:</span> More agents deployed → more virtual cards → more measurable payment volume → stronger leverage in PSP and issuer conversations for whichever ecosystems fund the loop.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">NodeOps</div>
+        <div class="chip">Agent launchpads</div>
+        <div class="chip">One-click hosting</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STAKEHOLDER NARRATIVES -->
+  <div class="full-card">
+    <div class="full-card-title">Campaign Narratives by Stakeholder</div>
+    <div class="narrative-grid">
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--blue)">For Wallets</div>
+        <div class="ni-hook">"Let your users spend their crypto anywhere, today."</div>
+        <div class="ni-body">Wallets integrate a payment SDK to unlock QR flows, card-linked spending, and live price management. Users get real-world utility for on-chain balances without leaving the wallet app.</div>
+      </div>
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--gold)">For Issuers</div>
+        <div class="ni-hook">"Issue the card of the crypto economy — with zero liquidity risk."</div>
+        <div class="ni-body">Ecosystem builders supply the card-spec SDK, liquidity for JIT swaps, and a user pipeline ready to activate cards. Issuers keep the BIN relationship; builders abstract chain complexity.</div>
+      </div>
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--green)">For PSPs / Acquirers</div>
+        <div class="ni-hook">"Add crypto acceptance in a weekend — your merchants won't notice a thing."</div>
+        <div class="ni-body">An acquirer SDK slots into existing checkout flows. Merchants get a new settlement option with minimal UX change. PSPs earn on spread and services; chain details stay behind PSP APIs.</div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 4: KPIs & GOALS BY INITIATIVE
+  ═══════════════════════════════════════════════════════ -->
+  <div id="kpi" data-reveal>
+  <div class="section-title">
+    <div class="section-num">04</div>
+    <h2>KPIs &amp; Goals by Initiative</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">What success looks like for each initiative — near-term signals and long-term outcomes</p>
+
+  <!-- INIT 1: PSP PARTNERSHIPS -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-gold">Initiative 1</div>
+      <div class="kpi-init-title">PSP &amp; Acquirer Partnerships</div>
+      <div class="kpi-init-sub">Path B: Crypto direct to acquirer</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Acquirer payment SDK</div>
+        <div class="kpi-req-chip">Liquidity &amp; Swap Layer</div>
+        <div class="kpi-req-chip">BD outreach (smaller PSPs first)</div>
+        <div class="kpi-req-chip">FX routing API</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3–5</div>
+            <div class="kpi-metric-desc"><strong>Smaller PSP integrations live</strong>Validates SDK in production, generates reference integrations, and builds the case for Tier 1 conversations.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1K+</div>
+            <div class="kpi-metric-desc"><strong>Merchants accepting crypto via PSP</strong>First broad merchant reach beyond closed-loop exchange retail apps.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">$1M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly payment volume via PSP rails</strong>Baseline proof-of-traction metric for Stripe/Adyen pitch deck.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1+</div>
+            <div class="kpi-metric-desc"><strong>Tier 1 PSP live (Stripe or Adyen)</strong>Mirrors Base/Polygon's Stripe integration. Unlocks millions of merchants in one deal.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Merchants reachable via PSP crypto settlement</strong>Combined PSP + acquirer coverage approaches the scale of established crypto payment networks.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$100M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly on-ramp / PSP payment volume</strong>Volume that proves programmable chains matter for checkout, not only for DeFi transfers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 2: CARD ISSUANCE -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-gold">Initiative 2</div>
+      <div class="kpi-init-title">Co-branded &amp; partner card issuance</div>
+      <div class="kpi-init-sub">Path A: Crypto via debit card rails</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Card issuance SDK</div>
+        <div class="kpi-req-chip">Issuer partner (RedotPay)</div>
+        <div class="kpi-req-chip">BIN number access</div>
+        <div class="kpi-req-chip">JIT swap API</div>
+        <div class="kpi-req-chip">Trust Wallet / W3W alignment</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>Issuer partner signed</strong>RedotPay or equivalent issuer with BIN access and JIT swap capability confirmed.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Partner virtual cards issued</strong>Early adopters who convert on-chain balances into card spend.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">150M+</div>
+            <div class="kpi-metric-desc"><strong>Visa/MC merchants reachable from day one</strong>Immediate merchant reach via existing card network infrastructure — no merchant onboarding required.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">500K+</div>
+            <div class="kpi-metric-desc"><strong>Active partner cards in circulation</strong>Converts large wallet populations into card-holding spenders at meaningful scale.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$50M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly card spend volume</strong>Card-linked spending tied to funded wallets, generating transaction data and fee revenue.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">3+</div>
+            <div class="kpi-metric-desc"><strong>Wallet partners with card integration</strong>Multiple major wallets each offering crypto-linked card capability to their user base.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 3: AGENT CARDS + LAUNCHPAD -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-purple">Initiative 3</div>
+      <div class="kpi-init-title">Agent Launchpad + Virtual Agent Cards</div>
+      <div class="kpi-init-sub">Path C: Agentic payments</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Agent Wallet &amp; Card SDK</div>
+        <div class="kpi-req-chip">Card issuance (Initiative 2)</div>
+        <div class="kpi-req-chip">NodeOps infrastructure</div>
+        <div class="kpi-req-chip">Launchpad BD partnerships</div>
+        <div class="kpi-req-chip">Spend policy engine</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1+</div>
+            <div class="kpi-metric-desc"><strong>Launchpad partner live</strong>One-click agent deployment for funded wallet users with minimal technical setup.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Non-technical users with deployed agents</strong>First meaningful cohort of mainstream (non-developer) agent owners on any blockchain.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">5K+</div>
+            <div class="kpi-metric-desc"><strong>Agent virtual cards issued</strong>Each deployed agent with an active card is a recurring payment actor on whichever rail settles spend.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Deployed agents (cross-wallet)</strong>Agent count becomes a comparable metric across ecosystems competing for agentic commerce.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Active agent virtual cards</strong>Each card is a recurring revenue and transaction volume driver — the agentic payments flywheel at scale.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$20M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly agent-initiated spend volume</strong>Autonomous spend across Web2 and Web3 merchants — a net-new category for whichever chains and issuers power the cards.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 4: SDKs + DEVELOPER TOOLS -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-green">Initiative 4</div>
+      <div class="kpi-init-title">Developer SDKs &amp; Payment Infrastructure</div>
+      <div class="kpi-init-sub">Wallet SDK, Agent SDK, MPP, UCP</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Wallet payment integration SDK</div>
+        <div class="kpi-req-chip">MPP SDK (post-PSP confirmation)</div>
+        <div class="kpi-req-chip">UCP blockchain extension (fork)</div>
+        <div class="kpi-req-chip">Simulation sandbox</div>
+        <div class="kpi-req-chip">TypeScript + Python packages</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3+</div>
+            <div class="kpi-metric-desc"><strong>Wallet partners integrating payment SDK</strong>Several major wallets actively using the SDK in production.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">500+</div>
+            <div class="kpi-metric-desc"><strong>SDK downloads / active integrations</strong>Developer adoption signal — first 500 integrations validate that the SDK is production-ready and well-documented.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>UCP blockchain extension PR submitted</strong>First-mover contribution toward a documented on-chain payment leg for UCP-style commerce messages.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Active SDK integrations</strong>Payment SDKs become default tooling for crypto-enabled apps and agents, similar to Stripe’s position in Web2.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">MPP docs</div>
+            <div class="kpi-metric-desc"><strong>MPP SDK cited in MPP materials</strong>An MPP SDK listed in Visa Machine Payment Protocol documentation as a supported implementation path — use the standard name, “MPP SDK”, not a chain-prefixed variant.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">5+</div>
+            <div class="kpi-metric-desc"><strong>Payment-focused dApps built on SDK</strong>Shopify-style plugins, checkout embeds, and payroll tools built by third parties on open payment primitives.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 5: THOUGHT LEADERSHIP -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-grey">Initiative 5</div>
+      <div class="kpi-init-title">Thought Leadership &amp; Vision Publishing</div>
+      <div class="kpi-init-sub">Blog to dedicated Vision page</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Vision blog (Lucas)</div>
+        <div class="kpi-req-chip">Flow diagrams published</div>
+        <div class="kpi-req-chip">Ongoing protocol update cadence</div>
+        <div class="kpi-req-chip">Distribution via BD and ecosystem channels</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>Vision blog published</strong>Definitive infrastructure map for agentic and Web3 payments, authored and live before any competitor publishes a comparable framework.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">5+</div>
+            <div class="kpi-metric-desc"><strong>Industry citations or reposts</strong>PSPs, investors, or media referencing this research framework signals narrative resonance.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3+</div>
+            <div class="kpi-metric-desc"><strong>Inbound partnership inquiries from blog</strong>PSPs or wallet providers reaching out after reading the vision post — the clearest signal of resonance.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Top 3</div>
+            <div class="kpi-metric-desc"><strong>Analyst coverage of crypto payment rails</strong>Messari, The Block, or CoinDesk consistently discussing chosen ecosystems alongside peers in a payments context.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Live page</div>
+            <div class="kpi-metric-desc"><strong>Dedicated payments vision page</strong>Triggered by sustained engagement — a reference destination for developers, PSPs, and issuers comparing rails.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Cited</div>
+            <div class="kpi-metric-desc"><strong>Framework referenced in standards or talks</strong>Durable thought leadership: once cited, it keeps compounding inbound.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

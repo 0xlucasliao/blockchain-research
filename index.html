@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain research</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body.br-hub {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 120px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 28px 16px 96px;
+      }
+    }
+    .hub-hero {
+      margin-bottom: 52px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hub-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(26px, 6vw, 44px);
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      max-width: 18ch;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        max-width: none;
+      }
+    }
+    .hub-lead {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.65;
+    }
+    .hub-section {
+      margin-bottom: 44px;
+    }
+    .hub-section:last-of-type {
+      margin-bottom: 0;
+    }
+    .hub-section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .hub-section-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--heading);
+    }
+    .hub-section-path {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .hub-section-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 62ch;
+      line-height: 1.55;
+    }
+    .hub-grid {
+      display: grid;
+      gap: 14px;
+    }
+    @media (min-width: 640px) {
+      .hub-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .hub-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 22px 20px;
+      transition:
+        border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hub-card:hover {
+      border-color: var(--gold-border);
+      box-shadow: 0 0 0 1px rgba(240, 185, 11, 0.12);
+      transform: translateY(-2px);
+    }
+    .hub-card:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .hub-card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .hub-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .hub-card .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+    .hub-card .meta {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      overflow-wrap: anywhere;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hub-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="br-site br-hub">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="index.html">Home</a>
+    <a href="use_cases/index.html">Use cases</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="sector_research/consumer_payments.html">Consumer</a>
+        <a href="sector_research/institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main>
+  <div class="hub-hero">
+    <div class="hub-eyebrow">Independent research</div>
+    <h1>Web3, blockchain &amp; money movement</h1>
+    <p class="hub-lead">
+      Notes and diagrams on how the world works today — sectors, rails, and narrowly scoped applications — so it is easier to see where work is still worth doing.
+    </p>
+  </div>
+
+  <section class="hub-section" aria-labelledby="sec-sector">
+    <div class="hub-section-head">
+      <h2 id="sec-sector" class="hub-section-title">Sector research</h2>
+      <span class="hub-section-path">/sector_research/</span>
+    </div>
+    <p class="hub-section-desc">
+      Horizontal views: how a market segment is structured, who the actors are, and how crypto interfaces with existing finance in that lane.
+    </p>
+    <div class="hub-grid cols-2">
+      <a class="hub-card" href="sector_research/consumer_payments.html">
+        <span class="tag">Sector</span>
+        <h2>Consumer crypto payments</h2>
+        <p>Flows, PSP paths, agentic primitives, SDK map, and KPI framing — written as ecosystem research.</p>
+        <span class="meta">sector_research/consumer_payments.html</span>
+      </a>
+      <a class="hub-card" href="sector_research/institutional_payments.html">
+        <span class="tag">Sector</span>
+        <h2>B2B &amp; institutional payments</h2>
+        <p>Editorial long-form: correspondent banking, clearing, cross-border costs, and modernization pressures.</p>
+        <span class="meta">sector_research/institutional_payments.html</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="hub-section" aria-labelledby="sec-use">
+    <div class="hub-section-head">
+      <h2 id="sec-use" class="hub-section-title">Use cases</h2>
+      <span class="hub-section-path">/use_cases/</span>
+    </div>
+    <p class="hub-section-desc">
+      Deep, narrow write-ups: one problem, one jurisdiction or product shape, and how a chain-based design fits (or does not).
+    </p>
+    <div class="hub-grid cols-2">
+      <a class="hub-card" href="use_cases/index.html">
+        <span class="tag">Index</span>
+        <h2>All use cases</h2>
+        <p>Browse every application note in this folder — starting points for wills, custody, settlement, and other single-issue briefs.</p>
+        <span class="meta">use_cases/index.html</span>
+      </a>
+      <a class="hub-card" href="use_cases/blockchain-testamentary-trust.html">
+        <span class="tag">Example</span>
+        <h2>Blockchain testamentary trust</h2>
+        <p>Placeholder brief: testamentary intent, key custody, and where on-chain records meet probate procedure.</p>
+        <span class="meta">use_cases/blockchain-testamentary-trust.html</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/motion.js" defer></script>
+</body>
+</html>

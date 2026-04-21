@@ -35,6 +35,7 @@
   <a class="nav-link" href="#chains">Chain Profiles</a>
   <a class="nav-link" href="#infra-stack">Infra Stack</a>
   <a class="nav-link" href="#ecosystem">Ecosystem Tools</a>
+  <a class="nav-link" href="#ecosystem-compare">Have vs gaps</a>
   <a class="nav-link" href="#use-cases">Use Case Matrix</a>
   <a class="nav-link" href="#gap-analysis">Comparative Analysis</a>
   <a class="nav-link" href="#ksc">Key Success Contributors</a>
@@ -528,6 +529,169 @@
       <div class="eco-category"><div class="eco-cat-label">Compliance</div><div class="eco-tools"><span class="eco-tool">Hyperledger Identus</span><span class="eco-tool">Midnight (validators incl. MoneyGram)</span><span class="eco-tool">KYC at DFX/Wirex off-ramp</span></div></div>
     </div>
   </div>
+
+  <div id="ecosystem-compare" class="eco-compare-wrap reveal">
+    <h3 class="eco-compare-heading">Have vs missing — same tool lens across chains</h3>
+    <p class="eco-compare-lead">Each column lists <strong>capabilities and integrations that chain actually fields today</strong> (left bucket), then <strong>what peer payment leaders already have and this chain does not</strong> (right bucket). Items in &quot;Missing&quot; are deliberately drawn from strengths visible on other columns above — not an exhaustive product roadmap.</p>
+
+    <div class="eco-compare-grid">
+      <article class="eco-compare-card" style="--eco-accent: var(--tempo)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--tempo)"></span> Tempo</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>TIP-20 + Fee AMM (stablecoin-native fees)</li>
+              <li>MPP + HTTP 402 agentic payments</li>
+              <li>Travel Rule / IVMS101 at token layer</li>
+              <li>Bridge + Stripe rails (101 countries)</li>
+              <li>30+ enterprise design partners (commerce + payroll)</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>Multi-year live mainnet payment benchmarks (Solana / Polygon scale)</li>
+              <li>Bank-native NYDFS stablecoin on-ledger (RLUSD-class)</li>
+              <li>Licensed FI remittance mesh as shipped (vs XRPL ODL depth)</li>
+              <li>Mastercard / Visa settlement live in production (design-stage partners)</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="eco-compare-card" style="--eco-accent: var(--xrpl)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--xrpl)"></span> XRPL / Ripple</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>RippleNet / ODL + 300+ FI partners</li>
+              <li>RLUSD (NYDFS) + deep licensing stack</li>
+              <li>Native payments, channels, checks, escrows</li>
+              <li>Mastercard + Gemini + WebBank card pilot</li>
+              <li>Vertical stack: custody, prime, treasury</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>Open merchant QR / URL SDK at Solana Pay parity</li>
+              <li>x402 / agentic micropayment standard</li>
+              <li>Superfluid / Sablier-class streaming payroll ecosystem</li>
+              <li>Circle CCTP V2 (USDC moves trustless like Solana/Polygon)</li>
+              <li>Stripe-scale global checkout volume on-ledger</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="eco-compare-card" style="--eco-accent: var(--solana)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--solana)"></span> Solana</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>Solana Pay SDK + Token Extensions</li>
+              <li>Circle CCTP V2 + highest stablecoin velocity</li>
+              <li>Visa USDC settlement (Cross River)</li>
+              <li>Streamflow / Zebec + x402</li>
+              <li>PayPal, Fiserv, Western Union native issuance</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>XRPL-class bank licensing footprint on-chain</li>
+              <li>RLUSD-style dual-regulated bank stablecoin</li>
+              <li>Polygon Mastercard Crypto Credential soulbound flow</li>
+              <li>Binance Pay–scale retail distribution channel</li>
+              <li>Tempo-style gasless fee-in-stablecoin account model</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="eco-compare-card" style="--eco-accent: var(--polygon)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--polygon)"></span> Polygon</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>Stripe + Revolut + Shift4 checkout rails</li>
+              <li>Mastercard Crypto Credential + Privado ID</li>
+              <li>Superfluid / Sablier / Request / Bitwage</li>
+              <li>BlackRock BUIDL + Circle CCTP V2</li>
+              <li>#1 daily USDC transaction volume</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>Exchange-native 45M+ consumer pay app (Binance Pay)</li>
+              <li>Solana-class stablecoin velocity / PayFi headline scale</li>
+              <li>XRPL ODL remittance corridor density</li>
+              <li>Tempo MPP native HTTP 402 agentic layer</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="eco-compare-card" style="--eco-accent: var(--bnb)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--bnb)"></span> BNB Chain</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>Binance Pay (45M users, 20M merchants, off-chain)</li>
+              <li>BPN regional stablecoins + AWS billing path</li>
+              <li>USYC (Hashnote) + strong DEX / retail liquidity</li>
+              <li>dtcpay, gateway partners, low fees (opBNB)</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>First-party on-chain payment SDK (Solana Pay / Open Money)</li>
+              <li>Circle CCTP V2 + native USDC trustless bridge</li>
+              <li>Streamflow / Superfluid-grade payroll streaming</li>
+              <li>Protocol-level compliance / identity (Privado / TIP-403 class)</li>
+              <li>Visa or Mastercard settlement at chain level</li>
+              <li>PayPal / Fiserv-class US fintech issuing natively on-chain</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="eco-compare-card" style="--eco-accent: var(--cardano)">
+        <header class="eco-compare-card-head"><span class="stack-dot" style="background:var(--cardano)"></span> Cardano</header>
+        <div class="eco-compare-buckets">
+          <div class="eco-bucket eco-bucket-have">
+            <div class="eco-bucket-label">In place</div>
+            <ul>
+              <li>Lace + multi-wallet native-asset support</li>
+              <li>NOWPayments / CoinsPaid / COTI ADA Pay</li>
+              <li>SPAR CH + Open Crypto Pay (DFX.swiss)</li>
+              <li>USDM / USDA / USDCx (xReserve) + Hydra channels</li>
+              <li>Hyperledger Identus + Midnight (validators)</li>
+            </ul>
+          </div>
+          <div class="eco-bucket eco-bucket-miss">
+            <div class="eco-bucket-label">Missing vs peers</div>
+            <ul>
+              <li>Native USDC + Circle CCTP V2</li>
+              <li>Foundation-led Solana Pay–class merchant SDK</li>
+              <li>Streamflow / Zebec / Superfluid payroll streaming</li>
+              <li>XRPL / ODL-style remittance corridor product</li>
+              <li>Binance Pay–scale retail distribution</li>
+              <li>Visa–MC chain-level settlement + BUIDL/BENJI on-chain</li>
+              <li>Named Head of Payments + MiCA-authorized EMT set</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
 <!-- SECTION 4: USE CASE MATRIX -->
@@ -983,7 +1147,7 @@
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        const children = e.target.querySelectorAll('.competitor-card, .stack-card, .eco-chain-block, .ksc-item');
+        const children = e.target.querySelectorAll('.competitor-card, .stack-card, .eco-chain-block, .eco-compare-card, .ksc-item');
         children.forEach((el, i) => {
           el.style.opacity = '0';
           el.style.transform = 'translateY(18px)';

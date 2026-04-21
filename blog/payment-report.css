@@ -618,6 +618,122 @@ body.br-blog-report .eco-tool:hover {
   border-color: var(--gold-border);
 }
 
+/* Ecosystem: have vs missing comparison */
+body.br-blog-report .eco-compare-wrap {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: calc(var(--br-masthead-height, 44px) + 52px);
+}
+
+body.br-blog-report .eco-compare-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(17px, 2.2vw, 20px);
+  font-weight: 600;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+body.br-blog-report .eco-compare-lead {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 72ch;
+  margin-bottom: 22px;
+}
+
+body.br-blog-report .eco-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+body.br-blog-report .eco-compare-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  border-top: 3px solid var(--eco-accent, var(--gold));
+}
+
+body.br-blog-report .eco-compare-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--heading);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+body.br-blog-report .eco-compare-buckets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 520px) {
+  body.br-blog-report .eco-compare-buckets {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.br-blog-report .eco-bucket {
+  padding: 12px 14px 14px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+body.br-blog-report .eco-bucket-have {
+  background: color-mix(in srgb, var(--green-dim) 40%, var(--card));
+  border-right: 1px solid var(--border);
+}
+
+@media (max-width: 520px) {
+  body.br-blog-report .eco-bucket-have {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+body.br-blog-report .eco-bucket-miss {
+  background: color-mix(in srgb, var(--red-dim) 55%, var(--card));
+}
+
+body.br-blog-report .eco-bucket-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+body.br-blog-report .eco-bucket-have .eco-bucket-label {
+  color: var(--green);
+}
+
+body.br-blog-report .eco-bucket-miss .eco-bucket-label {
+  color: var(--red);
+}
+
+body.br-blog-report .eco-bucket ul {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+body.br-blog-report .eco-bucket li {
+  margin-bottom: 5px;
+}
+
+body.br-blog-report .eco-bucket li:last-child {
+  margin-bottom: 0;
+}
+
 /* Gap grid */
 body.br-blog-report .gap-grid {
   display: grid;

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What makes a blockchain win at payments? — Blog — blockchain research</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/motion.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="payment-report.css">
+
+</head>
+<body class="br-site has-local-nav br-blog-report">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="index.html" aria-current="page">Blog</a>
+    <details class="br-sectors">
+      <summary>Sectors</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector research">
+        <a href="../sector_research/consumer_payments.html">Consumer</a>
+        <a href="../sector_research/institutional_payments.html">Institutional</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<nav class="sticky-nav">
+  <span class="nav-brand">Blockchain Payments · 2026</span>
+  <a class="nav-link" href="#chains">Chain Profiles</a>
+  <a class="nav-link" href="#infra-stack">Infra Stack</a>
+  <a class="nav-link" href="#ecosystem">Ecosystem Tools</a>
+  <a class="nav-link" href="#use-cases">Use Case Matrix</a>
+  <a class="nav-link" href="#gap-analysis">Comparative Analysis</a>
+  <a class="nav-link" href="#ksc">Key Success Contributors</a>
+</nav>
+
+<header class="hero">
+  <p class="hero-tag">Blog · Independent research · Blockchain payments · April 2026</p>
+  <h1>What makes a blockchain<br><span>win at payments?</span></h1>
+  <p class="hero-dates br-article-meta">Written 21 April 2026 · Last updated 21 April 2026</p>
+  <p class="hero-sub">An independent analysis of six major blockchains — <strong>Tempo, XRPL/Ripple, Solana, Polygon, BNB Chain, and Cardano</strong> — examining how each has approached payment infrastructure, what tools and partnerships they have assembled, which use cases they serve, and what the evidence reveals about the critical ingredients for successful payment adoption. Cardano is included as a high–mindshare contrast case: top-15 market cap with payment rails that lag peers.</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <span class="hero-stat-val">6</span>
+      <span class="hero-stat-label">Chains Analysed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">$650B</span>
+      <span class="hero-stat-label">Solana Monthly Stablecoin Vol</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">12M+</span>
+      <span class="hero-stat-label">Polygon Daily USDC Txns</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">$14B+</span>
+      <span class="hero-stat-label">BNB Chain Stablecoin Supply</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">300+</span>
+      <span class="hero-stat-label">XRPL Financial Institution Partners</span>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1: CHAIN PROFILES -->
+<section class="section" id="chains">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Chain Profiles</h2>
+  </div>
+  <p class="section-sub">Each chain has pursued a distinct payment positioning. Understanding their architecture, wedge, and current metrics is the foundation for determining what payment success looks like across different models.</p>
+
+  <div class="competitors-grid reveal">
+    <div class="competitor-card card-tempo">
+      <p class="card-chain-label">Purpose-Built · March 2026</p>
+      <h3 class="card-chain-name">Tempo</h3>
+      <p class="card-tagline">Stripe + Paradigm stablecoin-native L1. No gas token — fees paid in stablecoins. Agentic payments via Machine Payments Protocol (MPP). Compliance baked into the token standard.</p>
+      <div class="infra-chips">
+        <span class="chip chip-tempo">TIP-20 Token Standard</span>
+        <span class="chip chip-tempo">MPP (AI Agents)</span>
+        <span class="chip chip-tempo">Travel Rule Native</span>
+        <span class="chip chip-tempo">Zones (Enterprise)</span>
+        <span class="chip chip-tempo">Simplex BFT</span>
+        <span class="chip chip-tempo">Bridge (101 countries)</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--tempo)">$5B</div>
+          <div class="card-stat-label">Valuation at Launch</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--tempo)">0.5s</div>
+          <div class="card-stat-label">Finality</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--tempo)">20K+</div>
+          <div class="card-stat-label">TPS (testnet)</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--tempo)">30+</div>
+          <div class="card-stat-label">Enterprise Design Partners</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="competitor-card card-xrpl">
+      <p class="card-chain-label">Institutional Leader · Since 2012</p>
+      <h3 class="card-chain-name">XRPL / Ripple</h3>
+      <p class="card-tagline">Vertically integrated via acquisitions: native payment protocol + RLUSD stablecoin (NYDFS) + prime broker (Hidden Road) + GTreasury + 300+ bank partners. Most licensed chain.</p>
+      <div class="infra-chips">
+        <span class="chip chip-xrpl">Native Payments + PayChan</span>
+        <span class="chip chip-xrpl">RLUSD (NYDFS)</span>
+        <span class="chip chip-xrpl">XLS-70 Credentials</span>
+        <span class="chip chip-xrpl">ODL (On-Demand Liquidity)</span>
+        <span class="chip chip-xrpl">Permissioned DEX</span>
+        <span class="chip chip-xrpl">XRPL EVM Sidechain</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--xrpl)">$1.5B</div>
+          <div class="card-stat-label">RLUSD Supply</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--xrpl)">300+</div>
+          <div class="card-stat-label">Financial Institution Partners</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--xrpl)">$3T/yr</div>
+          <div class="card-stat-label">Ripple Prime Clearing</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--xrpl)">60+</div>
+          <div class="card-stat-label">Global Regulatory Licenses</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="competitor-card card-solana">
+      <p class="card-chain-label">Stablecoin Velocity Leader · 2020</p>
+      <h3 class="card-chain-name">Solana</h3>
+      <p class="card-tagline">Highest-velocity stablecoin network globally. Solana Pay SDK + Token Extensions (Confidential Transfers, Transfer Hooks) + Visa, PayPal, Fiserv, Western Union native issuance.</p>
+      <div class="infra-chips">
+        <span class="chip chip-solana">Solana Pay SDK</span>
+        <span class="chip chip-solana">Token Extensions (2022)</span>
+        <span class="chip chip-solana">Confidential Transfers</span>
+        <span class="chip chip-solana">Circle CCTP V2</span>
+        <span class="chip chip-solana">x402 Protocol</span>
+        <span class="chip chip-solana">Firedancer Client</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--solana)">$15.7B</div>
+          <div class="card-stat-label">Stablecoin Supply</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--solana)">$650B</div>
+          <div class="card-stat-label">Monthly Stablecoin Volume</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--solana)">6×</div>
+          <div class="card-stat-label">USDC Velocity vs Ethereum</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--solana)">400ms</div>
+          <div class="card-stat-label">Finality</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="competitor-card card-polygon">
+      <p class="card-chain-label">Enterprise USDC Leader · 2017</p>
+      <h3 class="card-chain-name">Polygon</h3>
+      <p class="card-tagline">#1 globally in daily USDC transactions. Stripe, Revolut, BlackRock as anchor tenants. Privado ID + Mastercard Crypto Credential = deepest enterprise compliance moat. AggLayer CDK.</p>
+      <div class="infra-chips">
+        <span class="chip chip-polygon">AggLayer CDK</span>
+        <span class="chip chip-polygon">Privado ID (ZK)</span>
+        <span class="chip chip-polygon">Mastercard Crypto Credential</span>
+        <span class="chip chip-polygon">Open Money Stack</span>
+        <span class="chip chip-polygon">Circle CCTP V2</span>
+        <span class="chip chip-polygon">Superfluid</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--polygon)">12M+</div>
+          <div class="card-stat-label">Daily USDC Transactions</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--polygon)">$298B</div>
+          <div class="card-stat-label">Monthly Stablecoin Volume</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--polygon)">$75M+</div>
+          <div class="card-stat-label">Stripe Volume on Polygon</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--polygon)">$1.98B</div>
+          <div class="card-stat-label">Monthly Payment Processor Vol</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="competitor-card card-bnb">
+      <p class="card-chain-label">Distribution Leader · 2020</p>
+      <h3 class="card-chain-name">BNB Chain</h3>
+      <p class="card-tagline">#3–4 stablecoin chain by supply ($14–15B). World's largest exchange-native distribution (Binance Pay: 45M users, 20M merchants). BPN multi-corridor stablecoins. Strong retail and global-south reach.</p>
+      <div class="infra-chips">
+        <span class="chip chip-bnb">BEP-20 Token Standard</span>
+        <span class="chip chip-bnb">Binance Pay (off-chain)</span>
+        <span class="chip chip-bnb">BPN (BBRL, cNGN, MEXAS)</span>
+        <span class="chip chip-bnb">opBNB (250ms blocks)</span>
+        <span class="chip chip-bnb">MegaFuel / Paymaster</span>
+        <span class="chip chip-bnb">dtcpay (SG)</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--bnb)">$14–15B</div>
+          <div class="card-stat-label">Stablecoin Supply</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--bnb)">45M</div>
+          <div class="card-stat-label">Binance Pay Users</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--bnb)">20M+</div>
+          <div class="card-stat-label">Merchant Partners</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--bnb)">0.45s</div>
+          <div class="card-stat-label">Block Time (post-Fermi)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="competitor-card card-cardano">
+      <p class="card-chain-label">Mindshare vs rails · Since 2017</p>
+      <h3 class="card-chain-name">Cardano</h3>
+      <p class="card-tagline">Research-first PoS L1 (eUTXO + Ouroboros) with top-15 market cap and bottom-tier payment rails: no native USDC or CCTP V2, USDCx via Circle xReserve (Feb 2026), ~$37–50M stablecoin supply, no Solana-Pay-equivalent SDK, no streaming/payroll at scale — the cleanest &quot;popular but weak in payments&quot; anchor in the set.</p>
+      <div class="infra-chips">
+        <span class="chip chip-cardano">eUTXO L1</span>
+        <span class="chip chip-cardano">Hydra State Channels</span>
+        <span class="chip chip-cardano">USDCx (xReserve)</span>
+        <span class="chip chip-cardano">Midnight (ZK sidechain)</span>
+        <span class="chip chip-cardano">Hyperledger Identus</span>
+      </div>
+      <div class="card-stats-row">
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--cardano)">~$9.5B</div>
+          <div class="card-stat-label">Market Cap (Apr 2026)</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--cardano)">$37–50M</div>
+          <div class="card-stat-label">Stablecoin Supply</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--cardano)">~$132M</div>
+          <div class="card-stat-label">TVL</div>
+        </div>
+        <div class="card-stat-item">
+          <div class="card-stat-val" style="color:var(--cardano)">9–16K</div>
+          <div class="card-stat-label">Daily Active Addresses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: INFRA STACK -->
+<section class="section" id="infra-stack">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Infrastructure Stack by Chain</h2>
+  </div>
+  <p class="section-sub">The six layers that define a chain's payment capability: base performance, token standards, payment primitives, compliance tooling, stablecoin infrastructure, and fiat rails. Each chain has invested differently across these layers.</p>
+
+  <div class="stack-section reveal">
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--tempo)"></div>Tempo</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Base Layer</div><div class="layer-desc">EVM L1 · Reth + Simplex BFT · 0.5s finality · 20K TPS testnet · No native gas token</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🪙</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Token Standard</div><div class="layer-desc">TIP-20 — 32-byte memos, currency IDs, role-based access. Stablecoin fees via Fee AMM</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🤖</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Agentic Payments</div><div class="layer-desc">MPP: HTTP 402 → sign → retry → receipt. 100+ AI/API services. Stripe card + Lightning adapters</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🔒</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Compliance</div><div class="layer-desc">TIP-403 Policy Registry · Travel Rule (IVMS101) · Chainalysis + TRM + Sardine + Persona</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🏦</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Fiat Rails</div><div class="layer-desc">Bridge/Stripe (101 countries) · Fonbnk (EM mobile money) · Lean (UAE/KSA) · Privy wallets</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--green-dim)">🌐</div>
+          <div><div class="layer-name" style="color:var(--tempo)">Stablecoins</div><div class="layer-desc">USDC, USDT, USDB, PYUSD, EURC, frxUSD, AllUnity EUR. LayerZero + Across + Wormhole</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--xrpl)"></div>XRPL / Ripple</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">Base Layer</div><div class="layer-desc">Native XRPL (BFT) + EVM Sidechain (Cosmos SDK + IBC + Axelar). 3–5s finality. Sub-cent fees</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">💸</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">Payment Primitives</div><div class="layer-desc">Native Payments · Payment Channels · Checks · Escrows · Auto-pathfinding · AMM (XLS-30)</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🪪</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">Identity + Compliance</div><div class="layer-desc">XLS-40 DID · XLS-70 Credentials · KYC-gated Permissioned DEX · Permissioned Domains</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">💵</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">RLUSD</div><div class="layer-desc">NYDFS licensed · 1:1 cash + T-bills · Monthly attestations · $1.5B supply · Dual-issued</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🏢</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">Vertical Stack</div><div class="layer-desc">Ripple Payments (ODL) · Ripple Prime (Hidden Road $1.25B) · GTreasury · Ripple Custody</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">📜</div>
+          <div><div class="layer-name" style="color:var(--xrpl)">Licensing</div><div class="layer-desc">NYDFS · MAS Singapore · DFSA Dubai · Irish MiCA VASP · OCC pending · 30+ US MTLs</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--solana)"></div>Solana</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--solana)">Base Layer</div><div class="layer-desc">PoH + Tower BFT + Firedancer (~20% stake) · 400ms finality · $0.00025 avg fee · 50K+ TPS</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">💸</div>
+          <div><div class="layer-name" style="color:var(--solana)">Solana Pay SDK</div><div class="layer-desc">Open QR/URL/NFC protocol · Transfer + Transaction Requests (bidirectional) · KYC-gated flows</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🔧</div>
+          <div><div class="layer-name" style="color:var(--solana)">Token Extensions</div><div class="layer-desc">Confidential Transfers · Transfer Hooks · Transfer Fees · Interest-Bearing · P-Token (SIMD-0266)</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🌉</div>
+          <div><div class="layer-name" style="color:var(--solana)">Interoperability</div><div class="layer-desc">Circle CCTP V2 (41 chains) · Wormhole · LayerZero · x402 Protocol (Linux Foundation)</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🤝</div>
+          <div><div class="layer-name" style="color:var(--solana)">TradFi Issuance</div><div class="layer-desc">Visa USDC (Cross River) · PayPal PYUSD · Paxos USDG · Fiserv FIUSD · Western Union USDPT</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">📱</div>
+          <div><div class="layer-name" style="color:var(--solana)">Consumer Hardware</div><div class="layer-desc">Seeker Phone (Aug 2025) · 140K presales · 57 countries · Crypto-native distribution channel</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--polygon)"></div>Polygon</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--polygon)">Base Layer</div><div class="layer-desc">PoS + VEBloP (Rio upgrade) · ~2s finality · $0.002 avg fee · 6.4B cumulative txns</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🔗</div>
+          <div><div class="layer-name" style="color:var(--polygon)">AggLayer CDK</div><div class="layer-desc">Pessimistic proof cross-chain settlement · Non-EVM + MoveVM · Enterprise permissioned chains</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🪪</div>
+          <div><div class="layer-name" style="color:var(--polygon)">Privado ID (ZK)</div><div class="layer-desc">Self-sovereign ZK identity · On-chain credential issuance · Deutsche Bank PoC · Billions Network</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">💳</div>
+          <div><div class="layer-name" style="color:var(--polygon)">Mastercard Crypto Credential</div><div class="layer-desc">First native blockchain integration · Soulbound KYC token · Travel Rule verified · Revolut 65M users</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🌉</div>
+          <div><div class="layer-name" style="color:var(--polygon)">Interoperability</div><div class="layer-desc">Circle CCTP V2 · USDT0 (52% omnichain share) · AggLayer unified liquidity · Open Money Stack</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--purple-dim)">🏛️</div>
+          <div><div class="layer-name" style="color:var(--polygon)">Institutional Anchors</div><div class="layer-desc">BlackRock BUIDL $500M · Apex Group $100B · Stripe $75M+ · Revolut $810M · Nubank 127M users</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--bnb)"></div>BNB Chain</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Base Layer</div><div class="layer-desc">PoSA · 0.45s blocks (Fermi) · 0.05 gwei gas (20× reduction) · opBNB 250ms · ~12.4M daily txns</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">🪙</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Token Standard</div><div class="layer-desc">BEP-20 · MegaFuel/Paymaster (gasless stablecoin transfers) · No dedicated payment token standard</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">💸</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Payment Distribution</div><div class="layer-desc">Binance Pay (45M users, 20M merchants, off-chain) · dtcpay (35K SG merchants, NETS SGQR+) · BPN rails</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">🔒</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Compliance</div><div class="layer-desc">On-chain identity primitive: 2026 roadmap (not yet shipped). ADGM authorized. SEC civil case dismissed.</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">🌉</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Interoperability</div><div class="layer-desc">Bridged USDT/USDC (Binance-Peg) · USYC (Hashnote, $1.5B) · FDUSD · Circle CCTP V2 not yet live</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--gold-dim)">🌍</div>
+          <div><div class="layer-name" style="color:var(--bnb)">Regional Stablecoins</div><div class="layer-desc">BPN: BBRL (Brazil), cNGN (Nigeria), MEXAS (Mexico), EURI (Europe) · AWS billing via BNB/stablecoin</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-card">
+      <div class="stack-header"><div class="stack-dot" style="background:var(--cardano)"></div>Cardano</div>
+      <div class="stack-layers">
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🏗️</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Base Layer</div><div class="layer-desc">Ouroboros PoS · eUTXO · Hydra 1.3.0 (Mar 2026) · adoption phase declared Feb 2026 — demos to ~1M TPS in gaming; no production retail payment at that scale</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🪙</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Token Standard</div><div class="layer-desc">Native Assets at ledger level — low fees, no contract overhead; each issuer needs custom minting policies (no universal ERC-20/SPL-style interface for PSP tooling)</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">💸</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Payment Protocol</div><div class="layer-desc">No Foundation/IOG Solana-Pay equivalent · Open Crypto Pay (DFX.swiss, third party) · SPAR CH Mar 2026 · Hydra for Payments = dev tooling (Nov 2022), not shipped product</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🔒</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Compliance / Identity</div><div class="layer-desc">Atala PRISM gutted Oct 2024 → Hyperledger Identus (Apache2, minimal deployment) · Midnight federated mainnet Mar 2026 — no production Travel Rule / KYC-gated payment flow</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">🌉</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Interoperability</div><div class="layer-desc">Not on Circle CCTP V2 · Wanchain bridges · Milkomeda C1 EVM · Circle xReserve / Gateway for USDCx (Feb 27, 2026) — no flagship LayerZero / Axelar / Wormhole parity</div></div>
+        </div>
+        <div class="stack-layer">
+          <div class="layer-icon" style="background:var(--blue-dim)">💵</div>
+          <div><div class="layer-name" style="color:var(--cardano)">Stablecoins / Fiat</div><div class="layer-desc">~$37–50M: USDCx (~$17–18M), USDM Moneta (~$14.5M), USDA (~$8.6M), DJED (~$3.3M) · USDT bridged only · DFX, Wirex, MoonPay, Changelly — no MiCA-authorized EMT in-set (Apr 2026)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: ECOSYSTEM TOOLS -->
+<section class="section" id="ecosystem">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Ecosystem Tools &amp; Projects</h2>
+  </div>
+  <p class="section-sub">The projects, protocols, and partners built on or integrated with each chain reveal how deeply the chain has embedded itself into real payment flows — and which tool categories remain unaddressed.</p>
+
+  <div class="eco-grid reveal">
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--tempo)"><div class="stack-dot" style="background:var(--tempo)"></div>Tempo</div>
+      <div class="eco-category"><div class="eco-cat-label">Wallets &amp; Auth</div><div class="eco-tools"><span class="eco-tool">Privy (embedded)</span><span class="eco-tool">Phantom</span><span class="eco-tool">MetaMask</span><span class="eco-tool">Turnkey</span><span class="eco-tool">Crossmint</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">B2B / Payroll</div><div class="eco-tools"><span class="eco-tool">Deel</span><span class="eco-tool">Gusto</span><span class="eco-tool">Payoneer</span><span class="eco-tool">Ramp</span><span class="eco-tool">Brex</span><span class="eco-tool">Mercury</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Merchant / Commerce</div><div class="eco-tools"><span class="eco-tool">Shopify</span><span class="eco-tool">DoorDash</span><span class="eco-tool">Coupang</span><span class="eco-tool">Faire</span><span class="eco-tool">Klarna</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Stablecoin Issuers</div><div class="eco-tools"><span class="eco-tool">Bridge (USDB)</span><span class="eco-tool">Circle (USDC)</span><span class="eco-tool">Frax (frxUSD)</span><span class="eco-tool">AllUnity (EUR)</span><span class="eco-tool">Brale</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Compliance / KYC</div><div class="eco-tools"><span class="eco-tool">Chainalysis</span><span class="eco-tool">TRM Labs</span><span class="eco-tool">Sardine</span><span class="eco-tool">Blockaid</span><span class="eco-tool">Persona</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Agentic / AI</div><div class="eco-tools"><span class="eco-tool">Anthropic (MPP)</span><span class="eco-tool">OpenAI (MPP)</span><span class="eco-tool">Visa Charge Intent</span><span class="eco-tool">Lightspark</span></div></div>
+    </div>
+
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--xrpl)"><div class="stack-dot" style="background:var(--xrpl)"></div>XRPL / Ripple</div>
+      <div class="eco-category"><div class="eco-cat-label">Wallets</div><div class="eco-tools"><span class="eco-tool">Xaman (8300+ assets)</span><span class="eco-tool">Crossmark</span><span class="eco-tool">GemWallet</span><span class="eco-tool">Ripple Custody</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Cross-Border Remittance</div><div class="eco-tools"><span class="eco-tool">SBI Remit (JP→PH)</span><span class="eco-tool">Tranglo (20+ corridors)</span><span class="eco-tool">Bitso (LATAM)</span><span class="eco-tool">Onafriq (Africa)</span><span class="eco-tool">Pyypl (MENA)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Institutional</div><div class="eco-tools"><span class="eco-tool">DBS Bank (tokenized MMF)</span><span class="eco-tool">Franklin Templeton</span><span class="eco-tool">Deutsche Bank</span><span class="eco-tool">AMINA</span><span class="eco-tool">Zand Bank (UAE)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Acquired Stack</div><div class="eco-tools"><span class="eco-tool">Ripple Prime (Hidden Road)</span><span class="eco-tool">GTreasury</span><span class="eco-tool">Rail ($200M)</span><span class="eco-tool">Palisade</span><span class="eco-tool">Metaco (custody)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Card Networks</div><div class="eco-tools"><span class="eco-tool">Mastercard (credit settlement)</span><span class="eco-tool">Gemini Mastercard RLUSD</span><span class="eco-tool">WebBank</span></div></div>
+    </div>
+
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--solana)"><div class="stack-dot" style="background:var(--solana)"></div>Solana</div>
+      <div class="eco-category"><div class="eco-cat-label">Wallets</div><div class="eco-tools"><span class="eco-tool">Phantom (15M MAU)</span><span class="eco-tool">Solflare</span><span class="eco-tool">Backpack</span><span class="eco-tool">Jupiter Mobile</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Merchant &amp; B2B Payments</div><div class="eco-tools"><span class="eco-tool">Helio (MoonPay, $175M)</span><span class="eco-tool">SpherePay (160 markets)</span><span class="eco-tool">Shopify Plugin</span><span class="eco-tool">Huma PayFi ($11B)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Remittance / P2P</div><div class="eco-tools"><span class="eco-tool">Sling Money (80 countries)</span><span class="eco-tool">Bitso Business</span><span class="eco-tool">Yellow Card (Africa)</span><span class="eco-tool">Fonbnk</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Payroll / Streaming</div><div class="eco-tools"><span class="eco-tool">Streamflow</span><span class="eco-tool">Zebec</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">TradFi Issuance</div><div class="eco-tools"><span class="eco-tool">Visa (USDC, $3.5B ann.)</span><span class="eco-tool">PayPal (PYUSD)</span><span class="eco-tool">Fiserv (FIUSD)</span><span class="eco-tool">Western Union (USDPT)</span><span class="eco-tool">Worldpay (USDG)</span></div></div>
+    </div>
+
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--polygon)"><div class="stack-dot" style="background:var(--polygon)"></div>Polygon</div>
+      <div class="eco-category"><div class="eco-cat-label">Major Fintech Partners</div><div class="eco-tools"><span class="eco-tool">Stripe ($75M+ vol)</span><span class="eco-tool">Revolut (65M users)</span><span class="eco-tool">Mastercard Crypto Credential</span><span class="eco-tool">Tazapay ($687M/mo)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Consumer Super-apps</div><div class="eco-tools"><span class="eco-tool">Nubank (127M customers)</span><span class="eco-tool">Mercado Pago (52M)</span><span class="eco-tool">Flipkart</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Institutional / RWA</div><div class="eco-tools"><span class="eco-tool">BlackRock BUIDL ($500M)</span><span class="eco-tool">Franklin Templeton BENJI</span><span class="eco-tool">Apex Group ($100B)</span><span class="eco-tool">Cassa Depositi e Prestiti</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Payroll / Streaming</div><div class="eco-tools"><span class="eco-tool">Superfluid</span><span class="eco-tool">Sablier</span><span class="eco-tool">Request Finance</span><span class="eco-tool">Bitwage</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">AggLayer Chains</div><div class="eco-tools"><span class="eco-tool">Gnosis Pay</span><span class="eco-tool">Wirex</span><span class="eco-tool">Immutable zkEVM</span><span class="eco-tool">Flipkart Chain</span></div></div>
+    </div>
+
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--bnb)"><div class="stack-dot" style="background:var(--bnb)"></div>BNB Chain</div>
+      <div class="eco-category"><div class="eco-cat-label">Wallets</div><div class="eco-tools"><span class="eco-tool">Trust Wallet (Binance-owned)</span><span class="eco-tool">Binance Wallet</span><span class="eco-tool">SafePal</span><span class="eco-tool">Bitget Wallet</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Merchant / Consumer</div><div class="eco-tools"><span class="eco-tool">Binance Pay (off-chain)</span><span class="eco-tool">dtcpay (35K SG)</span><span class="eco-tool">Binance Card (Mastercard, BR)</span><span class="eco-tool">JW Marriott · KFC · SPAR</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Regional Stablecoins (BPN)</div><div class="eco-tools"><span class="eco-tool">BBRL (Brazil)</span><span class="eco-tool">cNGN (Nigeria)</span><span class="eco-tool">MEXAS (Mexico)</span><span class="eco-tool">EURI (Europe)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Enterprise Integration</div><div class="eco-tools"><span class="eco-tool">BPN–AWS billing (BNB/USDT)</span><span class="eco-tool">USYC (Hashnote, $1.5B)</span><span class="eco-tool">YZi Labs ($1B fund)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">DeFi / DEX</div><div class="eco-tools"><span class="eco-tool">PancakeSwap (~85% DEX share)</span><span class="eco-tool">Venus Protocol</span><span class="eco-tool">Binance Alpha 2.0</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Payroll / Streaming</div><div class="eco-tools"><span class="eco-tool">LlamaPay (minimal traction)</span><span class="eco-tool">— no scaled protocol present</span></div></div>
+    </div>
+
+    <div class="eco-chain-block">
+      <div class="eco-chain-header" style="border-left:3px solid var(--cardano)"><div class="stack-dot" style="background:var(--cardano)"></div>Cardano</div>
+      <div class="eco-category"><div class="eco-cat-label">Wallets</div><div class="eco-tools"><span class="eco-tool">Lace (IOG, USDCx)</span><span class="eco-tool">Eternl</span><span class="eco-tool">Nami</span><span class="eco-tool">Yoroi</span><span class="eco-tool">Typhon</span><span class="eco-tool">Begin</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Merchant / Checkout</div><div class="eco-tools"><span class="eco-tool">NOWPayments (Shopify/Woo since 2021)</span><span class="eco-tool">CoinsPaid</span><span class="eco-tool">SPAR CH (137 stores, Mar 2026)</span><span class="eco-tool">Open Crypto Pay / DFX.swiss</span><span class="eco-tool">COTI ADA Pay</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Remittance</div><div class="eco-tools"><span class="eco-tool">— no formal corridors</span><span class="eco-tool">Ethiopia PRISM path defunct</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Payroll / Streaming</div><div class="eco-tools"><span class="eco-tool">— none at scale</span><span class="eco-tool">Revuto (subscriptions)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">TradFi / RWA</div><div class="eco-tools"><span class="eco-tool">— no BUIDL/BENJI/FRNT on Cardano</span><span class="eco-tool">DZ Bank ADA trading (not payment rail)</span></div></div>
+      <div class="eco-category"><div class="eco-cat-label">Compliance</div><div class="eco-tools"><span class="eco-tool">Hyperledger Identus</span><span class="eco-tool">Midnight (validators incl. MoneyGram)</span><span class="eco-tool">KYC at DFX/Wirex off-ramp</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: USE CASE MATRIX -->
+<section class="section" id="use-cases">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Use Case Coverage Matrix</h2>
+  </div>
+  <p class="section-sub">Across ten payment use cases, this matrix compares six chains: which have native or ecosystem-level support, which have partial or indirect coverage, and which have no meaningful presence — alongside the market scale of each segment.</p>
+
+  <div class="legend reveal">
+    <div class="legend-item"><span class="support-full">✓</span>&nbsp; Full native support</div>
+    <div class="legend-item"><span class="support-partial">~</span>&nbsp; Partial / indirect</div>
+    <div class="legend-item"><span class="support-none">✕</span>&nbsp; Not present</div>
+    <div class="legend-item"><span class="volume-badge vol-xl">$$$</span>&nbsp; Tier 1 (&gt;$100B/yr)</div>
+    <div class="legend-item"><span class="volume-badge vol-l">$$</span>&nbsp; Tier 2 ($10–100B)</div>
+    <div class="legend-item"><span class="volume-badge vol-m">$</span>&nbsp; Tier 3 ($1–10B)</div>
+  </div>
+
+  <div class="matrix-wrap reveal">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Use Case</th>
+          <th>Tempo</th>
+          <th>XRPL / Ripple</th>
+          <th>Solana</th>
+          <th>Polygon</th>
+          <th class="th-bnb">BNB Chain</th>
+          <th class="th-cardano">Cardano</th>
+          <th>Market Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="use-case-name">Cross-Border B2B Payments</div><div class="use-case-sub">SME supplier payments, FX settlement</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Bridge (101 countries), Deel/Payoneer/Ramp">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="RippleNet ODL, 300+ FIs, 20+ corridors, Rail acquisition">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="SpherePay (160 markets), Bitso Business, Credible">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Tazapay $687M/mo, Flutterwave (34 Africa countries), Revolut">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="BPN (BBRL, cNGN, MEXAS) early stage; Binance Pay off-chain">~</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No BVNK/Conduit-class partner; USDCx only ~$17M">✕</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Consumer Remittances</div><div class="use-case-sub">P2P cross-border transfers</div></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Fonbnk, Lean; mainly enterprise-focused at launch">~</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="SBI Remit, Tranglo, Pyypl (MENA), Onafriq (Africa), Bitso">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Sling Money (80 countries, FCA+MiCA), Yellow Card (Africa)">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Nubank (127M), Mercado Pago (52M), BTG Pactual Brazil">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Binance Pay off-chain (45M users); weak on-chain protocol">~</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No formal remittance corridors; Ethiopia path defunct">✕</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Stablecoin Payroll</div><div class="use-case-sub">Crypto-native salary, contractor payments</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Deel, Gusto, Ramp, Brex, Mercury — all design partners">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Via RLUSD/ODL; no dedicated payroll protocol on-chain">~</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Streamflow, Zebec, SpherePay Offloader Wallets">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Superfluid, Sablier, Bitwage, Request Finance — most mature">✓</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="LlamaPay exists; no scaled streaming or payroll protocol on BSC">✕</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No streaming/payroll protocol at meaningful scale">✕</span></td>
+          <td><span class="volume-badge vol-l">$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Merchant Checkout</div><div class="use-case-sub">POS, e-commerce, QR payments</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Shopify, DoorDash, Coupang, Klarna, Faire — all design partners">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Xaman POS module; no dedicated merchant checkout SDK">~</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Helio (6K+ merchants), Solana Pay Shopify plugin, Sphere">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Stripe global checkout live Dec 2025; Flipkart; Shift4">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="dtcpay (SG NETS), gateway partner page; no native SDK">~</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="SPAR Switzerland (137 stores, Mar 2026); NOWPayments/CoinsPaid; no tier-1 PSP">~</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Card Settlement</div><div class="use-case-sub">Credit/debit card on-chain settlement</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Visa Charge Intent spec in MPP; Mastercard design partner">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Mastercard + Gemini + WebBank RLUSD credit card settlement">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Visa USDC settlement live via Cross River ($3.5B annualized)">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Mastercard Crypto Credential (first chain); MetaMask Card launch">✓</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="Binance Card is exchange-level; no chain-level card settlement integration">✕</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="Emurgo × Wirex Visa BIN-sponsor; not chain-level settlement">✕</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">AI Agent Payments</div><div class="use-case-sub">Machine-to-machine micropayments</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="MPP: HTTP 402 native, 100+ AI services, session vouchers">✓</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No agentic payment protocol shipped on XRPL">✕</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="x402 Foundation (Linux Foundation), x402 gateway, USDC micropayments">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="x402 Foundation member; no dedicated protocol deployed yet">~</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No agentic payment protocol, SDK, or standard on BSC">✕</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="No x402 / PayAI-equivalent deployment">✕</span></td>
+          <td><span class="volume-badge vol-m">$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Streaming / Subscription</div><div class="use-case-sub">Real-time recurring payments</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Scheduled + recurring tx native in TIP-20 transaction spec">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Payment Channels enable streaming; no app ecosystem built on top">~</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Streamflow, Zebec; natively supported by the ecosystem">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Superfluid, Sablier, Request Finance — most mature stack globally">✓</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="LlamaPay only; no scaled streaming/subscription protocol present">✕</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Revuto subscription bill pay only; no token streaming">~</span></td>
+          <td><span class="volume-badge vol-m">$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Treasury / Cash Management</div><div class="use-case-sub">Corporate treasury, yield stablecoins</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Tempo Zones (private enterprise chains), Deutsche Bank/UBS/StanChart">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="GTreasury ($1B acquisition), RLUSD, Lending Protocol (XLS-66)">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="BlackRock BUIDL $526M; USYC on Solana; growing but limited integrations">~</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="BlackRock BUIDL $500M, Apex $100B, Franklin Templeton, Calastone">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="USYC (Hashnote, $1.5B) launched Nov 2025; BPN early-stage treasury">~</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Governance treasury; no BUIDL/BENJI-class MMF on chain">~</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Micropayments</div><div class="use-case-sub">&lt;$1 transactions, content, API calls</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="&lt;$0.001 per TIP-20 tx; off-chain vouchers in MPP sessions">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Payment Channels; sub-cent fees; ~3–5s settlement">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="$0.00025 avg fee; Huma PayFi $11B cumulative">✓</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="$0.002 avg; Superfluid supports; not primary wedge">~</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="0.05 gwei post-Fermi; opBNB $0.001; no dedicated protocol">~</span></td>
+          <td class="matrix-cell"><span class="support-partial" data-tip="Hydra for Payments dev tooling; no production micropayment scale">~</span></td>
+          <td><span class="volume-badge vol-l">$$</span></td>
+        </tr>
+        <tr>
+          <td><div class="use-case-name">Travel Rule / KYC-Gated Flows</div><div class="use-case-sub">Regulated institutional stablecoin transfers</div></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="TIP-403 registry + IVMS101 memos + full compliance stack at protocol level">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="XLS-70 Credentials + DID + Permissioned DEX + 60+ regulatory licenses">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Token Extensions: Transfer Hooks (KYC enforcement) + Confidential Transfers">✓</span></td>
+          <td class="matrix-cell"><span class="support-full" data-tip="Privado ID ZK credentials + Mastercard Crypto Credential soulbound token">✓</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="On-chain identity primitive is a 2026 roadmap item; nothing shipped today">✕</span></td>
+          <td class="matrix-cell"><span class="support-none" data-tip="Identus framework; Midnight federated; no live compliant rail">✕</span></td>
+          <td><span class="volume-badge vol-xl">$$$</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: COMPARATIVE ANALYSIS -->
+<section class="section" id="gap-analysis">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Comparative Infrastructure Analysis</h2>
+  </div>
+
+  <div class="summary-banner reveal">
+    <p>For a blockchain to succeed in payments, the evidence across these six chains converges on <strong>four non-negotiable ingredients</strong>: a <strong>native payment protocol with developer SDK</strong> (giving builders a surface area to target); <strong>regulated stablecoin issuance with native bridging</strong> (giving enterprises trustworthy settlement assets); a <strong>protocol-level compliance and identity primitive</strong> (enabling Travel Rule and KYC-gated flows); and at least <strong>one card-network chain-level partnership</strong> (connecting on-chain settlement to the existing card economy). High-volume chains typically have at least three of these four. <strong>Cardano</strong> illustrates the opposite pattern: top-15 market cap and developer activity without the same deliberate payment stack — useful as a contrast anchor, not a payments peer to Solana or Polygon.</p>
+  </div>
+
+  <div class="matrix-wrap reveal">
+    <div class="gap-grid">
+      <div class="gap-row header">
+        <div class="gap-cell">Dimension</div>
+        <div class="gap-cell">Tempo</div>
+        <div class="gap-cell">XRPL</div>
+        <div class="gap-cell">Solana</div>
+        <div class="gap-cell">Polygon</div>
+        <div class="gap-cell bnb-col">BNB Chain</div>
+        <div class="gap-cell cardano-col">Cardano</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Native Payment Protocol / SDK</div></div>
+        <div class="gap-cell"><div class="gap-have">TIP-20 + MPP. Stablecoin-native fees, HTTP 402 agentic standard, session vouchers</div></div>
+        <div class="gap-cell"><div class="gap-have">Native Payments, Payment Channels, Checks, Escrows, auto-pathfinding</div></div>
+        <div class="gap-cell"><div class="gap-have">Solana Pay SDK — open QR/URL/NFC, bidirectional Transaction Requests</div></div>
+        <div class="gap-cell"><div class="gap-have">Open Money Stack, Trails interop, AggLayer unified payment routing</div></div>
+        <div class="gap-cell"><div class="gap-partial">BEP-20 + gateway partner page + Binance Pay (off-chain). No first-party on-chain payment SDK.</div></div>
+        <div class="gap-cell"><div class="gap-missing">No Foundation/IOG Solana-Pay analog. Hydra for Payments is dev tooling (Nov 2022); Open Crypto Pay is DFX.swiss third-party QR.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Native USDC Bridging (CCTP V2)</div></div>
+        <div class="gap-cell"><div class="gap-have">Bridge/Stripe (101 countries) + LayerZero + Wormhole</div></div>
+        <div class="gap-cell"><div class="gap-have">Axelar on EVM sidechain; RLUSD dual-issued natively</div></div>
+        <div class="gap-cell"><div class="gap-have">Circle CCTP V2 live (41 chains); Wormhole; native USDC</div></div>
+        <div class="gap-cell"><div class="gap-have">Circle CCTP V2 live; USDT0 (52% omnichain share); native USDC</div></div>
+        <div class="gap-cell"><div class="gap-missing">Circle CCTP V2 not live on BSC. USDC is bridged/pegged. Cross-chain flows route around BSC.</div></div>
+        <div class="gap-cell"><div class="gap-missing">Not on Circle CCTP V2. USDCx (Circle xReserve, Feb 27, 2026) is wrapped reserve-backed — not native USDC.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Compliance / Identity Primitive</div></div>
+        <div class="gap-cell"><div class="gap-have">TIP-403 Policy Registry, Travel Rule IVMS101 memos, Chainalysis at protocol level</div></div>
+        <div class="gap-cell"><div class="gap-have">XLS-40 DID + XLS-70 Credentials + 60+ licenses globally</div></div>
+        <div class="gap-cell"><div class="gap-have">Token Extensions: Confidential Transfers + Transfer Hooks (KYC enforcement)</div></div>
+        <div class="gap-cell"><div class="gap-have">Privado ID ZK credential issuance + Mastercard Crypto Credential soulbound token</div></div>
+        <div class="gap-cell"><div class="gap-missing">2026 roadmap only. No on-chain identity or compliance primitive currently available to developers.</div></div>
+        <div class="gap-cell"><div class="gap-partial">Hyperledger Identus (ex-Atala PRISM, team laid off Oct 2024). Midnight federated mainnet Mar 2026 — no shipped Travel Rule / KYC-gated payment product.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Card Network Partnership (Chain Level)</div></div>
+        <div class="gap-cell"><div class="gap-have">Visa Charge Intent spec in MPP; Mastercard as design partner</div></div>
+        <div class="gap-cell"><div class="gap-have">Mastercard + Gemini + WebBank RLUSD credit card settlement pilot</div></div>
+        <div class="gap-cell"><div class="gap-have">Visa USDC settlement ($3.5B ann.) via Cross River + Lead Bank</div></div>
+        <div class="gap-cell"><div class="gap-have">Mastercard Crypto Credential (first chain globally); MetaMask Mastercard card</div></div>
+        <div class="gap-cell"><div class="gap-missing">Binance Card (Mastercard) is exchange-level only. No chain-level card settlement or credential integration.</div></div>
+        <div class="gap-cell"><div class="gap-missing">None at chain level. Emurgo × Wirex &quot;Cardano Card&quot; (Nov 2025) is BIN-sponsor Visa debit — not chain-level settlement.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">US-Regulated Stablecoin Issuer (Native)</div></div>
+        <div class="gap-cell"><div class="gap-have">USDC, USDT, USDB, PYUSD, EURC, AllUnity EUR — all native at launch</div></div>
+        <div class="gap-cell"><div class="gap-have">RLUSD (own NYDFS entity) + USDC + 5+ regional stablecoins</div></div>
+        <div class="gap-cell"><div class="gap-have">PayPal PYUSD, Paxos USDG, Fiserv FIUSD, Western Union USDPT native</div></div>
+        <div class="gap-cell"><div class="gap-have">BlackRock BUIDL, Paxos, Circle USDC — all issuing or deploying natively</div></div>
+        <div class="gap-cell"><div class="gap-partial">Binance-Peg USDT (bridged), FDUSD, USYC (Hashnote) launched. No US-regulated fintech (PayPal/Fiserv-class) issuing natively on BSC.</div></div>
+        <div class="gap-cell"><div class="gap-partial">USDM (Moneta/Mehen, 19 US states, ~$14.5M) + USDA (~$8.6M). No GENIUS-licensed issuer; no BUIDL/BENJI/FRNT on Cardano.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Streaming / Payroll Protocol</div></div>
+        <div class="gap-cell"><div class="gap-have">Scheduled + recurring transactions native in TIP-20 spec</div></div>
+        <div class="gap-cell"><div class="gap-have">Payment Channels enable streaming; RLUSD vaults via XLS-66 Lending</div></div>
+        <div class="gap-cell"><div class="gap-have">Streamflow, Zebec — established protocols, natively supported</div></div>
+        <div class="gap-cell"><div class="gap-have">Superfluid, Sablier, Request Finance, Bitwage — most mature globally</div></div>
+        <div class="gap-cell"><div class="gap-missing">LlamaPay exists but no scaled streaming or payroll protocol on BSC. Category absent.</div></div>
+        <div class="gap-cell"><div class="gap-missing">No Sablier/Superfluid/Zebec-class protocol deployed at meaningful scale.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Named Payments BD Leader</div></div>
+        <div class="gap-cell"><div class="gap-have">Stripe-led BD; Matt Huang (Paradigm); 30+ enterprise design-partners pre-launch</div></div>
+        <div class="gap-cell"><div class="gap-have">Ripple Payments team; 60+ license jurisdictions; dedicated BD per region</div></div>
+        <div class="gap-cell"><div class="gap-have">Sheraz Shere — GM Payments (ex-Google Wallet, Amex) — public-facing catalyst</div></div>
+        <div class="gap-cell"><div class="gap-have">Aishwary Gupta — Global Head Payments &amp; RWAs — publicly credited with Stripe/Revolut wins</div></div>
+        <div class="gap-cell"><div class="gap-missing">No named public-facing payments GM with TradFi/fintech institutional pedigree.</div></div>
+        <div class="gap-cell"><div class="gap-missing">No public Head of Payments at Cardano Foundation or IOG.</div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-cell"><div class="gap-dimension">Regulatory Standing (TradFi Counterparty)</div></div>
+        <div class="gap-cell"><div class="gap-have">GENIUS-Act aligned from day 1; Stripe compliance infrastructure underpins</div></div>
+        <div class="gap-cell"><div class="gap-have">NYDFS, MAS, DFSA Dubai, Irish MiCA, OCC application — most licensed chain</div></div>
+        <div class="gap-cell"><div class="gap-have">GENIUS-aligned; MiCA via partners (Sling FCA/MiCA); no direct chain licensing</div></div>
+        <div class="gap-cell"><div class="gap-have">GENIUS-aligned; Privado ID enables MiCA-compliant flows; no direct chain licensing</div></div>
+        <div class="gap-cell"><div class="gap-partial">ADGM authorized; SEC civil case dismissed. DOJ FinCEN monitor ongoing; Senate probe active (Apr 2026). Constrains US-facing TradFi partnerships.</div></div>
+        <div class="gap-cell"><div class="gap-partial">SEC cases dismissed 2025; CME ADA futures Feb 2026; MiCA Crypto Alliance member — yet no MiCA-authorized EMT among ecosystem stablecoins (Apr 2026).</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: KEY SUCCESS CONTRIBUTORS -->
+<section class="section" id="ksc">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Key Success Contributors</h2>
+  </div>
+
+  <div class="ksc-intro reveal">
+    <p>Across all six chains, the evidence points to a consistent set of factors that separate chains with high payment adoption from those still building toward it. <strong>For a blockchain to successfully establish itself as a payment network, it must build or secure each of the following capabilities.</strong> Chains that have achieved meaningful, recurring payment volume — whether measured by transaction count, stablecoin velocity, or institutional partnership depth — have at minimum three of these eight contributors in place. The absence of even one creates a ceiling that fee economics and raw throughput alone cannot overcome. <strong>Cardano</strong> scores lowest on the contributor checklist (no full &quot;Yes&quot; on the eight rows below), making the mindshare-vs-infrastructure gap visible.</p>
+  </div>
+
+  <div class="ksc-list reveal">
+
+    <div class="ksc-item">
+      <div class="ksc-num">01</div>
+      <div>
+        <div class="ksc-title">A First-Party Payment Protocol with Developer SDK</div>
+        <div class="ksc-desc">A blockchain without a named, documented payment primitive gives developers no surface area to build on and BD teams no artifact to present to enterprise partners. The protocol defines the chain's payment identity. Whether it is an open URL/QR scheme (Solana Pay), a token standard with native payment semantics (TIP-20), or a set of ledger-native transaction types (XRPL Payments + PayChan), the existence of a first-party standard is the prerequisite for an ecosystem to form around payments. Chains that rely solely on generic EVM token transfers and off-chain app layers remain invisible to payment-focused developers.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-protocol">Protocol Layer</span>
+          <span class="ktag ktag-infra">Developer SDK</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (TIP-20 + MPP) · XRPL (Native Payments + PayChan) · Solana (Solana Pay) · Polygon (Open Money Stack)</span> · Cardano: no first-party protocol from Foundation/IOG (Hydra for Payments = dev tooling; Open Crypto Pay = DFX.swiss third party).</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-no">BNB Chain ✕</span>
+          <span class="cov-chip cov-no">Cardano ✕</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">02</div>
+      <div>
+        <div class="ksc-title">Native Stablecoin Issuance with Cross-Chain Bridging</div>
+        <div class="ksc-desc">Stablecoins are the settlement currency of on-chain payments. For a chain to be a credible payment layer, regulated stablecoins must be issued natively on it — not just bridged from elsewhere. Native issuance enables atomic settlement, removes counterparty risk from the peg mechanism, and signals to enterprises that the issuer has made a deliberate technology choice. Circle's CCTP V2 has become the enterprise standard for USDC cross-chain transfer; chains without it are systematically excluded from stablecoin flows that depend on trustless cross-chain settlement. The combination of native issuance plus CCTP V2 is the stablecoin infrastructure baseline for any serious payment chain in 2026.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-infra">Native Issuance</span>
+          <span class="ktag ktag-partner">Circle CCTP V2</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (Bridge/USDC/PYUSD native) · XRPL (RLUSD + USDC) · Solana (CCTP V2 + 5+ native issuers) · Polygon (CCTP V2 + BlackRock + Circle)</span> · Cardano: not on CCTP V2; USDCx (Feb 2026) is Circle xReserve wrapper, not native USDC.</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-partial">BNB Chain ~</span>
+          <span class="cov-chip cov-no">Cardano ✕</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">03</div>
+      <div>
+        <div class="ksc-title">A Protocol-Level Compliance and Identity Primitive</div>
+        <div class="ksc-desc">Every regulated fintech, PSP, or bank evaluating a blockchain for payment use will ask the same question: how does the chain handle Travel Rule, KYC enforcement, and auditability without sacrificing programmability? Chains that answer this at the protocol level — through token transfer hooks that enforce allowlists, on-chain credential schemas (DID + VC), or privacy-preserving ZK credential issuance — remove the biggest barrier to institutional adoption. Chains that leave this entirely to the application layer force every developer to reinvent compliance tooling, and force every enterprise to accept that the chain was not designed with their regulatory obligations in mind.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-compliance">Travel Rule</span>
+          <span class="ktag ktag-compliance">On-Chain Identity</span>
+          <span class="ktag ktag-infra">KYC Hooks</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (TIP-403 + Chainalysis) · XRPL (XLS-40 DID + XLS-70 Credentials) · Solana (Token Extensions Transfer Hooks) · Polygon (Privado ID + Mastercard Crypto Credential)</span> · Cardano: Identus (ex-PRISM, post-layoff framework) + Midnight federated — no live Travel Rule / KYC-gated payment product.</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-no">BNB Chain ✕</span>
+          <span class="cov-chip cov-partial">Cardano ~</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">04</div>
+      <div>
+        <div class="ksc-title">At Least One Card Network Partnership at Chain Level</div>
+        <div class="ksc-desc">Visa and Mastercard collectively process roughly $15 trillion per year. For a blockchain to participate in the mainstream payment economy — rather than existing as a parallel crypto-native system — it needs at minimum one formal integration with a card network at the chain level. This means the chain itself (not just an exchange or wallet built on top of it) is recognized as a settlement layer by Visa or Mastercard, with clear standards for Travel Rule credential passing and stablecoin settlement finality. Polygon was the first chain to achieve Mastercard Crypto Credential integration. Solana achieved Visa USDC settlement. Tempo had both Visa and Mastercard as design partners at mainnet launch. This is now table stakes for institutional payment credibility.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-partner">Visa / Mastercard</span>
+          <span class="ktag ktag-infra">Settlement Layer</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (Visa + Mastercard at launch) · XRPL (Mastercard + Gemini + WebBank pilot) · Solana (Visa USDC, $3.5B ann.) · Polygon (Mastercard Crypto Credential — first chain)</span> · Cardano: no chain-level card settlement; Emurgo × Wirex Visa is BIN-sponsor issuance.</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-no">BNB Chain ✕</span>
+          <span class="cov-chip cov-no">Cardano ✕</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">05</div>
+      <div>
+        <div class="ksc-title">A Named Payments BD Leader with TradFi Institutional Pedigree</div>
+        <div class="ksc-desc">Payment adoption in the institutional layer is a relationship business. Solana's hiring of Sheraz Shere (ex-Google Wallet, Amex) as GM Payments and Polygon's appointment of Aishwary Gupta as Global Head of Payments &amp; RWAs both preceded major TradFi wins for those chains. A named, public-facing individual who speaks the language of interchange, settlement risk, and regulatory compliance, and who can appear at Swift, Sibos, and Money20/20 as a credible institutional representative, is a structural advantage. Foundation-level anonymity — where no individual owns the payments narrative — leaves institutional counterparties with no one to call.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-people">Named BD Lead</span>
+          <span class="ktag ktag-partner">TradFi Relationships</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Solana (Sheraz Shere, ex-Google Wallet/Amex) · Polygon (Aishwary Gupta, Head Payments &amp; RWAs) · Tempo (Stripe-led BD team) · XRPL (Ripple Payments team + regional leads)</span> · Cardano: no public Head of Payments (identity-focused leads only).</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-no">BNB Chain ✕</span>
+          <span class="cov-chip cov-no">Cardano ✕</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">06</div>
+      <div>
+        <div class="ksc-title">Streaming and Recurring Payment Protocols</div>
+        <div class="ksc-desc">A chain's ability to support real-time streaming payments and programmable recurring transfers is a signal of payment maturity. Payroll, subscriptions, rent, and creator monetization all require time-based payment flows that generic token transfers cannot represent. Polygon's Superfluid and Sablier, Solana's Streamflow and Zebec, and Tempo's native scheduled transaction spec all enable these flows at the protocol or ecosystem level. The presence of a mature streaming protocol also attracts payroll-fintech builders (Bitwage, Request Finance, crypto-native payroll platforms) who represent a highly sticky, high-frequency payment category. Absence of any streaming primitive closes the door to this entire segment.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-protocol">Streaming Payments</span>
+          <span class="ktag ktag-infra">Payroll Protocol</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (native TIP-20 scheduled/recurring tx) · XRPL (Payment Channels) · Solana (Streamflow, Zebec) · Polygon (Superfluid, Sablier — most mature globally)</span> · Cardano: no Streamflow/Sablier-class payroll or streaming at scale (Revuto subscriptions only).</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-partial">XRPL ~</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-no">BNB Chain ✕</span>
+          <span class="cov-chip cov-no">Cardano ✕</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">07</div>
+      <div>
+        <div class="ksc-title">A Payments-Focused Grants and Accelerator Program</div>
+        <div class="ksc-desc">Generic developer grants fund infrastructure but do not concentrate talent in payments. Chains that have built payment ecosystems have either run dedicated payment cohorts (Solana Foundation Payments Program under Sheraz Shere, Polygon Village with payment-vertical mentors) or structured their grant KPIs around payment-specific metrics (stablecoin transaction volume, merchant integrations, active payment addresses). A payments-specific accelerator with named commercial distribution partners as mentors — e.g. major wallets, PSPs, or regional fintechs already on the chain — creates a forcing function that generic grant programs cannot replicate. The quality of payment ecosystem depth is strongly correlated with whether the chain has run payment-vertical cohorts.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-infra">Grants Program</span>
+          <span class="ktag ktag-partner">Vertical Cohort</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Solana (Foundation Payments Program, Colosseum Hackathons) · Polygon (Polygon Village, AggLayer Breakout) · XRPL (XRPL Grants, XRPL Foundation) · Tempo (design-partner pipeline as de-facto accelerator)</span> · Cardano: Catalyst is broad — not a payments-vertical cohort with PSP mentors.</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-partial">BNB Chain ~</span>
+          <span class="cov-chip cov-partial">Cardano ~</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ksc-item">
+      <div class="ksc-num">08</div>
+      <div>
+        <div class="ksc-title">Clear Regulatory Standing Enabling TradFi Counterparty Engagement</div>
+        <div class="ksc-desc">No amount of technical sophistication can substitute for a clean enough regulatory posture that a Fortune 500 fintech, a licensed PSP, or a global bank is willing to publicly announce an on-chain integration. This does not require the chain itself to be licensed (Solana and Polygon are not licensed), but it does require the absence of active enforcement actions, deferred prosecution agreements, or credible allegations of sanctions evasion that would make counterparty risk unacceptable to a regulated institution's compliance function. Every chain with deep institutional payment volume has achieved at minimum this baseline of counterparty-acceptable regulatory standing. This is not about achieving NYDFS or MAS status — it is about removing the blockers that currently prevent regulated institutions from engaging.</div>
+        <div class="ksc-tags">
+          <span class="ktag ktag-compliance">Regulatory Clarity</span>
+          <span class="ktag ktag-partner">TradFi Counterparty</span>
+        </div>
+        <div class="ksc-who">Chains with this: <span>Tempo (GENIUS-Act aligned, Stripe-anchored) · XRPL (60+ licenses, NYDFS, DFSA, MAS, OCC pending) · Solana (no direct enforcement; MiCA via partners) · Polygon (no direct enforcement; GENIUS-aligned)</span> · Cardano: SEC cases dismissed 2025; CME ADA futures Feb 2026; MiCA Crypto Alliance — but no MiCA-authorized EMT in stablecoin set (Apr 2026).</div>
+      </div>
+      <div class="ksc-coverage">
+        <div class="coverage-chips">
+          <span class="cov-chip cov-yes">Tempo ✓</span>
+          <span class="cov-chip cov-yes">XRPL ✓</span>
+          <span class="cov-chip cov-yes">Solana ✓</span>
+          <span class="cov-chip cov-yes">Polygon ✓</span>
+          <span class="cov-chip cov-partial">BNB Chain ~</span>
+          <span class="cov-chip cov-partial">Cardano ~</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="blog-report-footer">
+  <div class="blog-report-footer-inner">
+    <div>
+      <div class="blog-report-footer-title">Blockchain payment infrastructure · Independent research</div>
+      <div class="blog-report-footer-sub">April 2026 · Tempo, XRPL/Ripple, Solana, Polygon, BNB Chain, Cardano</div>
+    </div>
+    <div class="blog-report-footer-sources">
+      Sources: Tempo, XRPL/Ripple, Solana Foundation, Polygon, Cardano Foundation / IOG, CoinDesk, Fortune, Bloomberg, Messari, Chainstack, Yahoo Finance, Business Wire, CoinGecko, Bankless Times, The Block
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const children = e.target.querySelectorAll('.competitor-card, .stack-card, .eco-chain-block, .ksc-item');
+        children.forEach((el, i) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(18px)';
+          el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          }, 60 + i * 55);
+        });
+      }
+    });
+  }, { threshold: 0.04 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => navObs.observe(s));
+</script>
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

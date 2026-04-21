@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Use cases — blockchain research</title>
+  <title>Blog — blockchain research</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/theme.css">
   <link rel="stylesheet" href="../css/motion.css">
@@ -22,7 +22,7 @@
       margin: 0 auto;
       padding: 40px 22px 100px;
     }
-    .uc-eyebrow {
+    .blog-eyebrow {
       font-family: var(--font-mono);
       font-size: 10px;
       font-weight: 600;
@@ -38,19 +38,20 @@
       letter-spacing: -0.02em;
       margin-bottom: 12px;
     }
-    .uc-lead {
+    .blog-lead {
       color: var(--muted);
       font-size: 14px;
       max-width: 52ch;
-      margin-bottom: 36px;
+      margin-bottom: 10px;
     }
-    .uc-list {
+    .blog-list {
       list-style: none;
+      margin-top: 28px;
     }
-    .uc-list li {
+    .blog-list li {
       margin-bottom: 12px;
     }
-    .uc-list a {
+    .blog-list a {
       display: block;
       text-decoration: none;
       color: inherit;
@@ -60,26 +61,28 @@
       padding: 18px 20px;
       transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .uc-list a:hover {
+    .blog-list a:hover {
       border-color: var(--gold-border);
       transform: translateY(-1px);
     }
-    .uc-list a:focus-visible {
+    .blog-list a:focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 2px;
     }
-    .uc-list strong {
+    .blog-list strong {
       display: block;
       font-size: 15px;
       color: var(--heading);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
-    .uc-list span {
+    .blog-list .blog-excerpt {
       font-size: 12px;
       color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 10px;
     }
     @media (prefers-reduced-motion: reduce) {
-      .uc-list a:hover { transform: none; }
+      .blog-list a:hover { transform: none; }
     }
   </style>
 </head>
@@ -89,8 +92,8 @@
   <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
   <div class="br-masthead-nav">
     <a href="../index.html">Home</a>
-    <a href="index.html">Use cases</a>
-    <a href="../blog/index.html">Blog</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="index.html" aria-current="page">Blog</a>
     <details class="br-sectors">
       <summary>Sectors</summary>
       <div class="br-sectors-panel" role="group" aria-label="Sector research">
@@ -104,17 +107,17 @@
 <div class="br-masthead-spacer" aria-hidden="true"></div>
 
 <main data-reveal>
-  <div class="uc-eyebrow">/use_cases/</div>
-  <h1>Use cases</h1>
-  <p class="uc-lead">Single-issue application notes. Add a new HTML file in this folder and link it from the list below.</p>
-  <p class="br-article-meta" style="margin-bottom:20px">Written 10 April 2026 · Last updated 21 April 2026</p>
+  <div class="blog-eyebrow">/blog/</div>
+  <h1>Blog</h1>
+  <p class="blog-lead">Long-form research notes and standalone reports published on this site.</p>
+  <p class="br-article-meta">Written 21 April 2026 · Last updated 21 April 2026</p>
 
-  <ul class="uc-list">
+  <ul class="blog-list">
     <li>
-      <a href="blockchain-testamentary-trust.html">
-        <strong>Blockchain testamentary trust</strong>
-        <span>Testamentary intent, custody, and probate-facing design questions — draft outline.</span>
-        <span class="br-article-meta" style="display:block;margin-top:10px">Written 10 April 2026 · Last updated 21 April 2026</span>
+      <a href="what-makes-a-blockchain-win-at-payments.html">
+        <strong>What makes a blockchain win at payments?</strong>
+        <span class="blog-excerpt">Independent comparison of payment infrastructure across six chains — architecture, tooling, use cases, and adoption signals; Cardano included as a contrast case.</span>
+        <span class="br-article-meta">Written 21 April 2026 · Last updated 21 April 2026</span>
       </a>
     </li>
   </ul>

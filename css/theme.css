@@ -135,6 +135,16 @@ html[data-br-theme='dark'] .institutional-doc .section-number {
   --section-num-color: rgba(240, 185, 11, 0.2);
 }
 
+/* Article provenance (written / last updated) */
+.br-article-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  line-height: 1.55;
+}
+
 /* Theme toggle (in masthead) */
 .br-theme-toggle {
   font-family: var(--font-mono);

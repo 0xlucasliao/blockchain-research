@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blockchain testamentary trust — use case</title>
+  <title>The autonomous trust — use case — blockchain research</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/theme.css">
   <link rel="stylesheet" href="../css/motion.css">
@@ -13,25 +13,23 @@
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 15px;
+      line-height: 1.72;
       min-height: 100vh;
     }
     main {
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 40px 22px 100px;
+      padding: 36px 22px 120px;
     }
     .uc-back {
       font-family: var(--font-mono);
       font-size: 11px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
-    .uc-back a {
-      color: var(--gold);
-      text-decoration: none;
-    }
+    .uc-back a { color: var(--gold); text-decoration: none; }
     .uc-back a:hover { text-decoration: underline; }
+
     .uc-eyebrow {
       font-family: var(--font-mono);
       font-size: 10px;
@@ -42,41 +40,210 @@
       margin-bottom: 10px;
     }
     h1 {
-      font-size: clamp(22px, 3vw, 28px);
+      font-size: clamp(24px, 4vw, 34px);
       font-weight: 600;
       color: var(--heading);
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
     }
-    .uc-panel {
+    .art-dek {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .art-toc {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px 22px;
-      margin-bottom: 20px;
+      padding: 18px 20px;
+      margin-bottom: 32px;
+      font-size: 13px;
     }
-    .uc-panel h2 {
+    .art-toc strong {
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--heading);
+      display: block;
       margin-bottom: 10px;
     }
-    .uc-panel p, .uc-panel li {
-      font-size: 13px;
+    .art-toc ul { list-style: none; padding: 0; }
+    .art-toc li { margin-bottom: 6px; }
+    .art-toc a { color: var(--gold); text-decoration: none; }
+    .art-toc a:hover { text-decoration: underline; }
+
+    .art-section {
+      margin-top: 44px;
+      scroll-margin-top: 88px;
+    }
+    .art-section h2 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--heading);
+      margin-bottom: 14px;
+      padding-top: 4px;
+      border-top: 2px solid var(--gold-border);
+      padding-top: 16px;
+    }
+    .art-section:first-of-type h2 { border-top: 0; padding-top: 0; }
+    .art-section h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--heading);
+      margin: 28px 0 12px;
+    }
+    .art-section p { margin-bottom: 14px; color: var(--text); }
+    .art-section ul, .art-section ol {
+      margin: 0 0 16px 1.2em;
       color: var(--text);
-      margin-bottom: 10px;
     }
-    .uc-panel ul { padding-left: 1.1em; margin: 0; }
-    .uc-panel li:last-child { margin-bottom: 0; }
-    .uc-note {
-      font-size: 12px;
+    .art-section li { margin-bottom: 8px; }
+    .art-section strong { color: var(--heading); font-weight: 600; }
+    .art-section hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+    .art-pull {
+      background: linear-gradient(135deg, var(--gold-dim), transparent);
+      border-left: 3px solid var(--gold);
+      padding: 14px 18px;
+      margin: 22px 0;
+      font-size: 14px;
+      color: var(--heading);
+    }
+    .art-figure {
+      margin: 28px 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 18px 16px;
+      overflow-x: auto;
+    }
+    .art-figure figcaption {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--muted);
-      font-style: italic;
-      border-left: 2px solid var(--gold-border);
-      padding-left: 14px;
-      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+    .art-figure svg { display: block; width: 100%; height: auto; max-width: 100%; }
+    .art-bar-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      fill: var(--muted);
+    }
+    .art-bar-val { font-family: var(--font-mono); font-size: 10px; fill: var(--heading); font-weight: 600; }
+
+    .art-table-wrap {
+      margin: 22px 0;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+    }
+    table.art-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    table.art-table th,
+    table.art-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.art-table th {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    table.art-table tr:last-child td { border-bottom: 0; }
+    table.art-table td:first-child { font-weight: 600; color: var(--heading); white-space: nowrap; }
+
+    .art-pill-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (min-width: 560px) {
+      .art-pill-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .art-pill-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .art-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .art-pill b {
+      display: block;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .art-two-col {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    @media (min-width: 600px) {
+      .art-two-col { grid-template-columns: 1fr 1fr; }
+    }
+    .art-col-box {
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .art-col-box.gain {
+      background: var(--green-dim);
+      border-color: var(--green-border);
+    }
+    .art-col-box.loss {
+      background: var(--red-dim);
+      border-color: rgba(185, 28, 28, 0.25);
+    }
+    html[data-br-theme='dark'] .art-col-box.loss {
+      border-color: rgba(239, 68, 68, 0.28);
+    }
+    .art-col-box h4 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--heading);
+    }
+    .art-col-box ul { margin: 0; padding-left: 1.1em; }
+    .art-col-box li { margin-bottom: 6px; }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--fn-muted-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--heading);
     }
   </style>
 </head>
@@ -103,29 +270,421 @@
 <main>
   <p class="uc-back"><a href="index.html">← Use cases</a></p>
 
-  <div data-reveal>
-    <div class="uc-eyebrow">Use case · draft</div>
-    <h1>Blockchain testamentary trust</h1>
-    <p class="br-article-meta" style="margin-top:10px">Written 10 April 2026 · Last updated 21 April 2026</p>
-  </div>
+  <header data-reveal>
+    <div class="uc-eyebrow">Use case · long-form</div>
+    <h1>The autonomous trust: can code inherit the trustee's chair?</h1>
+    <p class="br-article-meta" style="margin-bottom:16px">Written 22 April 2026 · Last updated 22 April 2026</p>
+    <p class="art-dek">A Government Oracle pings the chain. Somewhere in the world, a life has ended—and within the same block, a smart contract begins a 200-year performance. Creditors are paid. Bequests fly to named wallets. The residual estate flows into a self-governing trust that collects rent from tokenized apartments, dividends from tokenized equities, and distributes scholarships every September 1st without a lawyer's signature. This is the Web3 testamentary trust: a fiduciary written entirely in Solidity, Move, or Noir. The infrastructure to build it partially exists today. The legal, oracle, and privacy layers needed to <em>trust</em> it do not. This report maps what is real in April 2026, what is three years away, and what may never arrive—because some problems of death are irreducibly human.</p>
+  </header>
 
-  <div class="uc-panel" data-reveal>
-    <h2>Problem frame</h2>
-    <p>Testamentary trusts depend on clear intent, reliable custody of keys or signing authority, and eventual alignment with probate or equivalent processes. A chain-based design must say explicitly what is evidenced on-ledger versus what still requires court or trustee discretion.</p>
-  </div>
-
-  <div class="uc-panel" data-reveal>
-    <h2>Questions to resolve in a full note</h2>
+  <nav class="art-toc" data-reveal aria-label="On this page">
+    <strong>On this page</strong>
     <ul>
-      <li>Identity of settlor / testator and revocability windows.</li>
-      <li>Key recovery, social recovery, or institutional custody — and legal standing of each.</li>
-      <li>Oracle or off-chain evidence for death or incapacity triggers.</li>
-      <li>Conflict of laws when domicile and validators differ.</li>
-      <li>Minimization of sensitive personal data on a public ledger.</li>
+      <li><a href="#sec-1">Section 1 — The vision</a></li>
+      <li><a href="#sec-2">Section 2 — Feasibility today and into the 2030s</a></li>
+      <li><a href="#sec-3">Section 3 — Is the world better?</a></li>
     </ul>
-  </div>
+  </nav>
 
-  <p class="uc-note" data-reveal>This page is a structural placeholder. Replace sections with jurisdiction-specific research and citations as you develop the brief.</p>
+  <!-- FIGURE: lifecycle -->
+  <figure class="art-figure" data-reveal id="fig-lifecycle">
+    <figcaption>Figure 1 · From civil registry to testamentary trust (conceptual)</figcaption>
+    <svg viewBox="0 0 720 200" role="img" aria-label="Flow from registrar through verifiable credential and oracle to smart contracts for debts, bequests, and trust">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="var(--gold)"/>
+        </marker>
+      </defs>
+      <rect x="8" y="28" width="120" height="56" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+      <text x="68" y="52" text-anchor="middle" class="art-bar-val" font-size="11">Registrar</text>
+      <text x="68" y="70" text-anchor="middle" class="art-bar-label" font-size="9">civil registry</text>
+      <line x1="128" y1="56" x2="168" y2="56" stroke="var(--gold)" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="172" y="28" width="120" height="56" rx="8" fill="var(--blue-dim)" stroke="var(--blue-border)"/>
+      <text x="232" y="52" text-anchor="middle" class="art-bar-val" font-size="11">W3C VC</text>
+      <text x="232" y="70" text-anchor="middle" class="art-bar-label" font-size="9">signed attestation</text>
+      <line x1="292" y1="56" x2="332" y2="56" stroke="var(--gold)" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="336" y="20" width="140" height="72" rx="8" fill="var(--purple-dim)" stroke="var(--purple-border)"/>
+      <text x="406" y="48" text-anchor="middle" class="art-bar-val" font-size="11">Oracle network</text>
+      <text x="406" y="66" text-anchor="middle" class="art-bar-label" font-size="9">DECO / CCIP / API3</text>
+      <text x="406" y="82" text-anchor="middle" class="art-bar-label" font-size="8">DeathAttested(…)</text>
+      <line x1="476" y1="56" x2="508" y2="56" stroke="var(--gold)" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="512" y="20" width="200" height="72" rx="8" fill="var(--green-dim)" stroke="var(--green-border)"/>
+      <text x="612" y="44" text-anchor="middle" class="art-bar-val" font-size="11">Web3 Will + Trust</text>
+      <text x="612" y="62" text-anchor="middle" class="art-bar-label" font-size="9">debts → bequests → vault</text>
+      <text x="612" y="78" text-anchor="middle" class="art-bar-label" font-size="8">streams · timelocks · zk logic</text>
+      <text x="360" y="128" text-anchor="middle" class="art-bar-label" font-size="10">Single attested fact → choreography on every chain where the estate lives</text>
+    </svg>
+  </figure>
+
+  <section class="art-section" id="sec-1" data-reveal>
+    <h2>Section 1 — The vision: a life-cycle contract that outlives its author</h2>
+    <p>Imagine the moment of death not as the beginning of probate, but as a cryptographic event. A registrar enters the fact into a civil registry. That registry—whether the Estonian Succession Registry anchored in Guardtime's KSI, an EUDI Wallet-issued verifiable credential under eIDAS 2.0, or a Singpass Myinfo attestation—signs a W3C Verifiable Credential. A decentralized oracle network relays that attested fact on-chain. A single event, <code>DeathAttested(subject=0xabc…, timestamp=…, issuer=gov.sg)</code>, fires across every chain where the decedent held assets.</p>
+    <p>What unfolds next is choreography, not litigation. The <strong>Web3 Will contract</strong> reads a pre-signed manifest. It settles outstanding debts first: tokenized invoices owed to suppliers, the final mortgage installment on a tokenized condo, the deceased's last credit card balance paid in PYUSD. Then direct bequests execute: <strong>100,000 USDC to a daughter's wallet; a Bored Ape to a nephew; a tokenized Picasso share to a museum foundation's Safe</strong>. Residual assets—the bulk of the estate—sweep into the <strong>Testamentary Trust contract</strong>.</p>
+    <p>The trust is a vault with personality. It holds <strong>BlackRock BUIDL for dollar-stable yield, Ondo's USDY for euro exposure, Paxos Gold (PAXG) for inflation hedging, Centrifuge-tokenized private credit for income</strong>, a basket of tokenized S&amp;P 500 equities issued through Ondo Global Markets, and fractional RealT tokens of a Detroit triplex. Each asset carries its own income rail. BUIDL rebases daily. USDY accrues value. Tokenized Apple shares pay quarterly dividends in USDC via the issuer's transfer agent. RealT sends weekly rental distributions in USDC on Gnosis Chain, routed through a Request Network checkout gateway that the property manager funds in fiat each Monday morning.</p>
+    <p>The contract does not merely hold. It <em>governs</em>. The testator wrote a distribution logic: 4% of portfolio value annually to the surviving spouse, streamed continuously through a Superfluid SuperToken; tuition payments released to a university DAO treasury on each September enrollment attestation; an annual $50,000 to a named cancer research charity; discretionary education grants to grandchildren unlocked by Polygon ID credentials proving age 18+ and university enrollment. Sensitive logic—who receives what, under what conditions—lives inside an Aztec private contract or a Zama-encrypted state. A probate court, if summoned, can be granted a one-time selective-disclosure key. A curious stranger sees only encrypted transitions on a public chain.</p>
+    <p>The trust is also a <strong>sovereign investment office</strong>. The testator appointed three human investment managers. Each has a salaried Superfluid stream: $25,000/month in USDC, with a 20% performance bonus released by the contract each quarter if benchmarked returns exceed a Chainlink price-feed threshold. When a manager proposes to allocate $2M to a new Morpho vault curated by Steakhouse Financial, the proposal enters a 72-hour timelock, requires a 2-of-3 multisig of the managers, and is vetoable by an Aragon DAO guardian composed of the testator's pre-named family council. Earnings flow back to the trust. Fees earned by the managers flow out. Every basis point is on-chain, auditable forever, gas-paid in perpetuity from the trust's own stablecoin reserves.</p>
+
+    <figure class="art-figure" id="fig-pillars">
+      <figcaption>Figure 2 · Four stated pillars + three gaps that matter as much</figcaption>
+      <svg viewBox="0 0 720 260" role="img" aria-label="Seven infrastructure themes as grouped blocks">
+        <text x="20" y="28" class="art-bar-val" font-size="12">Original four pillars</text>
+        <rect x="20" y="40" width="150" height="70" rx="8" fill="var(--blue-dim)" stroke="var(--blue-border)"/>
+        <text x="95" y="68" text-anchor="middle" class="art-bar-val" font-size="10">Government oracle</text>
+        <text x="95" y="84" text-anchor="middle" class="art-bar-label" font-size="8">life events on-chain</text>
+        <rect x="190" y="40" width="150" height="70" rx="8" fill="var(--green-dim)" stroke="var(--green-border)"/>
+        <text x="265" y="68" text-anchor="middle" class="art-bar-val" font-size="10">Permissioned tokens</text>
+        <text x="265" y="84" text-anchor="middle" class="art-bar-label" font-size="8">RAP · forced heirship</text>
+        <rect x="360" y="40" width="150" height="70" rx="8" fill="var(--purple-dim)" stroke="var(--purple-border)"/>
+        <text x="435" y="68" text-anchor="middle" class="art-bar-val" font-size="10">Programmable cashflows</text>
+        <text x="435" y="84" text-anchor="middle" class="art-bar-label" font-size="8">wages · rent · dividends</text>
+        <rect x="530" y="40" width="170" height="70" rx="8" fill="var(--gold-dim)" stroke="var(--gold-border)"/>
+        <text x="615" y="68" text-anchor="middle" class="art-bar-val" font-size="10">On-chain fiduciaries</text>
+        <text x="615" y="84" text-anchor="middle" class="art-bar-label" font-size="8">institutional recognition</text>
+        <text x="20" y="150" class="art-bar-val" font-size="12">Research surfaced three more</text>
+        <rect x="20" y="162" width="210" height="78" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="125" y="192" text-anchor="middle" class="art-bar-val" font-size="10">Probate-integrated wrapper</text>
+        <text x="125" y="210" text-anchor="middle" class="art-bar-label" font-size="8">legal person to sue / be sued</text>
+        <rect x="255" y="162" width="210" height="78" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="360" y="192" text-anchor="middle" class="art-bar-val" font-size="10">Key continuity + PQC</text>
+        <text x="360" y="210" text-anchor="middle" class="art-bar-label" font-size="8">decades · migration path</text>
+        <rect x="490" y="162" width="210" height="78" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="595" y="192" text-anchor="middle" class="art-bar-val" font-size="10">Tax &amp; reporting rails</text>
+        <text x="595" y="210" text-anchor="middle" class="art-bar-label" font-size="8">1041 · K-1 · FATCA · CRS</text>
+      </svg>
+    </figure>
+
+    <p>Underlying all of this, <strong>four infrastructural pillars</strong> must hold: a government-grade oracle for life events; tokens with permissioned/retractable properties that honor civil-law constraints like rule against perpetuities or forced heirship; a critical mass of financial life—wages, rent, dividends, royalties—actually flowing through programmable rails; and on-chain investment management that institutions recognize as fiduciarily sound. The author of this vision identifies these four. The research surfaces a fifth, sixth, and seventh that turn out to matter as much: a <strong>probate-integrated legal wrapper</strong> (the trust still needs a legal person to be sued); a <strong>multi-decade key continuity and post-quantum migration plan</strong>; and <strong>tax and reporting rails</strong> that satisfy the IRS, HMRC, or the Bundeszentralamt für Steuern without breaking cryptographic privacy. Leave any of these unbuilt and the cathedral collapses into a very elegant altar to a very specific kind of crypto-libertarian fantasy.</p>
+  </section>
+
+  <section class="art-section" id="sec-2" data-reveal>
+    <h2>Section 2 — Feasibility today and into the 2030s</h2>
+
+    <h3 id="oracle-death">The oracle of death: plumbing exists, authority does not</h3>
+    <p>The single most important input to a Web3 will is also its weakest link. <strong>No government in the world issues a production W3C Verifiable Credential representing death</strong>, and <strong>no oracle network operates a productionalized authoritative death feed</strong> as of April 2026. The US Social Security Administration's Death Master File (DMF) is the nearest thing to a global standard—and its quality is degrading. A 2024 SSA Office of Inspector General audit found <strong>~900,000 valid Numident death records missing</strong> from the DMF, while ~12,000 living Americans are erroneously declared dead each year. Between March and April 2025, a DOGE-directed effort added ~11 million pre-1905 records plus 6,300 <em>living</em> immigrants flagged for enforcement purposes—a case study in how a death oracle becomes a political instrument. The DMF has no real-time API; commercial "DMF oracles" (Compliancely, ProviderTrust) are SEO-wrapped LADMF file downloads.</p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 3 · DMF as oracle source (orders of magnitude, illustrative)</figcaption>
+      <svg viewBox="0 0 720 118" role="img" aria-label="Three horizontal bars for missing death records false deaths and policy-driven bulk adds">
+        <text x="8" y="16" class="art-bar-val" font-size="10">~900k valid deaths missing from DMF (OIG 2024)</text>
+        <rect x="8" y="22" width="540" height="16" rx="3" fill="var(--red)" opacity="0.55"/>
+        <text x="8" y="54" class="art-bar-val" font-size="10">~12k living Americans declared dead yearly (SSA class)</text>
+        <rect x="8" y="60" width="72" height="16" rx="3" fill="var(--gold)"/>
+        <text x="8" y="92" class="art-bar-val" font-size="10">~11M pre-1905 rows + 6.3k living immigrants added (Mar–Apr 2025 press coverage)</text>
+        <rect x="8" y="98" width="660" height="14" rx="3" fill="var(--heading)" opacity="0.2"/>
+      </svg>
+    </figure>
+    <p>Europe is architecturally further along but operationally behind. The <strong>EUDI Wallet mandate under Regulation (EU) 2024/1183</strong> requires all 27 member states to ship wallets by late 2026, with payment-provider acceptance mandatory by 2027. The EBSI-VECTOR project issued its final deliverables in May 2025 covering education and social-security credentials—<strong>not death</strong>. Singapore's Myinfo VC stack is the most mature government-credential pipeline globally, but its death attestation remains a PoC. Estonia uses Guardtime KSI to anchor its Succession Registry's integrity, but probate itself is still procedural. India's DigiLocker issues digital death certificates in several states, gated by Aadhaar.</p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 4 · Oracle stack: source quality caps oracle quality</figcaption>
+      <svg viewBox="0 0 720 140" role="img" aria-label="Layers from fallible registry to chain, with dispute and privacy paths">
+        <rect x="20" y="40" width="160" height="60" rx="6" fill="var(--red-dim)" stroke="var(--red)" opacity="0.85"/>
+        <text x="100" y="68" text-anchor="middle" fill="var(--heading)" font-size="11" font-weight="600">Source registry</text>
+        <text x="100" y="86" text-anchor="middle" class="art-bar-label" font-size="9">fallible · political · siloed</text>
+        <text x="200" y="75" font-size="18" fill="var(--gold)">→</text>
+        <rect x="220" y="40" width="150" height="60" rx="6" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="295" y="68" text-anchor="middle" class="art-bar-val" font-size="11">VC + committee</text>
+        <text x="295" y="86" text-anchor="middle" class="art-bar-label" font-size="9">multi-jurisdiction feeds</text>
+        <text x="385" y="75" font-size="18" fill="var(--gold)">→</text>
+        <rect x="405" y="40" width="130" height="60" rx="6" fill="var(--purple-dim)" stroke="var(--purple-border)"/>
+        <text x="470" y="68" text-anchor="middle" class="art-bar-val" font-size="11">DECO / zk-TLS</text>
+        <text x="470" y="86" text-anchor="middle" class="art-bar-label" font-size="9">prove without expose</text>
+        <text x="550" y="75" font-size="18" fill="var(--gold)">→</text>
+        <rect x="570" y="40" width="130" height="60" rx="6" fill="var(--green-dim)" stroke="var(--green-border)"/>
+        <text x="635" y="68" text-anchor="middle" class="art-bar-val" font-size="11">Chain event</text>
+        <text x="635" y="86" text-anchor="middle" class="art-bar-label" font-size="9">dispute layer optional</text>
+        <text x="360" y="22" text-anchor="middle" class="art-bar-label" font-size="10">Manipulation resistance = shared responsibility (source + crypto + humans)</text>
+      </svg>
+    </figure>
+
+    <p>The oracle middleware is production-grade and waiting. <strong>Chainlink's $42B+ Total Value Secured</strong>, its ISO 27001 and SOC 2 certifications (a first for oracles, 2024–2025), its DECO privacy-preserving TLS oracle that can prove a fact from a government API without exposing the underlying data, and its CCIP now adopted by Swift, UBS, ANZ, and the Canton Network—all could in principle relay an attested death-VC across every chain where an estate lives. API3 provides first-party signed feeds (the government could simply run its own oracle node). UMA's optimistic model, with a DVM dispute layer running at roughly $0.005 per request with LLM proposer bots, offers a backstop for contested attestations. RedStone's EigenLayer-restaked AVS adds cryptoeconomic security.</p>
+    <p>The question is not technical. It is institutional: <strong>which registrar, in which jurisdiction, will sign the first death credential and stand behind it legally?</strong> Singapore or the UAE will likely go first (Project Guardian and the DIFC Digital Assets Law 2024 have the political will); the US never will, because the DMF is federally rotten and state vital-records offices are 51 siloed kingdoms. Expect first live government death VCs in EU member states circa 2028–2029 as EBSI-VECTOR successors expand scope, and a mature multi-jurisdictional death-VC ecosystem by the mid-2030s.</p>
+    <p><strong>Manipulation resistance is a shared-responsibility problem.</strong> Oracles cannot be better than their source, and registries are fallible at the input layer. Deepfake incidents rose 257% in 2024; paper death certificates are already routinely forged. The robust design pattern—committee-based PBFT consensus across multiple jurisdictional feeds, with optimistic human dispute backstop and DECO-style zk-TLS proofs—is knowable. It has simply not been built for death.</p>
+
+    <h3 id="tokenized">Tokenized assets: the plumbing arrived first</h3>
+    <p><strong>This is the single most-matured pillar of the vision.</strong> As of April 2026, rwa.xyz reports <strong>$27.65B in distributed on-chain RWA (ex-stablecoin) and $441.38B represented</strong>. Six categories have passed $1B: private credit, commodities, US Treasuries, corporate bonds, non-US government debt, institutional alternative funds. BCG projects $16T tokenized by 2030; McKinsey a more sober $2–4T; Citi $5T; Deloitte $4T in real estate alone by 2035. The IMF in April 2026 framed tokenization as a "structural reconfiguration" of finance, not incremental digitization.</p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 5 · On-chain RWA vs represented (April 2026, illustrative scale)</figcaption>
+      <svg viewBox="0 0 720 120" role="img" aria-label="Bar chart comparing 27 point 65 billion on chain to 441 point 38 billion represented">
+        <text x="24" y="28" class="art-bar-val" font-size="11">Distributed on-chain (ex stables)</text>
+        <rect x="24" y="36" height="22" width="42" fill="var(--gold)"/>
+        <text x="72" y="52" class="art-bar-val" font-size="11">$27.65B</text>
+        <text x="24" y="88" class="art-bar-val" font-size="11">Represented / bridged view</text>
+        <rect x="24" y="96" height="22" width="672" fill="var(--blue)" opacity="0.55"/>
+        <text x="700" y="112" text-anchor="end" class="art-bar-val" font-size="11">$441.38B</text>
+      </svg>
+    </figure>
+
+    <figure class="art-figure">
+      <figcaption>Figure 6 · Selected 2030s tokenization forecasts (public estimates)</figcaption>
+      <svg viewBox="0 0 720 200" role="img" aria-label="Horizontal bars for firm forecasts">
+        <text x="180" y="22" text-anchor="middle" class="art-bar-label">0</text>
+        <text x="420" y="22" text-anchor="middle" class="art-bar-label">$8T</text>
+        <text x="660" y="22" text-anchor="end" class="art-bar-label">$16T</text>
+        <line x1="180" y1="30" x2="180" y2="190" stroke="var(--border)"/>
+        <line x1="660" y1="30" x2="660" y2="190" stroke="var(--border)"/>
+        <text x="8" y="52" class="art-bar-val" font-size="10">BCG</text>
+        <rect x="180" y="40" height="18" width="480" fill="var(--gold)" opacity="0.85"/>
+        <text x="670" y="54" class="art-bar-label" font-size="9">~$16T by 2030</text>
+        <text x="8" y="88" class="art-bar-val" font-size="10">Citi</text>
+        <rect x="180" y="76" height="18" width="150" fill="var(--blue)" opacity="0.7"/>
+        <text x="340" y="90" class="art-bar-label" font-size="9">~$5T</text>
+        <text x="8" y="124" class="art-bar-val" font-size="10">McKinsey</text>
+        <rect x="180" y="112" height="18" width="90" fill="var(--green)" opacity="0.75"/>
+        <rect x="272" y="112" height="18" width="90" fill="var(--green)" opacity="0.45"/>
+        <text x="380" y="126" class="art-bar-label" font-size="9">$2–4T band</text>
+        <text x="8" y="160" class="art-bar-val" font-size="10">Deloitte (RE)</text>
+        <rect x="180" y="148" height="18" width="120" fill="var(--purple)" opacity="0.65"/>
+        <text x="310" y="162" class="art-bar-label" font-size="9">~$4T RE by 2035</text>
+      </svg>
+    </figure>
+
+    <p>Tokenized Treasuries crossed the threshold of institutional respectability. <strong>BlackRock BUIDL holds ~$2–2.85B with over $100M cumulative dividends paid through daily rebased mints on Ethereum and eight other chains</strong>. Circle's USYC (via the Hashnote acquisition) overtook BUIDL at $2.4B in January 2026. Franklin Templeton's BENJI/FOBXX hit $1.01B across Stellar, Ethereum, Solana, and five others, paying over $51M in cumulative on-chain dividends. Ondo's USDY reached $1.21B; its OUSG sits above $1.1B, largely by holding BUIDL itself. <strong>JPMorgan launched MONY—its tokenized money market fund—via Kinexys and is phasing native issuance onto the Canton Network through 2026.</strong></p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 7 · Tokenized cash / MMF leaders (order-of-magnitude, April 2026)</figcaption>
+      <svg viewBox="0 0 720 220" role="img" aria-label="Relative bars for BUIDL USYC OUSG USDY BENJI MONY">
+        <g font-family="var(--font-mono)">
+          <text x="8" y="22" class="art-bar-val" font-size="11">Instrument (TVL band)</text>
+          <rect x="140" y="8" width="520" height="14" fill="var(--border)" opacity="0.5"/>
+          <text x="8" y="48" font-size="10" fill="var(--heading)">USYC</text>
+          <rect x="140" y="36" width="400" height="16" fill="var(--blue)"/>
+          <text x="550" y="48" font-size="9" fill="var(--muted)">~$2.4B</text>
+          <text x="8" y="78" font-size="10" fill="var(--heading)">BUIDL</text>
+          <rect x="140" y="66" width="380" height="16" fill="var(--gold)"/>
+          <text x="530" y="78" font-size="9" fill="var(--muted)">~$2–2.85B</text>
+          <text x="8" y="108" font-size="10" fill="var(--heading)">USDY</text>
+          <rect x="140" y="96" width="200" height="16" fill="var(--green)"/>
+          <text x="350" y="108" font-size="9" fill="var(--muted)">~$1.21B</text>
+          <text x="8" y="138" font-size="10" fill="var(--heading)">OUSG</text>
+          <rect x="140" y="126" width="190" height="16" fill="var(--green)" opacity="0.55"/>
+          <text x="340" y="138" font-size="9" fill="var(--muted)">&gt;$1.1B</text>
+          <text x="8" y="168" font-size="10" fill="var(--heading)">BENJI/FOBXX</text>
+          <rect x="140" y="156" width="165" height="16" fill="var(--purple)"/>
+          <text x="315" y="168" font-size="9" fill="var(--muted)">~$1.01B</text>
+          <text x="8" y="198" font-size="10" fill="var(--heading)">MONY (JPM)</text>
+          <rect x="140" y="186" width="120" height="16" fill="var(--heading)" opacity="0.35"/>
+          <text x="270" y="198" font-size="9" fill="var(--muted)">growing / Canton path</text>
+        </g>
+      </svg>
+    </figure>
+
+    <p><strong>Tokenized equities remain split between synthetic and rights-bearing</strong>. Ondo Global Markets launched September 2025 with $240M TVL in 48 hours, reaching ~60% market share of tokenized equities by year-end with 100+ stocks priced via Chainlink oracles; dividends are economically reflected, not passed through as legal entitlements. Backed Finance's xStocks (distributed via Kraken on Solana) explicitly disclaim voting or dividend rights. <strong>Dinari is the genuine breakthrough: an SEC-registered transfer agent that distributes actual USD or stablecoin dividends to verified wallets and preserves voting where legally permissible, now with 230+ tokens across 85 countries.</strong> Securitize, Superstate's Opening Bell, and the SEC's <strong>January 28, 2026 Joint Statement</strong> (which separates "issuer-sponsored" from "third-party sponsored" tokenized securities and confirms that "economic reality trumps labels") are the guardrails for full legal ownership on-chain.</p>
+    <p><strong>Tokenized real estate with actually distributing rent is real but small.</strong> RealT distributes weekly USDC/xDAI to investor wallets and has cumulatively paid over $24M in rent against 6–16% annualized returns, with Florida and Delaware LLCs wrapping each property. Lofty on Algorand distributes daily. Blocksquare, Propy, Tangible, and Binaryx fill out the category. None is jurisdictionally uniform; the property manager still collects fiat rent and converts it to stablecoin downstream. Secondary liquidity is thin. The legal wrapper problem—an SPV per property—doesn't scale to a global estate.</p>
+    <p><strong>Stablecoins are the dominant settlement medium</strong> at $300–326B aggregate (USDT $184B, USDC $77B) with over $9T adjusted annual settlement volume. The regulatory framework solidified rapidly: the US <strong>GENIUS Act</strong> was signed July 18, 2025 and goes fully effective January 18, 2027; MiCA's stablecoin provisions are live EU-wide; Singapore's and Hong Kong's frameworks are licensing their first issuers in Q1–Q2 2026. Société Générale's EURCV hit $452M as the first MiCA-compliant euro stablecoin. <strong>The GENIUS Act explicitly prohibits interest-bearing stablecoins (Hagerty Amendment)</strong>, which matters for a trust: the contract must hold BUIDL or USYC for yield, not bare USDC. Stablecoin payroll is real via Toku ($1B+ annual volume, 100+ countries, integrated with ADP and Workday, with Aleo+Paxos ZK-private payroll launching mid-2026) and streaming primitives like Superfluid, Sablier, and LlamaPay.</p>
+    <p>The verdict on this pillar: <strong>a testamentary trust could, today, hold a diversified multi-asset portfolio entirely on-chain, collect yield from four of six major asset classes natively, and pay beneficiaries in stablecoins across 85+ countries</strong>. The remaining gaps—direct shareholder rights on equities, universal rental income routing, secondary liquidity in real estate—are being closed quarter by quarter.</p>
+
+    <h3 id="programmable-trust">The programmable trust layer: templates without legal personhood</h3>
+    <p>The smart-contract substrate is extraordinarily capable. Ethereum's OpenZeppelin TimelockController is the standard primitive; the Pectra upgrade's EIP-7702 (May 7, 2025) lets EOAs temporarily execute contract code. Stellar's Soroban ships with a native <code>time_lock</code> claimable-balance example. Solana hosts Streamflow. Aptos and Sui's Move resource model maps cleanly to trust-asset semantics.</p>
+    <p><strong>The dedicated on-chain trust projects tell a sobering story.</strong> Sarcophagus—the most technically credible dead-man's-switch with its SARCO-bonded archaeologist nodes on Base—has credibility but minimal TVL. <strong>Serenity Shield launched its StrongBox dApp in November 2023 and was exploited on February 27, 2024, losing 6.9M SERSH (~$5.6M) and watching its token collapse 99%.</strong> TrustVerse is defunct. Safe Haven's Inheriti remains live on VeChain with a European patent but a market cap under $1M. Octowill and Willy are pre-revenue or dormant. The <strong>real inheritance volume flows through hybrid architectures</strong>: Unchained Capital secures over $6B in bitcoin and titles multisig vaults to living trusts, GRATs, and dynasty trusts. Casa Inheritance runs 2-of-3 and 3-of-5 multisig with a 6-month heir waiting period. Vault12 uses quantum-safe social custody. <strong>Anchorage Digital's "COIN Trust," built with Two Ocean Trust in Wyoming (April 2021), and Fidelity Digital Assets' 2025 OCC national trust bank charter</strong> represent the institutional path—where fiduciary volume actually lives.</p>
+    <p>Account abstraction hit scale in 2025: <strong>40M+ ERC-4337 smart accounts, 100M+ UserOps, 73% of new Web3 projects incorporating 4337 per Alchemy's 2025 developer report.</strong> Safe alone holds $50B+ across 43M accounts. Safe{RecoveryHub}, launched July 2023 with Sygnum Bank and CoinCover (Lloyd's-insured, FCA-regulated), is the closest thing to an institutional social-recovery standard. Argent's guardian model remains the consumer benchmark. MPC infrastructure (Fireblocks, Fordefi, Copper, BitGo) runs the institutional back office.</p>
+    <p>The <strong>on-chain asset management layer</strong> is where the "investment manager with on-chain salary" fantasy is most nearly real. Enzyme Finance won Hedgeweek's 2025 Blockchain Technology of the Year; its Vault-as-a-Service enables tokenized funds and term deposits. But the live production-grade pattern is <strong>Morpho Vault V2 + a curator (Steakhouse Financial, Gauntlet) + a timelock + an Aragon DAO guardian with veto rights</strong>. Steakhouse added a 25% performance fee on Base in August 2025; Gauntlet curates 70+ vaults across three risk tiers; Coinbase DeFi Lend built on Morpho reached $350M supply in two months. <strong>None is marketed as a testamentary trust. All could be re-plumbed as one.</strong> The gap is legal wrappers and trustee-qualified actors, not code.</p>
+    <p><strong>Critical gap: no widely adopted trust-specific ERC exists.</strong> Nothing parallel to ERC-4626 for vaults. Proof-of-life remains heartbeat/inactivity-based—vulnerable to adversarial withholding. A standardized, audited, open-source Testamentary Trust ERC with oracle plug-ins would change the ecosystem overnight.</p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 8 · Hybrid vs "pure" on-chain inheritance (where volume actually is)</figcaption>
+      <svg viewBox="0 0 720 160" role="img" aria-label="Two lanes showing hybrid institutional volume dominating dedicated dApps">
+        <rect x="20" y="30" width="320" height="100" rx="10" fill="var(--green-dim)" stroke="var(--green-border)"/>
+        <text x="180" y="58" text-anchor="middle" class="art-bar-val" font-size="12">Hybrid + institutional</text>
+        <text x="180" y="80" text-anchor="middle" class="art-bar-label" font-size="10">Unchained · Casa · Anchorage · Fidelity</text>
+        <text x="180" y="108" text-anchor="middle" class="art-bar-label" font-size="9">$6B+ BTC (Unchained) · Safe $50B+ (not all estate)</text>
+        <rect x="380" y="30" width="320" height="100" rx="10" fill="var(--red-dim)" stroke="var(--gold-border)"/>
+        <text x="540" y="58" text-anchor="middle" class="art-bar-val" font-size="12">Dedicated dApp layer</text>
+        <text x="540" y="80" text-anchor="middle" class="art-bar-label" font-size="10">Sarcophagus · Serenity Shield · Inheriti</text>
+        <text x="540" y="108" text-anchor="middle" class="art-bar-label" font-size="9">exploits · thin TVL · niche chains</text>
+      </svg>
+    </figure>
+
+    <h3 id="legal">Legal recognition: Wyoming is alone, and even Wyoming is careful</h3>
+    <p><strong>No jurisdiction in the world has recognized a smart contract as a <em>legal trustee</em>.</strong> This is the hardest gap to bridge and the one the visionary narrative most easily elides. A trustee is a legal person who holds fiduciary office—capable of owing duties, being sued, being sanctioned by a court, being removed and replaced. Code is not yet any of these things.</p>
+    <p><strong>Wyoming is the closest.</strong> W.S. § 34-29-103 recognizes that a smart contract may hold "exclusive legal authority to conduct a transaction relating to a digital asset"—giving the contract UCC-Article-9 "control" status equivalent to possession. The Wyoming DAO LLC Act (2021) and DUNA (2024) allow "algorithmically managed" entities. W.S. § 34-29-104 lets Wyoming-chartered SPDIs (trust companies) custody crypto with fiduciary powers. <strong>W.S. § 34-1-139(b) permits trusts to last up to 1,000 years.</strong> CSC Global has documented Wyoming clients using DAO LLC structures with smart-contract-scheduled distributions for family digital asset treasuries. But the smart contract is the <em>instrument</em>; a Wyoming SPDI or DAO LLC remains the <em>trustee</em>.</p>
+
+    <div class="art-table-wrap" data-reveal>
+      <table class="art-table">
+        <thead>
+          <tr>
+            <th scope="col">Jurisdiction</th>
+            <th scope="col">Key instrument</th>
+            <th scope="col">Trust duration</th>
+            <th scope="col">Smart-contract recognition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Liechtenstein</td><td>TVTG/Blockchain Act (Jan 2020); Token Container Model</td><td>No RAP for trusts/Stiftungen</td><td>Civil-law property in tokens; trust enterprise regime</td></tr>
+          <tr><td>DIFC (Dubai)</td><td>Digital Assets Law No. 2 of 2024; amended Trust Law</td><td>RAP can be disapplied by instrument</td><td>Recognizes digital assets as independent property category</td></tr>
+          <tr><td>ADGM (Abu Dhabi)</td><td>DLT Foundations Regulations 2023</td><td>200 years</td><td>Bespoke DAO/DLT foundation regime; tokenholders not personally liable</td></tr>
+          <tr><td>Cayman</td><td>Foundation Companies Act 2017; STAR Trusts</td><td><strong>Unlimited</strong> (Perpetuities Amendment Act 2024 abolished the 150-year cap)</td><td>Foundation companies widely used as DAO wrappers</td></tr>
+          <tr><td>Switzerland</td><td>DLT Act (Feb &amp; Aug 2021); ledger-based securities</td><td>Hague Convention ratified; no native trust</td><td>FINMA-licensed DLT Trading Venues (BX Digital, SDX)</td></tr>
+          <tr><td>Singapore</td><td>Project Guardian; DTSP 2025</td><td>100 years</td><td><em>Quoine v. B2C2</em> [2020] SGCA confirmed crypto can be held on trust</td></tr>
+          <tr><td>UK</td><td>Property (Digital Assets etc) Act 2025 (Royal Assent Dec 2, 2025)</td><td>125 years</td><td>Crypto confirmed as "third category" of personal property</td></tr>
+          <tr><td>Wyoming</td><td>Digital Assets Statutes, DAO LLC, DUNA</td><td>1,000 years</td><td>Smart contracts exercise UCC control; closest to algorithmic trustees</td></tr>
+          <tr><td>Bermuda, Hong Kong</td><td>DABA 2018; SFC VATP regime</td><td>No RAP (abolished 2009/2013)</td><td>Common-law trusts of crypto supported</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Elsewhere the picture is varied and sophisticated (see table). The <strong>Uniform Commercial Code Article 12</strong>, creating "controllable electronic records," has been adopted by roughly 28 US states as of April 2026. RUFADAA is adopted by 48 US jurisdictions, but only for <em>fiduciary access</em>—it does not confer ownership. <strong>The US has signed but not ratified the 1985 Hague Trusts Convention</strong>; federal ratification is politically improbable.</p>
+    <p><strong>Conflict-of-laws risk is structural, not technical.</strong> When a testator is domiciled in Germany, holds tokens minted on Polygon (nodes worldwide), governed by a Cayman STAR trust wrapper, paying income to beneficiaries in Japan and Nigeria—whose law governs? The EU Succession Regulation 650/2012 defaults to habitual residence but allows election of nationality law. UNIDROIT's May 2023 Principles on Digital Assets and Private Law propose that the asset's own system law governs proprietary issues. The Hague Conference launched a dedicated Digital Tokens and Private International Law project in 2022; a draft instrument is expected 2026–2027. <strong>Civil-law forced heirship (France, Germany, UAE Sharia) remains a trump card</strong>: Hague Convention Article 15 preserves mandatory succession rules against trust structures. Cayman's "firewall" legislation (Trusts Act Part VII ss. 90–93) and Jersey's Article 9 explicitly exclude foreign forced-heirship claims—which is why offshore wrappers remain central.</p>
+    <p>The <strong>Ooki DAO default judgment (N.D. Cal., June 2023)</strong> treated a DAO as an unincorporated association capable of being sued. <em>Sarcuni v. bZx DAO</em> (March 2023) and <em>Samuels v. Lido DAO</em> (November 2024) held governance-token holders may be jointly and severally liable as general partners. <strong>An unwrapped testamentary trust DAO would expose beneficiaries and managers to unlimited personal liability</strong>—which is precisely why any real deployment will route through Wyoming, ADGM, or Cayman wrappers.</p>
+
+    <h3 id="privacy">Privacy: the technology is ready, the regulations are converging on conflict</h3>
+    <p>Privacy primitives matured dramatically in the last 18 months. <strong>Aztec Alpha Mainnet launched ~March 31, 2026</strong> as the first L2 with full private smart-contract execution—but with a critical disclosed vulnerability in its proving system whose patch ("v5") is scheduled for July 2026. Users are advised to deposit only what they can afford to lose. <strong>Aleo mainnet is live since September 2024</strong> with Leo language and Varuna proving system. <strong>Zama mainnet-launched on Ethereum December 30, 2025</strong> with its first confidential stablecoin transfer; 6.9M+ transactions and 27,662 confidential contracts have been deployed, with $100M+ processed in its January 2026 auction. <strong>JPMorgan Kinexys' Project EPIC used Zama for tokenized assets with encrypted bid amounts and KYC on encrypted data.</strong> Namada's MASP launched fully June 2025; Oasis Sapphire's confidential EVM is in production. <strong>Railgun, backed by Vitalik Buterin personally (his $2.6M June 2025 transfer), blocked the zkLend hacker's $9.5M laundering attempt in February 2025</strong> and is now integrated into the Ethereum Foundation's Kohaku SDK.</p>
+    <p><strong>Every sensitive data class a testamentary trust needs to hide can now technically be hidden</strong>: beneficiary identities (Aztec, Aleo, Polygon ID VCs for selective disclosure), distribution amounts (Zama's fhERC-20 encrypted balances, proven in production since December 2025), investment strategies (FHE contracts), trigger conditions (all private execution environments), and proof of beneficiary eligibility (Polygon ID, zkPass, ZKPassport, World ID).</p>
+    <p><strong>The regulatory collision is imminent.</strong> The EDPB's Guidelines 02/2025 on blockchain (adopted April 14, 2025) held that pseudonymous on-chain data is personal data, rejected technical impracticability as a defense against GDPR's right to erasure, and strongly preferred permissioned chains. France's CNIL, Spain's AEPD, and most EU DPAs converge on the same pattern: <strong>store personal data off-chain, keep only hashes on-chain, delete off-chain keys to effect "practical erasure."</strong> This is achievable for a testamentary trust but imposes architectural discipline.</p>
+    <p><strong>The more consequential storm is the EU Anti-Money Laundering Regulation (2024/1624) Article 79</strong>, fully applicable July 1, 2027, which prohibits CASPs from handling crypto-assets that enable anonymization or anonymity-enhancing coins. Binance and Kraken already removed Monero and Zcash for EU users. <strong>Whether Aztec, Aleo, or a Zama-encrypted trust contract falls within Article 79 depends on forthcoming EBA delegated acts</strong>—and legal scholars argue the regulation may conflict with EU Charter Articles 7 and 8. <em>Van Loon v. Treasury</em> (5th Cir., Nov 2024) vacated the OFAC Tornado Cash sanctions on immutable smart contracts; OFAC formally delisted Tornado Cash on March 21, 2025. But <strong>Roman Storm was convicted in August 2025 on the money-transmission count</strong> (hung jury on the other two), vindicating the DOJ's theory that mixer development can constitute unlicensed money transmission. The legal frontier is live and unsettled.</p>
+
+    <h3 id="gaps-extra">The infrastructure prerequisites the author didn't mention</h3>
+    <p>Three infrastructural gaps surfaced consistently across the research that the original framing under-weights:</p>
+    <ul>
+      <li><strong>Probate-integrated legal personhood.</strong> A trust must have a person to sue and to be sued. Until a jurisdiction grants smart-contract entities legal capacity—not merely operational control—every "autonomous" testamentary trust will actually be a hybrid: a contract performing operations inside a Wyoming SPDI, an ADGM DLT Foundation, or a Cayman foundation company that absorbs liability and legal standing. This is not a weakness to be eliminated; it is the interface between code and court.</li>
+      <li><strong>Multi-decade key continuity and post-quantum migration.</strong> A 1,000-year Wyoming trust may outlive the elliptic-curve cryptography it was built on. STARKs and Plonky2 are already quantum-resistant; Groth16 and PLONK need new trusted setups on PQ-safe curves. Signing-key custodianship across generations is an unsolved human problem that Casa, Unchained, and Vault12 are attacking from different angles—but none offers a guaranteed century-spanning solution.</li>
+      <li><strong>Tax and statutory reporting rails.</strong> IRS Form 1041, Schedule K-1s for beneficiaries, FATCA, CRS—none can be evaded by cryptographic privacy. A trust smart contract must <em>also</em> produce tax-authority-grade reports, often with selective disclosure to auditors. Projects like Toku and Paxos Labs (ZK-private payroll with compliance disclosure) show the pattern but it is not yet standardized for trust accounting.</li>
+    </ul>
+
+    <h3 id="timelines">Realistic timelines</h3>
+    <p><strong>Now (April 2026)</strong>: A hybrid Wyoming SPDI / DAO LLC structure, wrapping a Safe-based multi-sig trust contract with Morpho vaults curated by Gauntlet, holding BUIDL, RealT, and USDC, streaming to beneficiaries via Superfluid, with heartbeat-based proof-of-life via Sarcophagus or a Safe Recovery Module, is buildable end-to-end for a high-net-worth individual by a motivated team in 60–90 days.</p>
+    <p><strong>3 years (~2029)</strong>: EUDI Wallets fully deployed; first government-signed death VCs live in Singapore, the UAE, and one or two EU states; institutional RWA privacy layer emerging; Aztec v5+ and Zama mature in production; DIFC and ADGM positioned as primary trust situs for the wealth-tech vanguard.</p>
+    <p><strong>10 years (~2036)</strong>: Mature multi-jurisdictional death-VC ecosystem; smart-contract trustees likely recognized in at least one major jurisdiction beyond Wyoming; Hague Conference digital-tokens instrument adopted; $4T tokenized real estate (per Deloitte) with standardized on-chain rental rails; post-quantum cryptographic migration standardized. <strong>Probate itself begins to be partially automated for digital estates in common-law jurisdictions.</strong></p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 9 · Vision buildability (author's synthesis)</figcaption>
+      <svg viewBox="0 0 720 160" role="img" aria-label="Bar chart sixty eighty five and ninety five percent at now twenty twenty nine and twenty thirty six">
+        <text x="24" y="24" class="art-bar-val" font-size="12">Hybrid vision completeness</text>
+        <text x="24" y="48" class="art-bar-label" font-size="10">April 2026</text>
+        <rect x="120" y="36" width="252" height="20" rx="4" fill="var(--gold)"/>
+        <text x="380" y="50" class="art-bar-val" font-size="11">60%</text>
+        <text x="24" y="88" class="art-bar-label" font-size="10">~2029</text>
+        <rect x="120" y="76" width="357" height="20" rx="4" fill="var(--blue)" opacity="0.75"/>
+        <text x="485" y="90" class="art-bar-val" font-size="11">85%</text>
+        <text x="24" y="128" class="art-bar-label" font-size="10">~2036</text>
+        <rect x="120" y="116" width="399" height="20" rx="4" fill="var(--green)" opacity="0.7"/>
+        <text x="530" y="130" class="art-bar-val" font-size="11">95%</text>
+        <line x1="120" y1="32" x2="120" y2="140" stroke="var(--border)"/>
+        <line x1="540" y1="32" x2="540" y2="140" stroke="var(--border)" stroke-dasharray="4 4"/>
+        <text x="540" y="150" text-anchor="middle" class="art-bar-label" font-size="8">100% = still not full legal personhood for code</text>
+      </svg>
+    </figure>
+
+    <figure class="art-figure">
+      <figcaption>Figure 10 · Roadmap spine (institutional + legal gates)</figcaption>
+      <svg viewBox="0 0 720 100" role="img" aria-label="Timeline twenty twenty six twenty twenty nine twenty thirty six">
+        <line x1="40" y1="50" x2="680" y2="50" stroke="var(--border-hi)" stroke-width="2"/>
+        <circle cx="120" cy="50" r="10" fill="var(--gold)"/>
+        <text x="120" y="30" text-anchor="middle" class="art-bar-val" font-size="11">2026</text>
+        <text x="120" y="78" text-anchor="middle" class="art-bar-label" font-size="9">hybrid HNW builds</text>
+        <circle cx="360" cy="50" r="10" fill="var(--blue)"/>
+        <text x="360" y="30" text-anchor="middle" class="art-bar-val" font-size="11">2029</text>
+        <text x="360" y="78" text-anchor="middle" class="art-bar-label" font-size="9">death VC v1</text>
+        <circle cx="600" cy="50" r="10" fill="var(--green)"/>
+        <text x="600" y="30" text-anchor="middle" class="art-bar-val" font-size="11">2036</text>
+        <text x="600" y="78" text-anchor="middle" class="art-bar-label" font-size="9">multi-VC + probate automation</text>
+      </svg>
+    </figure>
+  </section>
+
+  <section class="art-section" id="sec-3" data-reveal>
+    <h2>Section 3 — Is the world better? A rigorous reckoning</h2>
+
+    <h3 id="gained">What is gained</h3>
+    <p><strong>Executor fraud and delay—the oldest cancers of probate—become structurally impossible for the automated portion of an estate.</strong> A human executor can embezzle; a smart contract cannot. A probate court backlog can delay a distribution by 18 months; a smart contract executes in a block. The economic impact is large. Trust administration fees typically run 1–2% of assets annually; a well-designed contract drops this to gas costs plus curator fees, perhaps 5–20 basis points. For the roughly <strong>$6T in crypto projected to transfer via inheritance by 2045</strong> (Bank of America analyst estimate), and the $140B+ in bitcoin already presumed lost to key-management failures, automation is not marginal—it is civilizational.</p>
+    <p><strong>Transparency and auditability reach a level traditional trusts cannot match.</strong> Every distribution, every investment-manager fee, every rebalance is forever on-chain. Beneficiaries can reconcile against the trust's logic in real time. Regulators, with selective-disclosure keys, can audit without seizing records.</p>
+    <p><strong>Global accessibility is newly possible.</strong> A grandchild in Lagos can receive a stablecoin distribution the moment it is due. Cross-border inheritance, historically hostage to apostilles and correspondent banking, becomes a chain-level operation. The unbanked become reachable for the first time by inheritance capital.</p>
+    <p><strong>Precision of intent execution is near-absolute.</strong> A testator can encode conditions that no human trustee would faithfully enforce at 3 AM in year 73: "Release $10,000 each year to any direct descendant who completes a university degree, pro-rated by tuition cost index." The code does not forget, does not favor, does not die.</p>
+    <p><strong>Real-time continuous distribution</strong> replaces the annual trustee review. A spouse receives 4% of portfolio value as a continuous Superfluid stream, not an annual check. Charities receive monthly grants pegged to on-chain performance. Scholarships release on matriculation credentials.</p>
+    <p><strong>Investment manager accountability becomes radical.</strong> Fees, bonuses, and performance benchmarks all execute on-chain against Chainlink or Pyth oracles. The opacity that allows most traditional trustee-advisory relationships to tolerate mediocrity is eliminated by default.</p>
+
+    <div class="art-two-col">
+      <div class="art-col-box gain">
+        <h4>Gains (automation layer)</h4>
+        <ul>
+          <li>Fraud-resistant execution for coded paths</li>
+          <li>Latency: block-time vs court backlog</li>
+          <li>Fee compression (bps vs 1–2%)</li>
+          <li>Global beneficiary reach</li>
+          <li>Continuous streams &amp; attestations</li>
+        </ul>
+      </div>
+      <div class="art-col-box loss">
+        <h4>Losses / risks</h4>
+        <ul>
+          <li>No equitable flex (<em>cy-près</em>, changed circumstances)</li>
+          <li>Oracle false positives irreversible at scale</li>
+          <li>Exploit tail risk (Serenity Shield, Superfluid history)</li>
+          <li>GDPR / AMLR vs immutability</li>
+          <li>Beneficiary UX &amp; key fragility</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="art-figure">
+      <figcaption>Figure 11 · Where human equity still sits in the stack</figcaption>
+      <svg viewBox="0 0 720 200" role="img" aria-label="Diagram showing code executing rules while humans hold equity veto and legal wrapper">
+        <rect x="40" y="40" width="640" height="56" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="360" y="66" text-anchor="middle" class="art-bar-val" font-size="12">Smart contract · deterministic execution</text>
+        <text x="360" y="84" text-anchor="middle" class="art-bar-label" font-size="10">streams · timelocks · vaults · zk balances</text>
+        <path d="M360 96 L360 118" stroke="var(--gold)" stroke-width="2"/>
+        <polygon points="360,128 352,118 368,118" fill="var(--gold)"/>
+        <rect x="120" y="132" width="200" height="52" rx="8" fill="var(--purple-dim)" stroke="var(--purple-border)"/>
+        <text x="220" y="156" text-anchor="middle" class="art-bar-val" font-size="11">Legal wrapper</text>
+        <text x="220" y="172" text-anchor="middle" class="art-bar-label" font-size="9">SPDI · foundation · liability shield</text>
+        <rect x="400" y="132" width="200" height="52" rx="8" fill="var(--blue-dim)" stroke="var(--blue-border)"/>
+        <text x="500" y="156" text-anchor="middle" class="art-bar-val" font-size="11">Human equity layer</text>
+        <text x="500" y="172" text-anchor="middle" class="art-bar-label" font-size="9">guardian veto · court reform · tax</text>
+      </svg>
+    </figure>
+
+    <h3 id="lost">What is lost or endangered</h3>
+    <p><strong>Code is law; equity is not.</strong> This is the deepest objection and the hardest to answer. Trust law's equitable jurisdiction exists precisely because human circumstances are infinite and settlors are finite. A court can reform a trust when a beneficiary develops a disability the testator never imagined, or when tax law shifts, or when an asset class ceases to exist. A smart contract cannot. The doctrine of <em>cy-près</em>, the rule of <em>in terrorem</em> forfeiture, the unwinding of a trust for changed circumstances—none of these has an on-chain analog. A <strong>deliberately installed upgrade governance (Aragon DAO + timelock + guardian)</strong> is the workaround; but a guardian with upgrade authority is, precisely, a human trustee, which was the thing we claimed to have eliminated.</p>
+    <p><strong>The oracle problem is existential.</strong> If the death trigger fires incorrectly—and the SSA DMF error rate suggests it will fire incorrectly roughly 12,000 times per year in the US alone—the cascade is irreversible. The living testator's assets have been distributed. <strong>Decentralized dispute resolution (UMA-style) can contest the trigger, but cannot easily unwind on-chain distributions to permissioned wallets on secondary chains.</strong> A pre-mortem freeze-and-review window is a partial fix but reintroduces precisely the delay automation was meant to cure.</p>
+    <p><strong>Key custody across generations is an unsolved human problem.</strong> Multisig and social recovery push the risk surface onto guardians who must themselves remain alive, competent, and loyal for decades. Institutional custodians (Anchorage, Fidelity, BitGo Trust) solve it by becoming the trustee—returning us to human intermediaries.</p>
+    <p><strong>Most jurisdictions do not recognize the structure.</strong> Outside Wyoming, ADGM, DIFC, Cayman, Liechtenstein, and Switzerland, a testamentary smart contract is at best an informal arrangement that a probate court will ignore or override. For the vast majority of estates worldwide, on-chain execution is a supplementary convenience, not a binding legal instrument.</p>
+    <p><strong>Data permanence violates privacy rights.</strong> GDPR's right to erasure, CCPA's right to delete, and the EU's AMLR Article 79 are on a collision course with blockchain immutability. The off-chain-storage/on-chain-hash pattern is compliant but is not <em>genuinely</em> the fully on-chain trust the vision imagines.</p>
+    <p><strong>Attack surface is existential.</strong> Serenity Shield lost $5.6M and 99% of its token value on February 27, 2024. Superfluid lost $8.7M in February 2022. Yearn has suffered multiple exploits. The 2025 oracle-manipulation loss total exceeded $8.8M, with oracle manipulation ranked #2 in the OWASP Smart Contract Top 10. <strong>A single reentrancy bug in a trust contract could permanently misallocate a century of wealth</strong>, with no human appellate structure able to correct it short of a blockchain fork.</p>
+    <p><strong>Concentration of infrastructure risk.</strong> Ethereum or Solana forking catastrophically, Chainlink suffering a governance capture, the Zama proving circuit having a soundness bug—each is a single point of failure for trusts built on it. Traditional trusts are distributed across thousands of independent trustees and banks; on-chain trusts cluster on perhaps five major L1s and two oracle networks.</p>
+    <p><strong>Technical exclusion of beneficiaries.</strong> An 84-year-old widow in rural Alabama cannot operate a Safe wallet, recover from a lost seed phrase, or prove eligibility with a Polygon ID VC. Any real-world design must wrap the contract in human-mediated custody for non-technical beneficiaries—again reintroducing trustee risk.</p>
+    <p><strong>The rich get smarter tools.</strong> This is the uncomfortable question the Web3 community under-examines. Dynasty trusts in South Dakota, Wyoming, and Cayman already concentrate wealth across generations in ways that alarmed even Adam Smith. <strong>A 1,000-year Wyoming testamentary smart contract, professionally managed, compounding in on-chain private credit and tokenized real estate, may be the single most effective wealth-concentration instrument ever devised.</strong> Whether that is civilizational progress or quiet feudalism depends on whether access democratizes or stratifies. The current cost curve—high-net-worth structuring with Anchorage or DIFC at one end, RealT fractional ownership at the other—is bifurcated, not democratized.</p>
+
+    <div class="art-pull">
+      The Web3 testamentary trust is neither a utopia nor a toy. It is a partial transformation of estate administration that will begin as a premium product for crypto-native high-net-worth individuals in Wyoming, DIFC, and ADGM within three years, and will gradually pressure traditional trust practice into more transparency, lower fees, and more continuous administration over the following decade.
+    </div>
+
+    <h3 id="verdict">The honest verdict</h3>
+    <p>It will not abolish human trustees. It will subordinate them to code for the mechanical parts of their work, elevate them for the discretionary parts, and—for a century or more—require both.</p>
+    <p>The vision as stated in Section 1 is 60% buildable today with hybrid legal wrappers, 85% buildable by 2029, and 95% buildable by 2036. The remaining 5%—true legal personhood for autonomous code, frictionless death attestation globally, cross-generational key continuity, equity-jurisdiction equivalents for on-chain trusts—may never be fully closed. They may not need to be. <strong>The trust of 2050 will likely be a smart contract wrapped in a legal person, supervised by a human protector with veto authority, audited continuously by privacy-preserving proofs, funded by tokenized institutional portfolios, and distributing to beneficiaries in stablecoins across 150 countries.</strong> That is not the dream of code replacing law. It is code and law converging into a fiduciary architecture neither could build alone.</p>
+    <p>The honest framing is this: <strong>we are not eliminating the trustee. We are decomposing the trustee into its constituent functions—custody, execution, accounting, investment, discretion—and algorithmically optimizing each one separately.</strong> Custody goes to MPC and social recovery. Execution goes to smart contracts. Accounting goes to on-chain ledgers with zk-selective disclosure. Investment goes to curated vaults with on-chain benchmarks. Discretion remains, stubbornly and properly, human.</p>
+
+    <figure class="art-figure">
+      <figcaption>Figure 12 · Decomposing the trustee (functions, not titles)</figcaption>
+      <svg viewBox="0 0 720 240" role="img" aria-label="Five boxes custody execution accounting investment discretion connected to a center trustee label">
+        <rect x="300" y="20" width="120" height="36" rx="8" fill="var(--gold-dim)" stroke="var(--gold-border)"/>
+        <text x="360" y="42" text-anchor="middle" class="art-bar-val" font-size="12">Trustee role</text>
+        <line x1="360" y1="56" x2="120" y2="100" stroke="var(--border-hi)"/>
+        <line x1="360" y1="56" x2="240" y2="100" stroke="var(--border-hi)"/>
+        <line x1="360" y1="56" x2="360" y2="100" stroke="var(--border-hi)"/>
+        <line x1="360" y1="56" x2="480" y2="100" stroke="var(--border-hi)"/>
+        <line x1="360" y1="56" x2="600" y2="100" stroke="var(--border-hi)"/>
+        <rect x="40" y="104" width="160" height="56" rx="8" fill="var(--surface)" stroke="var(--border-hi)"/>
+        <text x="120" y="128" text-anchor="middle" class="art-bar-val" font-size="11">Custody</text>
+        <text x="120" y="146" text-anchor="middle" class="art-bar-label" font-size="9">MPC · Safe · recovery</text>
+        <rect x="160" y="176" width="160" height="56" rx="8" fill="var(--blue-dim)" stroke="var(--blue-border)"/>
+        <text x="240" y="200" text-anchor="middle" class="art-bar-val" font-size="11">Execution</text>
+        <text x="240" y="218" text-anchor="middle" class="art-bar-label" font-size="9">contracts · streams</text>
+        <rect x="280" y="104" width="160" height="56" rx="8" fill="var(--green-dim)" stroke="var(--green-border)"/>
+        <text x="360" y="128" text-anchor="middle" class="art-bar-val" font-size="11">Accounting</text>
+        <text x="360" y="146" text-anchor="middle" class="art-bar-label" font-size="9">ledger + zk disclosure</text>
+        <rect x="400" y="176" width="160" height="56" rx="8" fill="var(--purple-dim)" stroke="var(--purple-border)"/>
+        <text x="480" y="200" text-anchor="middle" class="art-bar-val" font-size="11">Investment</text>
+        <text x="480" y="218" text-anchor="middle" class="art-bar-label" font-size="9">Morpho · curators · oracles</text>
+        <rect x="520" y="104" width="160" height="56" rx="8" fill="var(--red-dim)" stroke="var(--gold-border)"/>
+        <text x="600" y="128" text-anchor="middle" class="art-bar-val" font-size="11">Discretion</text>
+        <text x="600" y="146" text-anchor="middle" class="art-bar-label" font-size="9">guardians · courts · ethics</text>
+      </svg>
+    </figure>
+
+    <p>The dead cannot litigate their own intent. For 4,000 years we have protected it with human trustees and priestly oaths. For the next century, we will protect it with code <em>and</em> human trustees, with mathematics <em>and</em> equity. It is transformative infrastructure—but not for the reason Web3 maximalists usually claim. <strong>The transformation is not that trust becomes trustless. It is that trust becomes programmable enough to compound beyond the lifespan of any human who understood its purpose.</strong> That is a gift to the future and a burden on it. Both are real. Neither is negligible.</p>
+  </section>
+
 </main>
 
 <script src="../js/motion.js" defer></script>

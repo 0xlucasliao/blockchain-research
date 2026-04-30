@@ -1,0 +1,689 @@
+/**
+ * Blog: "What makes a blockchain win at payments?" — chain payments playbook.
+ * Original layout classes from source; scoped under body.br-playbook + theme tokens.
+ */
+
+body.br-playbook {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body.br-playbook .playbook-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  padding: 10px 22px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+body.br-playbook .playbook-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 5px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+body.br-playbook .playbook-nav a:hover {
+  color: var(--heading);
+  background: var(--nav-link-hover-bg);
+}
+
+body.br-playbook .playbook-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 22px 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+body.br-playbook .playbook-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+body.br-playbook .playbook-hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+
+body.br-playbook .playbook-hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+body.br-playbook .playbook-lede {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 58ch;
+  line-height: 1.65;
+  border-left: 3px solid var(--gold);
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+body.br-playbook .playbook-rule {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+body.br-playbook .playbook-rule::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+body.br-playbook .article-body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 22px 72px;
+}
+
+body.br-playbook .article-body .section {
+  margin-bottom: 56px;
+  padding-top: 8px;
+}
+
+body.br-playbook .article-body .section:first-of-type {
+  margin-top: 36px;
+}
+
+body.br-playbook .article-body .section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+body.br-playbook .article-body .section-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+
+body.br-playbook .article-body .section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+body.br-playbook .article-body .section-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+}
+
+body.br-playbook .article-body h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(20px, 2.8vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--heading);
+}
+
+body.br-playbook .article-body h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: 26px;
+  color: var(--heading);
+}
+
+body.br-playbook .article-body p {
+  margin-bottom: 16px;
+  max-width: 68ch;
+}
+
+body.br-playbook .article-body em {
+  font-style: italic;
+  color: var(--heading);
+}
+
+body.br-playbook .article-body code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--fn-muted-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+body.br-playbook .callout {
+  border: 1px solid var(--border-hi);
+  border-left: 3px solid var(--gold);
+  padding: 18px 20px;
+  margin: 24px 0;
+  position: relative;
+  background: var(--card);
+  border-radius: 6px;
+}
+
+body.br-playbook .callout::before {
+  content: attr(data-label);
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+body.br-playbook .callout p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+body.br-playbook .diagram {
+  margin: 28px 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 20px 18px;
+}
+
+body.br-playbook .diagram-title {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+body.br-playbook .stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+body.br-playbook .stack-row {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  min-height: 48px;
+}
+
+body.br-playbook .stack-label {
+  width: 108px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+}
+
+body.br-playbook .stack-cells {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+body.br-playbook .cell {
+  flex: 1;
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+body.br-playbook .cell-dark {
+  background: var(--heading);
+  color: var(--bg);
+  border-color: var(--heading);
+}
+
+body.br-playbook .cell-accent {
+  background: var(--gold-dim);
+  color: var(--gold);
+  border-color: var(--gold-border);
+}
+
+body.br-playbook .cell-accent2 {
+  background: var(--blue-dim);
+  color: var(--blue);
+  border-color: var(--blue-border);
+}
+
+body.br-playbook .cell-light {
+  background: var(--card);
+  color: var(--text);
+}
+
+body.br-playbook .cell-new {
+  background: var(--purple-dim);
+  color: var(--purple);
+  border-color: var(--purple-border);
+}
+
+body.br-playbook .cell-span {
+  flex: 2;
+  min-width: 140px;
+}
+
+body.br-playbook .cell-span3 {
+  flex: 3;
+  min-width: 200px;
+}
+
+body.br-playbook .flow {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+body.br-playbook .flow-node {
+  flex-shrink: 0;
+  background: var(--heading);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  text-align: center;
+  min-width: 84px;
+  border-radius: 4px;
+}
+
+body.br-playbook .flow-node.accent {
+  background: var(--gold);
+  color: var(--heading);
+}
+
+body.br-playbook .flow-node.accent2 {
+  background: var(--blue);
+  color: #fff;
+}
+
+body.br-playbook .flow-node.light {
+  background: var(--card);
+  color: var(--heading);
+  border: 1px solid var(--border);
+}
+
+body.br-playbook .flow-arrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--border-hi);
+  position: relative;
+}
+
+body.br-playbook .flow-arrow::after {
+  content: '▶';
+  position: absolute;
+  right: -3px;
+  top: -6px;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+body.br-playbook .intent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+body.br-playbook .intent-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+body.br-playbook .intent-card.active {
+  background: var(--heading);
+  color: var(--bg);
+  border-color: var(--heading);
+}
+
+body.br-playbook .intent-role {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+body.br-playbook .intent-card.active .intent-role {
+  color: var(--gold);
+}
+
+body.br-playbook .intent-product {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--heading);
+}
+
+body.br-playbook .intent-card.active .intent-product {
+  color: var(--bg);
+}
+
+body.br-playbook .intent-desc {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+body.br-playbook .intent-card.active .intent-desc {
+  color: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+
+body.br-playbook .vcard {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+  border: 1px solid var(--border-hi);
+  border-radius: 10px;
+  padding: 22px 24px;
+  max-width: 360px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+body.br-playbook .vcard::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--blue-dim);
+  pointer-events: none;
+}
+
+body.br-playbook .vcard-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+body.br-playbook .vcard-number {
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  margin-bottom: 18px;
+  color: #f1f5f9;
+  position: relative;
+  z-index: 1;
+}
+
+body.br-playbook .vcard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+body.br-playbook .vcard-field label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 3px;
+}
+
+body.br-playbook .vcard-field span {
+  font-size: 12px;
+  color: #f1f5f9;
+}
+
+body.br-playbook .vcard-budget {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+body.br-playbook .vcard-budget-item {
+  flex: 1;
+  min-width: 90px;
+}
+
+body.br-playbook .vcard-budget-item label {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 3px;
+}
+
+body.br-playbook .vcard-budget-item span {
+  font-size: 11px;
+  color: #f1f5f9;
+}
+
+body.br-playbook .vcard-chip {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+}
+
+body.br-playbook .pull-quote {
+  margin: 28px 0;
+  padding: 20px 22px;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  background: var(--card);
+}
+
+body.br-playbook .pull-quote p {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: clamp(17px, 2.4vw, 22px);
+  line-height: 1.45;
+  margin-bottom: 0;
+  color: var(--heading);
+}
+
+body.br-playbook .feature-list {
+  list-style: none;
+  margin: 16px 0;
+}
+
+body.br-playbook .feature-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+}
+
+body.br-playbook .feature-list li::before {
+  content: '→';
+  color: var(--gold);
+  font-weight: 600;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+body.br-playbook .comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.br-playbook .comp-table th {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--heading);
+  color: var(--bg);
+}
+
+body.br-playbook .comp-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+body.br-playbook .comp-table tr:nth-child(even) td {
+  background: var(--card);
+}
+
+body.br-playbook .comp-table .check {
+  color: var(--green);
+  font-weight: 600;
+}
+
+body.br-playbook .comp-table .cross {
+  color: var(--muted);
+}
+
+body.br-playbook .closing {
+  margin-top: 40px;
+  padding: 36px 22px 44px;
+  background: var(--heading);
+  color: var(--bg);
+  border-radius: 8px;
+}
+
+body.br-playbook .closing-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+body.br-playbook .closing h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(22px, 3.5vw, 34px);
+  margin-bottom: 18px;
+  color: var(--bg);
+  line-height: 1.15;
+}
+
+body.br-playbook .closing h2 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+body.br-playbook .closing p {
+  color: color-mix(in srgb, var(--bg) 82%, var(--heading));
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+body.br-playbook .closing .playbook-foot {
+  margin-top: 20px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  body.br-playbook .stack-label {
+    display: none;
+  }
+
+  body.br-playbook .intent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.br-playbook .pull-quote {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  body.br-playbook .comp-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

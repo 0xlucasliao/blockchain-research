@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional payments — Sector Snapshot</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="stylesheet" href="snapshot.css">
+</head>
+<body class="br-site br-snapshot">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="consumer_payments.html">Consumer</a>
+        <a href="institutional_payments.html" aria-current="page">Institutional</a>
+        <a href="agentic_commerce.html">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main class="snap-wrap" data-reveal>
+  <div class="snap-eyebrow">Sector Snapshot</div>
+  <h1>Institutional payments</h1>
+  <p class="snap-dek">April 2026 · B2B and bank rails that already clear value, versus atomic institutional settlement still out of reach.</p>
+
+  <section class="snap-block" aria-labelledby="today">
+    <h2 id="today">Flows possible today</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Cross-border supplier invoice (SWIFT)</div>
+      <div class="snap-flow-chain">Corporate AP → originating bank → correspondent network → beneficiary bank → supplier account</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">High-value domestic wire (RTGS)</div>
+      <div class="snap-flow-chain">Payer bank → central bank RTGS → payee bank (same currency, business-day windows)</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Tokenised money-market fund as collateral (within existing custody)</div>
+      <div class="snap-flow-chain">Investor → transfer agent / custodian → triparty repo rail → bank balance sheet</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Trade finance with bank-issued digital instrument + SWIFT data</div>
+      <div class="snap-flow-chain">Exporter → advising bank → messages (MT/MX) → importer bank → settlement leg (cash or credit)</div>
+    </div>
+  </section>
+
+  <section class="snap-block snap-gap" aria-labelledby="blocked">
+    <h2 id="blocked">High demand · not yet practical</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Atomic DvP: public-chain leg with same-day CBDC / reserve finality</div>
+      <div class="snap-flow-chain">Security token + cash token → simultaneous settlement → RTGS recognition</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Legal finality and CSD interfaces remain RTGS-centric; public-chain legs rarely treated as settlement-grade without new law + bridges.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Real-time nostro-free multicurrency netting across Tier-1 peers</div>
+      <div class="snap-flow-chain">Bank A ↔ Bank B ↔ Bank C → single shared ledger position → EoD not required</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Bilateral credit and prefunding rules; CBDC / tokenised reserves not interoperable across all jurisdictions yet.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Programmable B2B payment from ERP with on-chain condition (delivery oracle)</div>
+      <div class="snap-flow-chain">SAP / Oracle → payment intent → oracle attestation → settlement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> ERP payment files expect bank APIs; oracle liability and reversibility expectations do not map 1:1 to chain finality.</p>
+    </div>
+  </section>
+
+  <p class="br-article-meta"><a href="index.html">← Sector Snapshot</a> · <a href="../blog/a-look-into-institutional-payments-april-2026.html">Longer April 2026 note (blog)</a></p>
+</main>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic commerce — Sector Snapshot</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="stylesheet" href="snapshot.css">
+</head>
+<body class="br-site br-snapshot">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="consumer_payments.html">Consumer</a>
+        <a href="institutional_payments.html">Institutional</a>
+        <a href="agentic_commerce.html" aria-current="page">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main class="snap-wrap" data-reveal>
+  <div class="snap-eyebrow">Sector Snapshot</div>
+  <h1>Agentic commerce</h1>
+  <p class="snap-dek">April 2026 · Agents paying on behalf of users: what is already shippable, and which autonomous commerce loops are still gated.</p>
+
+  <section class="snap-block" aria-labelledby="today">
+    <h2 id="today">Flows possible today</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Human-present wallet payment</div>
+      <div class="snap-flow-chain">User → wallet app → sign tx → chain → merchant / PSP</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Agent with virtual card + spend policy</div>
+      <div class="snap-flow-chain">User sets limit → agent runtime → issuer / BIN sponsor → card network → Web2 merchant</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Delegated payment via exchange or custodial API</div>
+      <div class="snap-flow-chain">User API key / OAuth → bot → custodian executes transfer → receipt to app</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">MCP tool calls that trigger a signed human step</div>
+      <div class="snap-flow-chain">Agent proposes pay → user approves in wallet → transaction broadcast</div>
+    </div>
+  </section>
+
+  <section class="snap-block snap-gap" aria-labelledby="blocked">
+    <h2 id="blocked">High demand · not yet practical</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Human-not-present spend at arbitrary merchants with chain-native USDC</div>
+      <div class="snap-flow-chain">Agent → merchant chain address → delivery / dispute semantics</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Few merchants expose chain checkout; AP2 / FIDO human-not-present rails not ubiquitous; reversibility and dispute policy not standardised on-chain.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">One policy graph across bank, card, and chain limits</div>
+      <div class="snap-flow-chain">User rule set → enforced on issuer + chain + agent host</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Identity and policy silos; no shared attestation consumers across PSP, chain, and agent vendors yet.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Autonomous procurement with corporate treasury on public L1/L2</div>
+      <div class="snap-flow-chain">Agent → PO match → on-chain settlement → ERP posting</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Corporate treasury policy, tax, and audit tooling expect bank statements; ERP connectors for chain events are immature.</p>
+    </div>
+  </section>
+
+  <p class="br-article-meta"><a href="index.html">← Sector Snapshot</a></p>
+</main>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

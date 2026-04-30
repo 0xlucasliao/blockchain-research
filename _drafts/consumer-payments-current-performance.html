@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Performance (draft) — consumer crypto payments</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/motion.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 40px 80px; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    margin-top: 0;
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+  }
+  .section-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -0.3px;
+  }
+  .section-title hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    margin-top: -16px;
+    font-family: var(--font-mono);
+    padding-left: 2px;
+  }
+  .draft-banner {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    background: var(--gold-dim);
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    max-width: 72ch;
+  }
+  .perf-hero {
+    background: linear-gradient(135deg, var(--gold-dim) 0%, var(--perf-hero-grad-mid) 60%);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 24px 28px 20px;
+    margin-bottom: 12px;
+  }
+  .perf-hero-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .perf-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .perf-stat {
+    padding: 16px 18px;
+    border-right: 1px solid var(--border);
+    background: var(--card);
+  }
+  .perf-stat:last-child { border-right: none; }
+  .perf-stat-val {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--heading);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .perf-stat-val .unit {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .perf-stat-label {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+  }
+  .perf-stat-delta {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    padding: 1px 6px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .delta-up { background: rgba(16,185,129,0.12); color: var(--green); }
+  .delta-neutral { background: var(--ft-grey-bg); color: var(--muted); }
+  .perf-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .perf-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .perf-card-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .perf-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .perf-row:last-child { border-bottom: none; }
+  .perf-row-label { font-size: 11.5px; color: var(--text); }
+  .perf-row-val {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .perf-row-val.gold { color: var(--gold); }
+  .perf-row-val.green { color: var(--green); }
+  .perf-row-val.muted { color: var(--muted); }
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  .comp-table th {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-mono);
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table td.ranked-1 { color: var(--green); font-weight: 600; }
+  .comp-table td.ranked-low { color: var(--muted); }
+  .gap-banner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .gap-banner-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #EF4444;
+    margin-bottom: 8px;
+  }
+  .gap-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .gap-item {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.5;
+    padding-left: 12px;
+    position: relative;
+  }
+  .gap-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 6px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #EF4444;
+  }
+  .gap-item span { color: var(--heading); font-weight: 600; }
+  @media (max-width: 720px) {
+    .perf-hero { padding: 18px 16px 16px; }
+    .perf-hero-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      border: none;
+      overflow: visible;
+    }
+    .perf-stat {
+      border: 1px solid var(--border) !important;
+      border-radius: 4px;
+      border-right: 1px solid var(--border) !important;
+    }
+    .perf-stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .perf-two-col { grid-template-columns: 1fr; }
+    .gap-list { grid-template-columns: 1fr; }
+    .perf-card:has(table.comp-table) {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+    table.comp-table { min-width: 480px; }
+  }
+  @media (max-width: 480px) {
+    .perf-hero-grid { grid-template-columns: 1fr; }
+    .perf-stat:last-child:nth-child(odd) { grid-column: auto; }
+    .perf-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .perf-row-val { align-self: flex-start; }
+    .page { padding: 24px 16px 48px; }
+  }
+</style>
+</head>
+<body class="br-site has-local-nav">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="../sector_snapshot/consumer_payments.html">Consumer</a>
+        <a href="../sector_snapshot/institutional_payments.html">Institutional</a>
+        <a href="../sector_snapshot/agentic_commerce.html">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<div class="page" data-reveal>
+  <p class="draft-banner">Draft excerpt — removed from the public consumer payments page. Not linked from the site index.</p>
+  <p class="br-article-meta" style="margin-bottom:18px">Source: consumer payments research · Pulled 29 April 2026</p>
+
+  <div class="section-title">
+    <div class="section-num">00</div>
+    <h2>Current Performance</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Worked-example metrics and peer comparison — patterns apply across programmable L1/L2s</p>
+
+  <div class="perf-hero">
+    <div class="perf-hero-label">Worked example: BNB Smart Chain — public on-chain metrics (2025 full year / latest available)</div>
+    <div class="perf-hero-grid">
+      <div class="perf-stat">
+        <div class="perf-stat-val">10.78<span class="unit">M</span></div>
+        <div class="perf-stat-label">Avg. daily transactions</div>
+        <div class="perf-stat-delta delta-up">+150% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">4.32<span class="unit">M</span></div>
+        <div class="perf-stat-label">Peak daily active wallets</div>
+        <div class="perf-stat-delta delta-up">#1 among all L1s</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">700<span class="unit">M+</span></div>
+        <div class="perf-stat-label">Total unique addresses</div>
+        <div class="perf-stat-delta delta-up">+40% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">$16.3<span class="unit">B</span></div>
+        <div class="perf-stat-label">Stablecoin supply (this network)</div>
+        <div class="perf-stat-delta delta-up">+133% YoY</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val">$5.3<span class="unit">B</span></div>
+        <div class="perf-stat-label">Total Value Locked (TVL)</div>
+        <div class="perf-stat-delta delta-up">+40.5% YoY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="perf-two-col">
+    <div class="perf-card">
+      <div class="perf-card-title">Payment & Stablecoin Metrics</div>
+      <div class="perf-row">
+        <div class="perf-row-label">Share of global stablecoin txns by count</div>
+        <div class="perf-row-val gold">40%</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Unique monthly stablecoin senders</div>
+        <div class="perf-row-val gold">15.1M</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Monthly stablecoin payment volume</div>
+        <div class="perf-row-val">$10B+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Stablecoin transfers under $1,000</div>
+        <div class="perf-row-val">82%</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Gasless stablecoin txns (sponsored / paymaster)</div>
+        <div class="perf-row-val green">25M+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Avg. transaction cost</div>
+        <div class="perf-row-val green">~$0.005</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Binance Pay merchant locations</div>
+        <div class="perf-row-val">21M+</div>
+      </div>
+      <div class="perf-row">
+        <div class="perf-row-label">Binance Pay users</div>
+        <div class="perf-row-val">45M</div>
+      </div>
+    </div>
+
+    <div class="perf-card">
+      <div class="perf-card-title">Competitive Position vs Peers (2025)</div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Chain</th>
+            <th>Daily TXs</th>
+            <th>Daily Active</th>
+            <th>Stablecoin Tx%</th>
+            <th>Avg Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BNB Smart Chain</strong></td>
+            <td class="ranked-1">10.78M avg</td>
+            <td class="ranked-1">4.32M peak</td>
+            <td class="ranked-1">40% global</td>
+            <td class="ranked-1">$0.005</td>
+          </tr>
+          <tr>
+            <td>Solana</td>
+            <td>75M+ (incl. vote)</td>
+            <td>~2M</td>
+            <td>~15%</td>
+            <td>$0.00025</td>
+          </tr>
+          <tr>
+            <td>Ethereum</td>
+            <td>~1.2M</td>
+            <td>~400K</td>
+            <td>~27% vol</td>
+            <td class="ranked-low">~$0.44</td>
+          </tr>
+          <tr>
+            <td>Base</td>
+            <td>7–12M</td>
+            <td>~800K</td>
+            <td>Growing</td>
+            <td>~$0.01</td>
+          </tr>
+          <tr>
+            <td>Tron</td>
+            <td>~7M</td>
+            <td>~2M</td>
+            <td>~45% vol</td>
+            <td>$0.001</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="gap-banner">
+    <div class="gap-banner-title">The Gap: Strong Infrastructure, Underdeveloped Payment Utility</div>
+    <div class="gap-list">
+      <div class="gap-item"><span>Thin card rails.</span> Many high-throughput EVM networks lack native, network-aligned debit-card programs; users depend on generic crypto cards with little chain-specific distribution or UX.</div>
+      <div class="gap-item"><span>Uneven PSP coverage.</span> Some ecosystems (e.g. Base with Stripe, Solana with Shopify/Circle) have major acquirer paths; others still have no first-class PSP or checkout integration despite high stablecoin throughput.</div>
+      <div class="gap-item"><span>Agentic tooling early.</span> Few places offer an end-to-end SDK plus virtual-card and policy primitives for non-custodial, payment-capable agents on a given chain.</div>
+      <div class="gap-item"><span>MPP / UCP still sparse.</span> Machine Payment Protocol and Universal Commerce Protocol implementations are not yet ubiquitous; early movers can contribute reference code and extensions.</div>
+      <div class="gap-item"><span>Checkout vs P2P.</span> High stablecoin transfer counts rarely translate into broad merchant checkout acceptance; off-exchange retail often still flows through a small set of closed-loop apps.</div>
+      <div class="gap-item"><span>Non-technical users.</span> Hosted agents and one-click deployment are not yet standard; large address counts do not by themselves onboard mainstream users to agentic wallets.</div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

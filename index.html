@@ -104,6 +104,9 @@
     @media (min-width: 640px) {
       .hub-grid.cols-2 { grid-template-columns: 1fr 1fr; }
     }
+    @media (min-width: 900px) {
+      .hub-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
     .hub-card {
       display: block;
       text-decoration: none;
@@ -174,10 +177,11 @@
     <a href="use_cases/index.html">Use cases</a>
     <a href="blog/index.html">Blog</a>
     <details class="br-sectors">
-      <summary>Sectors</summary>
-      <div class="br-sectors-panel" role="group" aria-label="Sector research">
-        <a href="sector_research/consumer_payments.html">Consumer</a>
-        <a href="sector_research/institutional_payments.html">Institutional</a>
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="sector_snapshot/consumer_payments.html">Consumer</a>
+        <a href="sector_snapshot/institutional_payments.html">Institutional</a>
+        <a href="sector_snapshot/agentic_commerce.html">Agentic commerce</a>
       </div>
     </details>
     <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
@@ -192,7 +196,7 @@
     <p class="hub-lead">
       Notes and diagrams on how the world works today — sectors, rails, and narrowly scoped applications — so it is easier to see where work is still worth doing.
     </p>
-    <p class="br-article-meta" style="margin-top:14px">Written 10 April 2026 · Last updated 22 April 2026</p>
+    <p class="br-article-meta" style="margin-top:14px">Written 10 April 2026 · Last updated 29 April 2026</p>
   </div>
 
   <section class="hub-section" aria-labelledby="sec-blog">
@@ -201,38 +205,62 @@
       <span class="hub-section-path">/blog/</span>
     </div>
     <p class="hub-section-desc">
-      Standalone reports and essays — starting with a cross-chain view of what actually drives payment adoption on public networks.
+      Standalone reports and essays on what drives payment adoption on public networks.
     </p>
-    <div class="hub-grid">
+    <div class="hub-grid cols-3">
       <a class="hub-card" href="blog/what-makes-a-blockchain-win-at-payments.html">
         <span class="tag">Blog</span>
         <h2>What makes a blockchain win at payments?</h2>
-        <p>Six-chain analysis: Tempo, XRPL, Solana, Polygon, BNB Chain, and Cardano — infrastructure, partners, use cases, and adoption signals (Cardano as mindshare-vs-rails contrast).</p>
-        <span class="meta">Written 21 April 2026 · Last updated 21 April 2026 · blog/what-makes-a-blockchain-win-at-payments.html</span>
+        <p>Playbook for merchant, agentic, subscription, PSP, and virtual-card layers — how chains earn a seat at enterprise and commerce tables.</p>
+        <span class="meta">Written 29 April 2026 · Last updated 29 April 2026 · blog/what-makes-a-blockchain-win-at-payments.html</span>
+      </a>
+      <a class="hub-card" href="blog/a-look-into-consumer-payments-april-2026.html">
+        <span class="tag">Blog</span>
+        <h2>A look into Consumer Payments - April 2026</h2>
+        <p>Long-form sector note: rails, adapters, stablecoin paths, and tooling map for consumer-side crypto payments.</p>
+        <span class="meta">Written 10 April 2026 · Last updated 29 April 2026 · blog/a-look-into-consumer-payments-april-2026.html</span>
+      </a>
+      <a class="hub-card" href="blog/a-look-into-institutional-payments-april-2026.html">
+        <span class="tag">Blog</span>
+        <h2>A look into Institutional Payments - April 2026</h2>
+        <p>Long-form sector note: B2B rails, correspondent banking, cross-border costs, and institutional modernization.</p>
+        <span class="meta">Written 10 April 2026 · Last updated 21 April 2026 · blog/a-look-into-institutional-payments-april-2026.html</span>
       </a>
     </div>
   </section>
 
   <section class="hub-section" aria-labelledby="sec-sector">
     <div class="hub-section-head">
-      <h2 id="sec-sector" class="hub-section-title">Sector research</h2>
-      <span class="hub-section-path">/sector_research/</span>
+      <h2 id="sec-sector" class="hub-section-title">Sector Snapshot</h2>
+      <span class="hub-section-path">/sector_snapshot/</span>
     </div>
     <p class="hub-section-desc">
-      Horizontal views: how a market segment is structured, who the actors are, and how crypto interfaces with existing finance in that lane.
+      Short, flow-first pages: what already works end-to-end versus high-impact flows that are still blocked (and why).
     </p>
-    <div class="hub-grid cols-2">
-      <a class="hub-card" href="sector_research/consumer_payments.html">
-        <span class="tag">Sector</span>
-        <h2>Consumer crypto payments</h2>
-        <p>Flows, PSP paths, agentic primitives, SDK map, and KPI framing — written as ecosystem research.</p>
-        <span class="meta">Written 10 April 2026 · Last updated 21 April 2026 · sector_research/consumer_payments.html</span>
+    <div class="hub-grid cols-3">
+      <a class="hub-card" href="sector_snapshot/index.html">
+        <span class="tag">Index</span>
+        <h2>All snapshots</h2>
+        <p>Hub for consumer, institutional, and agentic commerce lanes.</p>
+        <span class="meta">April 2026 · sector_snapshot/index.html</span>
       </a>
-      <a class="hub-card" href="sector_research/institutional_payments.html">
-        <span class="tag">Sector</span>
-        <h2>B2B &amp; institutional payments</h2>
-        <p>Editorial long-form: correspondent banking, clearing, cross-border costs, and modernization pressures.</p>
-        <span class="meta">Written 10 April 2026 · Last updated 21 April 2026 · sector_research/institutional_payments.html</span>
+      <a class="hub-card" href="sector_snapshot/consumer_payments.html">
+        <span class="tag">Snapshot</span>
+        <h2>Consumer payments</h2>
+        <p>P2P, card bridges, PSP checkout — versus tap-native stablecoin and on-chain subscription pulls.</p>
+        <span class="meta">April 2026 · sector_snapshot/consumer_payments.html</span>
+      </a>
+      <a class="hub-card" href="sector_snapshot/institutional_payments.html">
+        <span class="tag">Snapshot</span>
+        <h2>Institutional payments</h2>
+        <p>SWIFT, RTGS, trade finance — versus atomic DvP and real-time multicurrency netting.</p>
+        <span class="meta">April 2026 · sector_snapshot/institutional_payments.html</span>
+      </a>
+      <a class="hub-card" href="sector_snapshot/agentic_commerce.html">
+        <span class="tag">Snapshot</span>
+        <h2>Agentic commerce</h2>
+        <p>Virtual cards and delegated custodial flows — versus unattended chain-native spend and unified limits.</p>
+        <span class="meta">April 2026 · sector_snapshot/agentic_commerce.html</span>
       </a>
     </div>
   </section>

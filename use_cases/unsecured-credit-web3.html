@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsecured credit on Web3 — use case — blockchain research</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 36px 22px 110px;
+    }
+    .uc-back {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-bottom: 20px;
+    }
+    .uc-back a { color: var(--gold); text-decoration: none; }
+    .uc-back a:hover { text-decoration: underline; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(24px, 4.3vw, 36px);
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      max-width: 18ch;
+    }
+    .dek {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 62ch;
+      margin-bottom: 26px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .meta-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section {
+      margin-top: 44px;
+      scroll-margin-top: 88px;
+    }
+    .section h2 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--heading);
+      margin-bottom: 14px;
+      border-top: 2px solid var(--gold-border);
+      padding-top: 16px;
+    }
+    .section p { margin-bottom: 14px; }
+    .section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--heading);
+      margin: 24px 0 10px;
+    }
+
+    .quote {
+      background: linear-gradient(135deg, var(--gold-dim), transparent);
+      border-left: 3px solid var(--gold);
+      padding: 14px 16px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--heading);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin: 20px 0;
+    }
+    .panel-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 10px;
+    }
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 12px;
+    }
+    .card b {
+      color: var(--heading);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+    .card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .ladder {
+      display: grid;
+      gap: 10px;
+    }
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .step b {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+    .step span {
+      display: block;
+      padding: 10px;
+      font-size: 13px;
+      color: var(--heading);
+    }
+
+    .adv-grid {
+      display: grid;
+      gap: 10px;
+    }
+    @media (min-width: 640px) {
+      .adv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .adv-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--surface);
+    }
+    .adv-item .num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .adv-item b {
+      display: block;
+      color: var(--heading);
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+    .adv-item p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .compare {
+      display: grid;
+      gap: 10px;
+    }
+    @media (min-width: 760px) {
+      .compare { grid-template-columns: 1fr 1fr; }
+    }
+    .compare-col {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--surface);
+    }
+    .compare-col h4 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--heading);
+    }
+    .compare-col ul {
+      margin: 0 0 0 1.1em;
+      color: var(--text);
+    }
+    .compare-col li {
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 10px;
+    }
+    .roadmap-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: var(--surface);
+    }
+    .dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .roadmap-item b {
+      display: block;
+      color: var(--heading);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .roadmap-item p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body class="br-site">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="index.html" aria-current="page">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="../sector_snapshot/consumer_payments.html">Consumer</a>
+        <a href="../sector_snapshot/institutional_payments.html">Institutional</a>
+        <a href="../sector_snapshot/agentic_commerce.html">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main>
+  <div class="uc-back"><a href="index.html">← Back to use cases</a></div>
+  <div class="eyebrow">Use case · unsecured credit · April 2026</div>
+  <h1>Unsecured credit on Web3</h1>
+  <p class="dek">
+    Unsecured loans are foundational to consumer and SME economies. This note reframes your original paper into the site style and maps the critical path:
+    identity and verifiable income rails first, then portable credit scoring and protocol-level unsecured lending.
+  </p>
+  <p class="br-article-meta">Written 29 April 2026 · Last updated 29 April 2026</p>
+  <div class="meta-row">
+    <span class="meta-pill">Credit cards</span>
+    <span class="meta-pill">BNPL</span>
+    <span class="meta-pill">SME lending</span>
+    <span class="meta-pill">Identity + payroll infra</span>
+  </div>
+
+  <section class="section" data-reveal>
+    <h2>1. Why unsecured credit matters</h2>
+    <p>
+      Unsecured lending converts future cash flow into present purchasing power. It supports household upgrades, operating cash for businesses, and daily checkout flexibility.
+      Without it, a large share of real-economy activity is constrained by current liquidity.
+    </p>
+    <div class="panel">
+      <div class="panel-title">Four archetypes</div>
+      <div class="grid-2">
+        <div class="card"><b>Credit cards</b><p>Spend now, settle at cycle end. Limits generally anchored to income and repayment history.</p></div>
+        <div class="card"><b>BNPL</b><p>Small initial limits that scale with repayment behavior and default-free track record.</p></div>
+        <div class="card"><b>Renovation loans</b><p>Capital for home improvements based on repayment capacity, not existing collateral stock.</p></div>
+        <div class="card"><b>Small business loans</b><p>Working capital based on business model quality, cash flows, and operator history.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2>2. Progressive trust model (BNPL pattern)</h2>
+    <p>
+      The strongest unsecured model is incremental trust: low initial exposure, then larger limits only after clean repayment.
+      On-chain systems can make this progression transparent and portable across lenders.
+    </p>
+    <div class="panel">
+      <div class="panel-title">Credit ladder</div>
+      <div class="ladder">
+        <div class="step"><b>Level 1</b><span>Starter limit: USD 50-100</span></div>
+        <div class="step"><b>Level 2</b><span>After 3 on-time repayments: around USD 300</span></div>
+        <div class="step"><b>Level 3</b><span>After 6 clean months: around USD 700</span></div>
+        <div class="step"><b>Level 4</b><span>After 12 clean months + income signal: around USD 1,500</span></div>
+        <div class="step"><b>Level 5</b><span>Dynamic limits based on full profile (repayment, income, identity attestations)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2>3. Structural advantages on Web3</h2>
+    <div class="quote">
+      Unsecured credit on-chain is not only cheaper to operate; it can be more open, composable, and globally liquid when core identity and income rails exist.
+    </div>
+    <div class="adv-grid">
+      <div class="adv-item"><div class="num">01</div><b>Global liquidity</b><p>Pools can aggregate capital cross-border instead of relying on single-jurisdiction balance sheets.</p></div>
+      <div class="adv-item"><div class="num">02</div><b>Open lender participation</b><p>Yield and risk can be distributed to market participants rather than concentrated in bank intermediaries.</p></div>
+      <div class="adv-item"><div class="num">03</div><b>Composable risk signals</b><p>Repayment data, attestations, and identity proofs can be reusable building blocks for new lenders.</p></div>
+      <div class="adv-item"><div class="num">04</div><b>Portable borrower history</b><p>A borrower can carry a verifiable repayment track record across products and platforms.</p></div>
+      <div class="adv-item"><div class="num">05</div><b>Programmable servicing</b><p>Disbursement, schedule logic, and collections workflows become machine-executable policy.</p></div>
+      <div class="adv-item"><div class="num">06</div><b>Consumer economy expansion</b><p>Credit-enabled users can unlock higher conversion in on-chain commerce and service marketplaces.</p></div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2>4. Critical gaps today</h2>
+    <p>Two missing pieces still block unsecured lending from scaling safely in open networks: robust identity and verifiable income.</p>
+    <div class="compare">
+      <div class="compare-col">
+        <h4>Traditional finance inputs</h4>
+        <ul>
+          <li>Government ID and KYC frameworks</li>
+          <li>Credit bureau scores and default records</li>
+          <li>Bank-verified income and payroll history</li>
+          <li>Tax records and compliance reporting</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h4>Web3 gaps to close</h4>
+        <ul>
+          <li>Sybil-resistant, privacy-preserving identity</li>
+          <li>Portable credit score primitives</li>
+          <li>Reliable on-chain income attestations</li>
+          <li>Selective disclosure for compliance checks</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Gap 1: Identity</h3>
+    <p>Unsecured credit is credit to a person or operator. Without resilient identity, borrowers can reset risk state through wallet churn.</p>
+    <h3>Gap 2: Income proofs</h3>
+    <p>Limit sizing requires repayment capacity evidence. Payroll and revenue attestations must become machine-verifiable and privacy-preserving.</p>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2>5. Enabling stack and rollout path</h2>
+    <div class="panel">
+      <div class="panel-title">Infrastructure sequence</div>
+      <div class="roadmap">
+        <div class="roadmap-item"><div class="dot">1</div><div><b>Web3 payroll rails</b><p>Salary, contractor, and business revenue signals available on-chain.</p></div></div>
+        <div class="roadmap-item"><div class="dot">2</div><div><b>Privacy-preserving identity</b><p>Selective disclosure identity and attribute proofs for underwriting and compliance.</p></div></div>
+        <div class="roadmap-item"><div class="dot">3</div><div><b>Credit scoring primitives</b><p>Composable scoring from repayment, income, and identity attestations.</p></div></div>
+        <div class="roadmap-item"><div class="dot">4</div><div><b>Unsecured lending products</b><p>BNPL, revolving consumer credit, and SME lines using the above primitives.</p></div></div>
+        <div class="roadmap-item"><div class="dot">5</div><div><b>Scaled consumer adoption</b><p>Higher trust, lower default volatility, and broader market participation.</p></div></div>
+      </div>
+    </div>
+    <p>
+      Privacy and verifiability should coexist. Borrowers should prove thresholds (for example, income above a level or no recent defaults) without exposing full transaction history.
+      That unlocks underwriting while preserving user confidentiality.
+    </p>
+  </section>
+
+  <section class="section" data-reveal>
+    <h2>6. Use case conclusion</h2>
+    <p>
+      Unsecured credit is a high-impact Web3 use case with clear demand and clear blockers.
+      The opportunity is large, but the dependencies are unglamorous: identity and income infrastructure before headline lending products.
+    </p>
+    <p class="br-article-meta" style="margin-top:18px">
+      Source adapted from your original draft:
+      <code>unsecured-loans-web3.html</code>
+    </p>
+  </section>
+</main>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

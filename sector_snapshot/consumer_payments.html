@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumer payments — Sector Snapshot</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="stylesheet" href="snapshot.css">
+</head>
+<body class="br-site br-snapshot">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="consumer_payments.html" aria-current="page">Consumer</a>
+        <a href="institutional_payments.html">Institutional</a>
+        <a href="agentic_commerce.html">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<main class="snap-wrap" data-reveal>
+  <div class="snap-eyebrow">Sector Snapshot</div>
+  <h1>Consumer payments</h1>
+  <p class="snap-dek">April 2026 · What already works end-to-end, and a few high-leverage flows still missing.</p>
+
+  <section class="snap-block" aria-labelledby="today">
+    <h2 id="today">Flows possible today</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">P2P stablecoin send</div>
+      <div class="snap-flow-chain">Sender wallet → public chain → recipient wallet</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Crypto-funded card spend at a card merchant</div>
+      <div class="snap-flow-chain">User wallet → issuer / swap → Visa or Mastercard → acquirer → merchant (fiat settlement)</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Checkout with stablecoin via PSP</div>
+      <div class="snap-flow-chain">Shopper wallet → on-chain transfer → PSP / acquirer → merchant dashboard (often still fiat out)</div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">QR wallet-to-merchant (fiat-backed)</div>
+      <div class="snap-flow-chain">Customer app → wallet operator → acquirer → merchant bank</div>
+    </div>
+  </section>
+
+  <section class="snap-block snap-gap" aria-labelledby="blocked">
+    <h2 id="blocked">High demand · not yet practical</h2>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Tap-to-pay stablecoin at any POS terminal</div>
+      <div class="snap-flow-chain">Phone NFC → chain → merchant account (no card scheme)</div>
+      <p class="snap-why"><strong>Why blocked:</strong> POS kernels, schemes, and licensing are card-centric; merchants rarely accept raw chain addresses at the terminal.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Self-custody subscription pull (set-and-forget)</div>
+      <div class="snap-flow-chain">Merchant → recurring debit → user wallet allowance</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Chains are pull-unfriendly; allowance UX and revocation risk; banks do not treat on-chain pulls as ACH-equivalent.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Universal chargeback / dispute layer on-chain</div>
+      <div class="snap-flow-chain">Buyer → payment → reversible finality → merchant</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Finality models differ from card networks; no shared dispute arbiter with merchant adoption.</p>
+    </div>
+  </section>
+
+  <p class="br-article-meta"><a href="index.html">← Sector Snapshot</a> · <a href="../blog/a-look-into-consumer-payments-april-2026.html">Longer April 2026 note (blog)</a></p>
+</main>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

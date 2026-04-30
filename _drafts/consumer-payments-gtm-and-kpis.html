@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM & KPIs (draft) — consumer crypto payments</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/motion.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 40px 80px; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    margin-top: 56px;
+  }
+  .section-title:first-of-type { margin-top: 0; }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+  }
+  .section-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -0.3px;
+  }
+  .section-title hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    margin-top: -16px;
+    font-family: var(--font-mono);
+    padding-left: 2px;
+  }
+  .draft-banner {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    border: 1px solid var(--gold-border);
+    background: var(--gold-dim);
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    max-width: 72ch;
+  }
+  /* ─── GTM SECTION ─────────────────────────────────────── */
+  .gtm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .gtm-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .gtm-tier {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .gt-1 { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+  .gt-2 { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+  .gt-3 { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+  .gt-infra { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple-border); }
+
+  .gtm-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .gtm-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .gtm-list li {
+    font-size: 11.5px;
+    color: var(--text);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .gtm-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+
+  .gtm-list.gl-gold li::before  { background: var(--gold); }
+  .gtm-list.gl-blue li::before  { background: var(--blue); }
+  .gtm-list.gl-green li::before { background: var(--green); }
+  .gtm-list.gl-purple li::before { background: var(--purple); }
+
+  .gtm-list li span {
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  /* PARTNER CHIPS */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--border-hi);
+    color: var(--text);
+    background: var(--node-grey-bg);
+  }
+
+  .chip.active {
+    border-color: var(--gold-border);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  /* FULL WIDTH CARD */
+  .full-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+
+  .full-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 12px;
+  }
+
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .narrative-item {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+
+  .ni-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .ni-hook {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .ni-body {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+
+  .ft-grey   { background: var(--ft-grey-bg); color: var(--muted); border: 1px solid var(--border-hi); }
+  .ft-gold   { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+  .ft-green  { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+  .ft-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple-border); }
+
+    /* KPI SECTION */
+    .kpi-initiative {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--kpi-header-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-init-num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 2px;
+      letter-spacing: 0.8px;
+    }
+    .kpi-init-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--heading);
+      letter-spacing: -0.2px;
+    }
+    .kpi-init-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      margin-left: auto;
+    }
+    .kpi-body {
+      padding: 16px 18px;
+    }
+    .kpi-requires {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .kpi-req-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 4px;
+      margin-right: 4px;
+    }
+    .kpi-req-chip {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: var(--fn-muted-bg);
+      border: 1px solid var(--border-hi);
+      color: var(--text);
+    }
+    .kpi-goals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .kpi-goal-col { }
+    .kpi-goal-col-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .kpi-st { background: rgba(59,130,246,0.1); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+    .kpi-lt { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+    .kpi-metric {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .kpi-metric:last-child { border-bottom: none; }
+    .kpi-metric-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 70px;
+    }
+    .kpi-metric-desc {
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .kpi-metric-desc strong {
+      color: var(--heading);
+      display: block;
+      font-size: 11.5px;
+      margin-bottom: 1px;
+    }
+
+  @media (max-width: 768px) {
+    .gtm-grid { grid-template-columns: 1fr; }
+    .narrative-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .kpi-header { flex-wrap: wrap; }
+    .kpi-init-sub { margin-left: 0; width: 100%; }
+    .kpi-goals { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .page { padding: 24px 16px 48px; }
+  }
+</style>
+</head>
+<body class="br-site has-local-nav">
+
+<header class="br-masthead" role="navigation" aria-label="Site">
+  <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
+  <div class="br-masthead-nav">
+    <a href="../index.html">Home</a>
+    <a href="../use_cases/index.html">Use cases</a>
+    <a href="../blog/index.html">Blog</a>
+    <details class="br-sectors">
+      <summary>Sector Snapshot</summary>
+      <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
+        <a href="../sector_snapshot/consumer_payments.html">Consumer</a>
+        <a href="../sector_snapshot/institutional_payments.html">Institutional</a>
+        <a href="../sector_snapshot/agentic_commerce.html">Agentic commerce</a>
+      </div>
+    </details>
+    <button type="button" class="br-theme-toggle" data-br-theme-toggle aria-label="Switch theme">Dark</button>
+  </div>
+</header>
+<div class="br-masthead-spacer" aria-hidden="true"></div>
+
+<div class="page" data-reveal>
+  <p class="draft-banner">Draft excerpt — Go-to-Market and KPI sections removed from the public consumer payments page. Not linked from the site index.</p>
+  <p class="br-article-meta" style="margin-bottom:18px">Source: consumer payments research · Archived from last committed revision, 29 April 2026</p>
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 3: GO-TO-MARKET
+  ═══════════════════════════════════════════════════════ -->
+  <div id="gtm" data-reveal>
+  <div class="section-title">
+    <div class="section-num">03</div>
+    <h2>Go-to-Market Strategy</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">Who we target, in what order, and with what narrative</p>
+
+  <div class="gtm-grid">
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-1">Priority 1: Smaller PSPs</div>
+      <div class="gtm-title">Start with smaller PSPs and acquirers — move fast</div>
+      <ul class="gtm-list gl-gold">
+        <li><span>Why smaller first:</span> Large PSPs (Stripe, Adyen) are effectively locked to Base and Polygon via existing agreements. Smaller PSPs move faster, have fewer crypto commitments, and are hungry for differentiation.</li>
+        <li><span>Goal:</span> Use smaller PSPs to validate an acquirer payment SDK, build reference integrations, and generate a working portfolio before approaching Tier 1.</li>
+        <li><span>Campaign hook:</span> "Be the first PSP in your market to settle major digital assets — we provide the SDK, liquidity partners, and co-marketing."</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">Smaller regional PSPs</div>
+        <div class="chip active">Mid-market acquirers</div>
+        <div class="chip active">Emerging market processors</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-2">Priority 2: Tier 1 PSPs</div>
+      <div class="gtm-title">Approach Stripe, Adyen, Fiserv with proven integrations</div>
+      <ul class="gtm-list gl-blue">
+        <li><span>Stripe:</span> Already integrated several L2s — pitch a differentiated chain or bundle of assets with a ready SDK and live pilot volume from smaller PSPs first.</li>
+        <li><span>Adyen + Fiserv:</span> Neither has meaningful crypto acceptance today — first-mover opportunity with enterprise merchants neither Stripe nor Base currently serves well.</li>
+        <li><span>Leverage:</span> Come with live integration data, transaction volume, and a merchant waitlist. Tier 1 PSPs respond to demonstrated demand, not pitches.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip">Stripe</div>
+        <div class="chip">Adyen</div>
+        <div class="chip">Fiserv</div>
+        <div class="chip">Global Payments</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-3">Priority 3: Wallets + Issuers</div>
+      <div class="gtm-title">Enable Path A — crypto debit card issuance</div>
+      <ul class="gtm-list gl-green">
+        <li><span>Wallet partners:</span> Trust Wallet, WalletConnect-compatible wallets, MetaMask, and any wallet with issuer connections. Confirm product roadmap alignment on card issuance.</li>
+        <li><span>Issuer partners:</span> RedotPay (most accessible, immediate), Marqeta, Galileo for enterprise-grade card programs. Need BIN number access and JIT swap capability.</li>
+        <li><span>Agent cards:</span> Every agent deployed via launchpad partners (NodeOps) gets a virtual card — the agent card program is the highest-leverage card issuance volume driver.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">RedotPay</div>
+        <div class="chip">Trust Wallet</div>
+        <div class="chip">W3W</div>
+        <div class="chip">Marqeta</div>
+        <div class="chip">Galileo</div>
+      </div>
+    </div>
+
+    <div class="gtm-card">
+      <div class="gtm-tier gt-infra">Parallel: Agent Launchpads</div>
+      <div class="gtm-title">Unlock the non-technical majority — free agent deployment</div>
+      <ul class="gtm-list gl-purple">
+        <li><span>The gap:</span> Despite agentic hype, few non-technical users run their own funded agents. Removing deployment friction is a cross-chain opportunity, not a single-network exclusive.</li>
+        <li><span>Model:</span> Partner with agent launchpad platforms to offer one-click agent deployment tied to wallet balances; infrastructure partners (e.g. NodeOps-style hosts) can lower backend cost.</li>
+        <li><span>Flywheel:</span> More agents deployed → more virtual cards → more measurable payment volume → stronger leverage in PSP and issuer conversations for whichever ecosystems fund the loop.</li>
+      </ul>
+      <div class="chip-row">
+        <div class="chip active">NodeOps</div>
+        <div class="chip">Agent launchpads</div>
+        <div class="chip">One-click hosting</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STAKEHOLDER NARRATIVES -->
+  <div class="full-card">
+    <div class="full-card-title">Campaign Narratives by Stakeholder</div>
+    <div class="narrative-grid">
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--blue)">For Wallets</div>
+        <div class="ni-hook">"Let your users spend their crypto anywhere, today."</div>
+        <div class="ni-body">Wallets integrate a payment SDK to unlock QR flows, card-linked spending, and live price management. Users get real-world utility for on-chain balances without leaving the wallet app.</div>
+      </div>
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--gold)">For Issuers</div>
+        <div class="ni-hook">"Issue the card of the crypto economy — with zero liquidity risk."</div>
+        <div class="ni-body">Ecosystem builders supply the card-spec SDK, liquidity for JIT swaps, and a user pipeline ready to activate cards. Issuers keep the BIN relationship; builders abstract chain complexity.</div>
+      </div>
+      <div class="narrative-item">
+        <div class="ni-label" style="color:var(--green)">For PSPs / Acquirers</div>
+        <div class="ni-hook">"Add crypto acceptance in a weekend — your merchants won't notice a thing."</div>
+        <div class="ni-body">An acquirer SDK slots into existing checkout flows. Merchants get a new settlement option with minimal UX change. PSPs earn on spread and services; chain details stay behind PSP APIs.</div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 4: KPIs & GOALS BY INITIATIVE
+  ═══════════════════════════════════════════════════════ -->
+  <div id="kpi" data-reveal>
+  <div class="section-title">
+    <div class="section-num">04</div>
+    <h2>KPIs &amp; Goals by Initiative</h2>
+    <hr>
+  </div>
+  <p class="section-subtitle">What success looks like for each initiative — near-term signals and long-term outcomes</p>
+
+  <!-- INIT 1: PSP PARTNERSHIPS -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-gold">Initiative 1</div>
+      <div class="kpi-init-title">PSP &amp; Acquirer Partnerships</div>
+      <div class="kpi-init-sub">Path B: Crypto direct to acquirer</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Acquirer payment SDK</div>
+        <div class="kpi-req-chip">Liquidity &amp; Swap Layer</div>
+        <div class="kpi-req-chip">BD outreach (smaller PSPs first)</div>
+        <div class="kpi-req-chip">FX routing API</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3–5</div>
+            <div class="kpi-metric-desc"><strong>Smaller PSP integrations live</strong>Validates SDK in production, generates reference integrations, and builds the case for Tier 1 conversations.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1K+</div>
+            <div class="kpi-metric-desc"><strong>Merchants accepting crypto via PSP</strong>First broad merchant reach beyond closed-loop exchange retail apps.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">$1M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly payment volume via PSP rails</strong>Baseline proof-of-traction metric for Stripe/Adyen pitch deck.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1+</div>
+            <div class="kpi-metric-desc"><strong>Tier 1 PSP live (Stripe or Adyen)</strong>Mirrors Base/Polygon's Stripe integration. Unlocks millions of merchants in one deal.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Merchants reachable via PSP crypto settlement</strong>Combined PSP + acquirer coverage approaches the scale of established crypto payment networks.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$100M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly on-ramp / PSP payment volume</strong>Volume that proves programmable chains matter for checkout, not only for DeFi transfers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 2: CARD ISSUANCE -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-gold">Initiative 2</div>
+      <div class="kpi-init-title">Co-branded &amp; partner card issuance</div>
+      <div class="kpi-init-sub">Path A: Crypto via debit card rails</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Card issuance SDK</div>
+        <div class="kpi-req-chip">Issuer partner (RedotPay)</div>
+        <div class="kpi-req-chip">BIN number access</div>
+        <div class="kpi-req-chip">JIT swap API</div>
+        <div class="kpi-req-chip">Trust Wallet / W3W alignment</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>Issuer partner signed</strong>RedotPay or equivalent issuer with BIN access and JIT swap capability confirmed.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Partner virtual cards issued</strong>Early adopters who convert on-chain balances into card spend.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">150M+</div>
+            <div class="kpi-metric-desc"><strong>Visa/MC merchants reachable from day one</strong>Immediate merchant reach via existing card network infrastructure — no merchant onboarding required.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">500K+</div>
+            <div class="kpi-metric-desc"><strong>Active partner cards in circulation</strong>Converts large wallet populations into card-holding spenders at meaningful scale.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$50M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly card spend volume</strong>Card-linked spending tied to funded wallets, generating transaction data and fee revenue.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">3+</div>
+            <div class="kpi-metric-desc"><strong>Wallet partners with card integration</strong>Multiple major wallets each offering crypto-linked card capability to their user base.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 3: AGENT CARDS + LAUNCHPAD -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-purple">Initiative 3</div>
+      <div class="kpi-init-title">Agent Launchpad + Virtual Agent Cards</div>
+      <div class="kpi-init-sub">Path C: Agentic payments</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Agent Wallet &amp; Card SDK</div>
+        <div class="kpi-req-chip">Card issuance (Initiative 2)</div>
+        <div class="kpi-req-chip">NodeOps infrastructure</div>
+        <div class="kpi-req-chip">Launchpad BD partnerships</div>
+        <div class="kpi-req-chip">Spend policy engine</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1+</div>
+            <div class="kpi-metric-desc"><strong>Launchpad partner live</strong>One-click agent deployment for funded wallet users with minimal technical setup.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Non-technical users with deployed agents</strong>First meaningful cohort of mainstream (non-developer) agent owners on any blockchain.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">5K+</div>
+            <div class="kpi-metric-desc"><strong>Agent virtual cards issued</strong>Each deployed agent with an active card is a recurring payment actor on whichever rail settles spend.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Deployed agents (cross-wallet)</strong>Agent count becomes a comparable metric across ecosystems competing for agentic commerce.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">1M+</div>
+            <div class="kpi-metric-desc"><strong>Active agent virtual cards</strong>Each card is a recurring revenue and transaction volume driver — the agentic payments flywheel at scale.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">$20M+</div>
+            <div class="kpi-metric-desc"><strong>Monthly agent-initiated spend volume</strong>Autonomous spend across Web2 and Web3 merchants — a net-new category for whichever chains and issuers power the cards.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 4: SDKs + DEVELOPER TOOLS -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-green">Initiative 4</div>
+      <div class="kpi-init-title">Developer SDKs &amp; Payment Infrastructure</div>
+      <div class="kpi-init-sub">Wallet SDK, Agent SDK, MPP, UCP</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Wallet payment integration SDK</div>
+        <div class="kpi-req-chip">MPP SDK (post-PSP confirmation)</div>
+        <div class="kpi-req-chip">UCP blockchain extension (fork)</div>
+        <div class="kpi-req-chip">Simulation sandbox</div>
+        <div class="kpi-req-chip">TypeScript + Python packages</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3+</div>
+            <div class="kpi-metric-desc"><strong>Wallet partners integrating payment SDK</strong>Several major wallets actively using the SDK in production.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">500+</div>
+            <div class="kpi-metric-desc"><strong>SDK downloads / active integrations</strong>Developer adoption signal — first 500 integrations validate that the SDK is production-ready and well-documented.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>UCP blockchain extension PR submitted</strong>First-mover contribution toward a documented on-chain payment leg for UCP-style commerce messages.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">10K+</div>
+            <div class="kpi-metric-desc"><strong>Active SDK integrations</strong>Payment SDKs become default tooling for crypto-enabled apps and agents, similar to Stripe’s position in Web2.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">MPP docs</div>
+            <div class="kpi-metric-desc"><strong>MPP SDK cited in MPP materials</strong>An MPP SDK listed in Visa Machine Payment Protocol documentation as a supported implementation path — use the standard name, “MPP SDK”, not a chain-prefixed variant.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">5+</div>
+            <div class="kpi-metric-desc"><strong>Payment-focused dApps built on SDK</strong>Shopify-style plugins, checkout embeds, and payroll tools built by third parties on open payment primitives.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INIT 5: THOUGHT LEADERSHIP -->
+  <div class="kpi-initiative">
+    <div class="kpi-header">
+      <div class="kpi-init-num ft-grey">Initiative 5</div>
+      <div class="kpi-init-title">Thought Leadership &amp; Vision Publishing</div>
+      <div class="kpi-init-sub">Blog to dedicated Vision page</div>
+    </div>
+    <div class="kpi-body">
+      <div class="kpi-requires">
+        <div class="kpi-req-label">Requires:</div>
+        <div class="kpi-req-chip">Vision blog (Lucas)</div>
+        <div class="kpi-req-chip">Flow diagrams published</div>
+        <div class="kpi-req-chip">Ongoing protocol update cadence</div>
+        <div class="kpi-req-chip">Distribution via BD and ecosystem channels</div>
+      </div>
+      <div class="kpi-goals">
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-st">Near-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">1</div>
+            <div class="kpi-metric-desc"><strong>Vision blog published</strong>Definitive infrastructure map for agentic and Web3 payments, authored and live before any competitor publishes a comparable framework.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">5+</div>
+            <div class="kpi-metric-desc"><strong>Industry citations or reposts</strong>PSPs, investors, or media referencing this research framework signals narrative resonance.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--blue)">3+</div>
+            <div class="kpi-metric-desc"><strong>Inbound partnership inquiries from blog</strong>PSPs or wallet providers reaching out after reading the vision post — the clearest signal of resonance.</div>
+          </div>
+        </div>
+        <div class="kpi-goal-col">
+          <div class="kpi-goal-col-label kpi-lt">Long-term</div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Top 3</div>
+            <div class="kpi-metric-desc"><strong>Analyst coverage of crypto payment rails</strong>Messari, The Block, or CoinDesk consistently discussing chosen ecosystems alongside peers in a payments context.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Live page</div>
+            <div class="kpi-metric-desc"><strong>Dedicated payments vision page</strong>Triggered by sustained engagement — a reference destination for developers, PSPs, and issuers comparing rails.</div>
+          </div>
+          <div class="kpi-metric">
+            <div class="kpi-metric-val" style="color:var(--green)">Cited</div>
+            <div class="kpi-metric-desc"><strong>Framework referenced in standards or talks</strong>Durable thought leadership: once cited, it keeps compounding inbound.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+<script src="../js/motion.js" defer></script>
+</body>
+</html>

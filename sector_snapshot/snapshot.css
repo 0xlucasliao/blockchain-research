@@ -1,0 +1,144 @@
+/**
+ * Sector Snapshot pages — theme tokens only.
+ */
+
+body.br-snapshot {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+body.br-snapshot .snap-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 36px 22px 72px;
+}
+
+body.br-snapshot .snap-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+body.br-snapshot .snap-wrap > h1 {
+  font-size: clamp(22px, 3.2vw, 28px);
+  font-weight: 600;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+body.br-snapshot .snap-dek {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 56ch;
+  margin-bottom: 36px;
+}
+
+body.br-snapshot .snap-block {
+  margin-bottom: 40px;
+}
+
+body.br-snapshot .snap-block h2 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--heading);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+body.br-snapshot .snap-flow {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+
+body.br-snapshot .snap-flow-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 6px;
+}
+
+body.br-snapshot .snap-flow-chain {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+body.br-snapshot .snap-gap .snap-flow {
+  border-left: 3px solid var(--gold);
+}
+
+body.br-snapshot .snap-why {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+body.br-snapshot .snap-why strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+body.br-snapshot .snap-hub-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (min-width: 640px) {
+  body.br-snapshot .snap-hub-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+body.br-snapshot .snap-hub-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 16px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+body.br-snapshot .snap-hub-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-1px);
+}
+
+body.br-snapshot .snap-hub-card h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 6px;
+  border: none;
+  padding: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-sans);
+}
+
+body.br-snapshot .snap-hub-card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}

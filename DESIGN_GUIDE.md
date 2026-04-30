@@ -29,7 +29,7 @@ Same fonts and token set as consumer research. Layout differences (cover hero, s
 
 ## Layout & chrome
 
-- **Fixed masthead** (`.br-masthead`, 44px): site title + **Home**, **Use cases**, **Sectors** (`<details class="br-sectors">` with links to consumer and institutional sector HTML), and **theme toggle** (`[data-br-theme-toggle]`). Colours come from theme tokens (no separate `--dark` / `--light` masthead classes). **Relative `href`s depend on folder depth** (`../` from `sector_research/` and `use_cases/`).
+- **Fixed masthead** (`.br-masthead`, 44px): site title + **Home**, **Use cases**, **Blog**, **Sector Snapshot** (`<details class="br-sectors">` with links to consumer, institutional, and agentic commerce snapshot HTML), and **theme toggle** (`[data-br-theme-toggle]`). Colours come from theme tokens (no separate `--dark` / `--light` masthead classes). **Relative `href`s depend on folder depth** (`../` from `sector_snapshot/` and `use_cases/`).
 - **Spacer** (`.br-masthead-spacer`): prevents content sitting under the fixed bar.
 - **Consumer secondary nav** (`body.has-local-nav`): local sticky TOC; `top: 44px` so it stacks under the masthead when stuck.
 - **Institutional cover**: extra top padding (`108px`) so the masthead does not obscure the cover logo; cover title block uses CSS-only staggered fade-in.
@@ -78,7 +78,9 @@ Optional stagger inside a section:
 
 | Folder | Purpose |
 |--------|---------|
-| **`sector_research/`** | Sector-wide briefs (e.g. consumer vs institutional payments). |
+| **`sector_snapshot/`** | Short flow-first sector pages (consumer, institutional, agentic commerce). |
+| **`blog/`** | Long-form essays and sector notes (including archived consumer / institutional deep dives). |
+| **`sector_research/`** | Optional stub only (`index.html`); old path redirects to Sector Snapshot. |
 | **`use_cases/`** | Narrow application notes (one issue, one shape of solution). |
 | **`css/`**, **`js/`** | `theme.css` (palette + light/dark), `motion.css` (motion + masthead), `motion.js` (theme + reveals + view transitions). |
 

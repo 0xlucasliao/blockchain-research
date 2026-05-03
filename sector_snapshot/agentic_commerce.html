@@ -30,55 +30,140 @@
 </header>
 <div class="br-masthead-spacer" aria-hidden="true"></div>
 
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2,2 L8,5 L2,8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="context-stroke"/>
+    </marker>
+  </defs>
+</svg>
+
 <main class="snap-wrap" data-reveal>
   <div class="snap-eyebrow">Sector Snapshot</div>
   <h1>Agentic commerce</h1>
-  <p class="snap-dek">April 2026 · Agents paying on behalf of users: what is already shippable, and which autonomous commerce loops are still gated.</p>
+  <p class="snap-dek">April 2026 · x402 processed 75M transactions in 30 days. Mastercard's first live agentic transaction: September 29 2025. McKinsey projects $3–5T in agent-driven commerce by 2030. This is what's shippable today — and what's still gated.</p>
 
+  <!-- ═══ SECTION 1: WORKING ═══ -->
   <section class="snap-block" aria-labelledby="today">
     <h2 id="today">Flows possible today</h2>
 
+    <!-- 1 Zinc programmatic retail -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Human-present wallet payment</div>
-      <div class="snap-flow-chain">User → wallet app → sign tx → chain → merchant / PSP</div>
+      <div class="snap-flow-title">Agent buys a physical product from Amazon or Walmart — no human clicks required</div>
+      <div class="snap-flow-subtitle">Programmatic retail API · Zinc · single POST request · full post-purchase management</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Zinc (YC W14 · 10yr production)</span>
+        <span class="snap-provider-chip">Amazon</span>
+        <span class="snap-provider-chip">Walmart</span>
+        <span class="snap-provider-chip">Target</span>
+        <span class="snap-provider-chip">Nike</span>
+        <span class="snap-provider-chip">SHEIN</span>
+        <span class="snap-provider-chip">Zinc MCP server (Claude · GPT · Cursor)</span>
+        <span class="snap-provider-chip">Stripe (wallet top-up)</span>
+        <span class="snap-provider-chip">MPP integration</span>
+      </div>
     </div>
 
+    <!-- 2 Virtual card -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Agent with virtual card + spend policy</div>
-      <div class="snap-flow-chain">User sets limit → agent runtime → issuer / BIN sponsor → card network → Web2 merchant</div>
+      <div class="snap-flow-title">Agent pays with a virtual card scoped to a specific task — at any of 150M+ merchants</div>
+      <div class="snap-flow-subtitle">Agent virtual card · programmatic issuance · spend-limited Agentic Token · no raw credentials exposed</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Mastercard Agent Pay (first tx Sept 29 2025)</span>
+        <span class="snap-provider-chip hi">Visa Intelligent Commerce</span>
+        <span class="snap-provider-chip">Stripe Issuing + Agent Toolkit</span>
+        <span class="snap-provider-chip">Crossmint / Lobster Cash</span>
+        <span class="snap-provider-chip">Ramp</span>
+        <span class="snap-provider-chip">Slash (MCP-native)</span>
+        <span class="snap-provider-chip">Skyfire KYAPay</span>
+        <span class="snap-provider-chip">Fiserv (merchant acceptance)</span>
+        <span class="snap-provider-chip">PayPal (ACP server)</span>
+      </div>
     </div>
 
+    <!-- 3 x402 M2M micropayments -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Delegated payment via exchange or custodial API</div>
-      <div class="snap-flow-chain">User API key / OAuth → bot → custodian executes transfer → receipt to app</div>
+      <div class="snap-flow-title">Agent pays for an API call or data feed in USDC — no account, no API key, no subscription</div>
+      <div class="snap-flow-subtitle">x402 M2M micropayment · HTTP 402 payment request · USDC over HTTP · instant machine-to-machine settlement</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">x402 · Coinbase / Cloudflare (75M txns/30d)</span>
+        <span class="snap-provider-chip hi">MPP · Stripe / Tempo (launched March 18 2026)</span>
+        <span class="snap-provider-chip">ACP · OpenAI / Stripe (ChatGPT Instant Checkout)</span>
+        <span class="snap-provider-chip">AP2 · Google</span>
+        <span class="snap-provider-chip">Coinbase Agentic Wallets (Feb 2026)</span>
+        <span class="snap-provider-chip">MoonPay Agents</span>
+        <span class="snap-provider-chip">World AgentKit (March 2026)</span>
+        <span class="snap-provider-chip">Cloudflare CDN</span>
+        <span class="snap-provider-chip">Circle USDC (98.6% of agent txns)</span>
+      </div>
     </div>
 
+    <!-- 4 Conversational checkout -->
     <div class="snap-flow">
-      <div class="snap-flow-title">MCP tool calls that trigger a signed human step</div>
-      <div class="snap-flow-chain">Agent proposes pay → user approves in wallet → transaction broadcast</div>
+      <div class="snap-flow-title">Ask ChatGPT to buy something — it checks out without leaving the conversation</div>
+      <div class="snap-flow-subtitle">Conversational checkout · Agentic Commerce Protocol (ACP) · SharedPaymentToken · no redirect</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">ChatGPT Instant Checkout (live Feb 2026)</span>
+        <span class="snap-provider-chip">Google UCP / Gemini (Jan 2026 · Walmart, Target)</span>
+        <span class="snap-provider-chip">Perplexity Shopping + PayPal</span>
+        <span class="snap-provider-chip">Stripe ACP co-author</span>
+        <span class="snap-provider-chip">Shopify</span>
+        <span class="snap-provider-chip">Etsy (first merchant)</span>
+        <span class="snap-provider-chip">Instacart (grocery · Dec 2025)</span>
+        <span class="snap-provider-chip">Amazon (Rufus AI · $12B 2025 · proprietary)</span>
+      </div>
+    </div>
+
+    <!-- 5 Autonomous stablecoin wallet -->
+    <div class="snap-flow">
+      <div class="snap-flow-title">Agent holds its own stablecoin wallet and spends within the limits you set — no per-transaction approvals</div>
+      <div class="snap-flow-subtitle">Autonomous agent wallet · TEE-sealed private key · session caps · spending policy enforced off-context</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Coinbase Agentic Wallets</span>
+        <span class="snap-provider-chip hi">Crossmint (dual-key TEE)</span>
+        <span class="snap-provider-chip">MoonPay Agents</span>
+        <span class="snap-provider-chip">Privy Server Wallets (Stripe)</span>
+        <span class="snap-provider-chip">Turnkey (AWS Nitro)</span>
+        <span class="snap-provider-chip">Openfort (open-source)</span>
+        <span class="snap-provider-chip">AgentKit (Coinbase SDK)</span>
+        <span class="snap-provider-chip">Base · Solana · Stellar</span>
+        <span class="snap-provider-chip">Circle USDC</span>
+      </div>
     </div>
   </section>
 
+  <!-- ═══ SECTION 2: BLOCKED ═══ -->
   <section class="snap-block snap-gap" aria-labelledby="blocked">
     <h2 id="blocked">High demand · not yet practical</h2>
 
+    <!-- B1 Unattended card at any merchant -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Human-not-present spend at arbitrary merchants with chain-native USDC</div>
-      <div class="snap-flow-chain">Agent → merchant chain address → delivery / dispute semantics</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Few merchants expose chain checkout; AP2 / FIDO human-not-present rails not ubiquitous; reversibility and dispute policy not standardised on-chain.</p>
+      <div class="snap-flow-title">Agent uses your credit card fully unattended at any merchant — and disputes go wrong purchases automatically</div>
+      <div class="snap-flow-subtitle">Unattended credit card spend at arbitrary Web2 merchants · no human-present 3DS · Reg E / FCBA protection expected</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Mastercard Agent Pay and Visa VIC solve this for their integrated issuer/merchant partners — a growing but still small fraction of all merchants. For the majority: (1) 3DS human-present authentication cannot be solved by an LLM. (2) An agent with raw PAN + CVV in its context is a prompt-injection attack waiting to happen. (3) California AB 316 (January 2026) establishes the human principal is liable for all agent actions — but neither card network rules nor consumer protection law has defined the dispute rights when an agent makes a mistake. Friendly fraud chargebacks from agent-initiated transactions are expected to be statistically visible in high-risk merchant data by 2026–2028.</p>
     </div>
 
+    <!-- B2 Dynamic price negotiation -->
     <div class="snap-flow">
-      <div class="snap-flow-title">One policy graph across bank, card, and chain limits</div>
-      <div class="snap-flow-chain">User rule set → enforced on issuer + chain + agent host</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Identity and policy silos; no shared attestation consumers across PSP, chain, and agent vendors yet.</p>
+      <div class="snap-flow-title">Agent negotiates price, wins a bid, and pays — all in one automated loop</div>
+      <div class="snap-flow-subtitle">Dynamic-price agent commerce · M2M negotiation → conditional payment → atomic settlement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> ACP and MPP define checkout at a fixed, already-agreed price — not negotiation. No widely adopted M2M protocol defines how two AI agents negotiate price in real time. An agent bidding in an auction also needs a conditional payment primitive: escrow that releases only on win. x402 and MPP are request-and-pay; they don't support contingent authorization. Smart-contract escrow can model this in principle, but no major retail or B2B platform exposes a standard escrow API at the checkout layer.</p>
     </div>
 
+    <!-- B3 No human mandate at all -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Autonomous procurement with corporate treasury on public L1/L2</div>
-      <div class="snap-flow-chain">Agent → PO match → on-chain settlement → ERP posting</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Corporate treasury policy, tax, and audit tooling expect bank statements; ERP connectors for chain events are immature.</p>
+      <div class="snap-flow-title">Deploy an agent with a wallet and let it spend with absolutely no limits or oversight</div>
+      <div class="snap-flow-subtitle">Unrestricted autonomous agent spending · no session cap · no human mandate · no audit requirement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Three independent blockers. (1) LLMs are vulnerable to prompt injection in web pages, emails, and API responses — an agent with an unrestricted wallet in its context is a theft vector. (2) California AB 316 (January 2026) makes the human principal fully liable for all agent actions; unlimited agent spending = unlimited human liability with no insurance backstop. (3) No global Know Your Agent (KYA) regime exists: FATF Travel Rule obligations cannot be fulfilled without agent identity linked to a legal person. Every production agent payment system in April 2026 enforces a human-defined spending mandate. This is an architectural requirement, not a gap to design around.</p>
     </div>
+
+    <!-- B4 Agent-to-agent with no human principal -->
+    <div class="snap-flow">
+      <div class="snap-flow-title">One AI agent pays another AI agent for completed work — with no human in the compliance loop at all</div>
+      <div class="snap-flow-subtitle">Autonomous agent-to-agent payment · no human principal on either side · fully machine-to-machine settlement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Three layers. (1) Any value transfer above de minimis thresholds requires a KYC'd human principal under FinCEN / FCA / MAS rules. Fully principal-less agent-to-agent payments trigger unhosted wallet requirements — agents must be linked to a verified human (World AgentKit's explicit design thesis). (2) No standard exists for an orchestrator to verify work was completed before releasing payment — multi-agent frameworks have internal tracking but no payment-release hook. (3) On-chain payments are irreversible; agent-to-agent disputes have no contract law, no arbitration, and no escrow standard. Micropayments via x402 sessions are live; fully unaccountable M2M settlement is not.</p>
+    </div>
+
   </section>
 
   <p class="br-article-meta"><a href="index.html">← Sector Snapshot</a></p>

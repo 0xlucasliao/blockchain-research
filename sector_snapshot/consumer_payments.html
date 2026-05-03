@@ -30,55 +30,200 @@
 </header>
 <div class="br-masthead-spacer" aria-hidden="true"></div>
 
+<!-- Shared SVG arrow defs -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2,2 L8,5 L2,8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="context-stroke"/>
+    </marker>
+  </defs>
+</svg>
+
 <main class="snap-wrap" data-reveal>
   <div class="snap-eyebrow">Sector Snapshot</div>
   <h1>Consumer payments</h1>
-  <p class="snap-dek">April 2026 · What already works end-to-end, and a few high-leverage flows still missing.</p>
+  <p class="snap-dek">April 2026 · Stablecoin transfer volume reached $33T in 2025. These are the flows that already work end-to-end — and the Web2 products consumers want that blockchain still can't deliver.</p>
 
+  <!-- ═══ SECTION 1: WORKING ═══ -->
   <section class="snap-block" aria-labelledby="today">
     <h2 id="today">Flows possible today</h2>
 
+    <!-- 1 P2P -->
     <div class="snap-flow">
-      <div class="snap-flow-title">P2P stablecoin send</div>
-      <div class="snap-flow-chain">Sender wallet → public chain → recipient wallet</div>
+      <div class="snap-flow-title">Send money to a friend in seconds, for almost nothing</div>
+      <div class="snap-flow-subtitle">P2P stablecoin transfer · wallet-to-wallet on-chain</div>
+      <svg class="snap-diagram" viewBox="0 0 660 68" role="img" aria-label="Sender wallet sends on public chain to recipient wallet">
+        <g class="d-node"><rect x="4"   y="12" width="116" height="44" rx="6"/><text class="d-label" x="62" y="29" text-anchor="middle">Your wallet</text><text class="d-sub" x="62" y="44" text-anchor="middle">MetaMask · Trust · Phantom</text></g>
+        <line x1="122" y1="34" x2="174" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="176" y="12" width="128" height="44" rx="6"/><text class="d-label" x="240" y="29" text-anchor="middle">Public chain</text><text class="d-sub" x="240" y="44" text-anchor="middle">Tron · Solana · Base · TON</text></g>
+        <line x1="306" y1="34" x2="358" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="360" y="12" width="126" height="44" rx="6"/><text class="d-label" x="423" y="29" text-anchor="middle">Friend's wallet</text><text class="d-sub" x="423" y="44" text-anchor="middle">any self-custody wallet</text></g>
+        <line x1="488" y1="34" x2="540" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="542" y="12" width="112" height="44" rx="6"/><text class="d-label" x="598" y="29" text-anchor="middle">Confirmed</text><text class="d-sub" x="598" y="44" text-anchor="middle">&lt;5 sec · &lt;$0.01</text></g>
+      </svg>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Tether USDT</span>
+        <span class="snap-provider-chip hi">Circle USDC</span>
+        <span class="snap-provider-chip">MetaMask</span>
+        <span class="snap-provider-chip">Trust Wallet</span>
+        <span class="snap-provider-chip">Phantom</span>
+        <span class="snap-provider-chip">Bitget Wallet</span>
+        <span class="snap-provider-chip">Telegram Wallet</span>
+        <span class="snap-provider-chip">Binance Pay</span>
+        <span class="snap-provider-chip">Coinbase Wallet</span>
+        <span class="snap-provider-chip">Tron</span>
+        <span class="snap-provider-chip">Solana</span>
+        <span class="snap-provider-chip">Base</span>
+        <span class="snap-provider-chip">TON</span>
+        <span class="snap-provider-chip">Stellar</span>
+      </div>
     </div>
 
+    <!-- 2 Crypto card -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Crypto-funded card spend at a card merchant</div>
-      <div class="snap-flow-chain">User wallet → issuer / swap → Visa or Mastercard → acquirer → merchant (fiat settlement)</div>
+      <div class="snap-flow-title">Spend crypto like a regular debit card — anywhere Visa is accepted</div>
+      <div class="snap-flow-subtitle">Crypto-funded card · at-authorization fiat conversion · 150M+ merchant locations</div>
+      <svg class="snap-diagram" viewBox="0 0 660 68" role="img" aria-label="User crypto balance converted by issuer then routed via card network to merchant">
+        <g class="d-node"><rect x="4"   y="12" width="110" height="44" rx="6"/><text class="d-label" x="59" y="29" text-anchor="middle">Crypto balance</text><text class="d-sub" x="59" y="44" text-anchor="middle">USDC · USDT · BTC</text></g>
+        <line x1="116" y1="34" x2="164" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="166" y="12" width="128" height="44" rx="6"/><text class="d-label" x="230" y="29" text-anchor="middle">Issuer / swap</text><text class="d-sub" x="230" y="44" text-anchor="middle">Rain · Reap · Baanx</text></g>
+        <line x1="296" y1="34" x2="344" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="346" y="12" width="118" height="44" rx="6"/><text class="d-label" x="405" y="29" text-anchor="middle">Card network</text><text class="d-sub" x="405" y="44" text-anchor="middle">Visa · Mastercard</text></g>
+        <line x1="466" y1="34" x2="514" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="516" y="12" width="140" height="44" rx="6"/><text class="d-label" x="586" y="29" text-anchor="middle">Merchant</text><text class="d-sub" x="586" y="44" text-anchor="middle">fiat settled · T+1</text></g>
+      </svg>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Rain (~$3B ann.)</span>
+        <span class="snap-provider-chip hi">Reap (&gt;$6B ann.)</span>
+        <span class="snap-provider-chip">Coinbase Card</span>
+        <span class="snap-provider-chip">Crypto.com Visa</span>
+        <span class="snap-provider-chip">Binance Card</span>
+        <span class="snap-provider-chip">MetaMask Card</span>
+        <span class="snap-provider-chip">Gnosis Pay</span>
+        <span class="snap-provider-chip">KAST (Solana)</span>
+        <span class="snap-provider-chip">Nexo Card</span>
+        <span class="snap-provider-chip">Revolut (&gt;$10B vol)</span>
+        <span class="snap-provider-chip">Baanx</span>
+        <span class="snap-provider-chip">Marqeta</span>
+      </div>
     </div>
 
+    <!-- 3 Stablecoin checkout -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Checkout with stablecoin via PSP</div>
-      <div class="snap-flow-chain">Shopper wallet → on-chain transfer → PSP / acquirer → merchant dashboard (often still fiat out)</div>
+      <div class="snap-flow-title">Pay with stablecoin at online checkout — merchant receives fiat or USDC</div>
+      <div class="snap-flow-subtitle">Stablecoin checkout via PSP · smart-contract escrow · authorize-and-capture</div>
+      <svg class="snap-diagram" viewBox="0 0 660 68" role="img" aria-label="Shopper wallet connects via PSP escrow contract to merchant who receives fiat or USDC">
+        <g class="d-node"><rect x="4"   y="12" width="118" height="44" rx="6"/><text class="d-label" x="63" y="29" text-anchor="middle">Shopper wallet</text><text class="d-sub" x="63" y="44" text-anchor="middle">WalletConnect · 700+ wallets</text></g>
+        <line x1="124" y1="34" x2="172" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="174" y="12" width="128" height="44" rx="6"/><text class="d-label" x="238" y="29" text-anchor="middle">PSP / escrow</text><text class="d-sub" x="238" y="44" text-anchor="middle">Stripe · Coinbase · BitPay</text></g>
+        <line x1="304" y1="34" x2="352" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="354" y="12" width="108" height="44" rx="6"/><text class="d-label" x="408" y="29" text-anchor="middle">On-chain</text><text class="d-sub" x="408" y="44" text-anchor="middle">Base · Solana · Polygon</text></g>
+        <line x1="464" y1="34" x2="512" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="514" y="12" width="142" height="44" rx="6"/><text class="d-label" x="585" y="29" text-anchor="middle">Merchant</text><text class="d-sub" x="585" y="44" text-anchor="middle">fiat or USDC out</text></g>
+      </svg>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Stripe (1.5% fee)</span>
+        <span class="snap-provider-chip hi">Shopify USDC on Base</span>
+        <span class="snap-provider-chip">Coinbase Commerce</span>
+        <span class="snap-provider-chip">BitPay</span>
+        <span class="snap-provider-chip">NOWPayments</span>
+        <span class="snap-provider-chip">CoinGate</span>
+        <span class="snap-provider-chip">PayPal Pay-with-Crypto</span>
+        <span class="snap-provider-chip">Triple-A</span>
+        <span class="snap-provider-chip">BTCPay Server</span>
+        <span class="snap-provider-chip">WalletConnect</span>
+      </div>
     </div>
 
+    <!-- 4 Remittance -->
     <div class="snap-flow">
-      <div class="snap-flow-title">QR wallet-to-merchant (fiat-backed)</div>
-      <div class="snap-flow-chain">Customer app → wallet operator → acquirer → merchant bank</div>
+      <div class="snap-flow-title">Send money home to family in another country — cheaper and faster than a wire</div>
+      <div class="snap-flow-subtitle">Crypto remittance · stablecoin corridor · cash-out at agent or mobile money</div>
+      <svg class="snap-diagram" viewBox="0 0 660 68" role="img" aria-label="Sender on-ramps fiat to stablecoin which travels on chain then off-ramps to recipient local currency">
+        <g class="d-node"><rect x="4"   y="12" width="108" height="44" rx="6"/><text class="d-label" x="58" y="29" text-anchor="middle">Sender fiat</text><text class="d-sub" x="58" y="44" text-anchor="middle">ACH · SEPA · bank</text></g>
+        <line x1="114" y1="34" x2="158" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="160" y="12" width="108" height="44" rx="6"/><text class="d-label" x="214" y="29" text-anchor="middle">On-ramp</text><text class="d-sub" x="214" y="44" text-anchor="middle">Strike · Bitso · Coins.ph</text></g>
+        <line x1="270" y1="34" x2="314" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="316" y="12" width="100" height="44" rx="6"/><text class="d-label" x="366" y="29" text-anchor="middle">Chain</text><text class="d-sub" x="366" y="44" text-anchor="middle">Tron · Stellar · Solana</text></g>
+        <line x1="418" y1="34" x2="462" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="464" y="12" width="108" height="44" rx="6"/><text class="d-label" x="518" y="29" text-anchor="middle">Off-ramp</text><text class="d-sub" x="518" y="44" text-anchor="middle">MoneyGram · Yellow Card</text></g>
+        <line x1="574" y1="34" x2="618" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="620" y="12" width="36" height="44" rx="6"/><text class="d-label" x="638" y="38" text-anchor="middle">$</text></g>
+      </svg>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">MoneyGram Ramps (Stellar · 475K locations)</span>
+        <span class="snap-provider-chip hi">Strike (Lightning)</span>
+        <span class="snap-provider-chip">Bitso (MX)</span>
+        <span class="snap-provider-chip">Coins.ph (PH)</span>
+        <span class="snap-provider-chip">Yellow Card (Africa)</span>
+        <span class="snap-provider-chip">Bitnob</span>
+        <span class="snap-provider-chip">Felix Pago (LATAM)</span>
+        <span class="snap-provider-chip">Belo · Lemon (AR)</span>
+        <span class="snap-provider-chip">Chipper Cash</span>
+        <span class="snap-provider-chip">Tron USDT-TRC20</span>
+      </div>
+    </div>
+
+    <!-- 5 Yield savings -->
+    <div class="snap-flow">
+      <div class="snap-flow-title">Keep your dollars in an app and earn 4–5% yield on them</div>
+      <div class="snap-flow-subtitle">Stablecoin savings / yield · custodial rewards or DeFi lending</div>
+      <svg class="snap-diagram" viewBox="0 0 660 68" role="img" aria-label="User deposits USDC via app to custodial rewards or DeFi lending protocol and earns yield">
+        <g class="d-node"><rect x="4"   y="12" width="110" height="44" rx="6"/><text class="d-label" x="59" y="29" text-anchor="middle">User deposits</text><text class="d-sub" x="59" y="44" text-anchor="middle">USDC · USDT · PYUSD</text></g>
+        <line x1="116" y1="34" x2="164" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="166" y="12" width="140" height="44" rx="6"/><text class="d-label" x="236" y="29" text-anchor="middle">App / protocol</text><text class="d-sub" x="236" y="44" text-anchor="middle">Coinbase · PayPal · Aave</text></g>
+        <line x1="308" y1="34" x2="356" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-accent"><rect x="358" y="12" width="128" height="44" rx="6"/><text class="d-label" x="422" y="29" text-anchor="middle">Yield source</text><text class="d-sub" x="422" y="44" text-anchor="middle">T-bills · lending · rewards</text></g>
+        <line x1="488" y1="34" x2="536" y2="34" class="d-arrow" marker-end="url(#arr)"/>
+        <g class="d-node"><rect x="538" y="12" width="118" height="44" rx="6"/><text class="d-label" x="597" y="29" text-anchor="middle">4–11% APY</text><text class="d-sub" x="597" y="44" text-anchor="middle">accrues daily</text></g>
+      </svg>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Coinbase USDC (4.7% APY)</span>
+        <span class="snap-provider-chip hi">PayPal PYUSD (4%)</span>
+        <span class="snap-provider-chip">Crypto.com Earn</span>
+        <span class="snap-provider-chip">Nexo Earn</span>
+        <span class="snap-provider-chip">Bybit Earn</span>
+        <span class="snap-provider-chip">Aave</span>
+        <span class="snap-provider-chip">Morpho</span>
+        <span class="snap-provider-chip">Sky/USDS (4%)</span>
+        <span class="snap-provider-chip">Ondo USDY</span>
+        <span class="snap-provider-chip">BlackRock BUIDL</span>
+      </div>
     </div>
   </section>
 
+  <!-- ═══ SECTION 2: BLOCKED ═══ -->
   <section class="snap-block snap-gap" aria-labelledby="blocked">
     <h2 id="blocked">High demand · not yet practical</h2>
 
+    <!-- B1 BNPL -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Tap-to-pay stablecoin at any POS terminal</div>
-      <div class="snap-flow-chain">Phone NFC → chain → merchant account (no card scheme)</div>
-      <p class="snap-why"><strong>Why blocked:</strong> POS kernels, schemes, and licensing are card-centric; merchants rarely accept raw chain addresses at the terminal.</p>
+      <div class="snap-flow-title">Buy now, pay later — split a crypto purchase into four instalments</div>
+      <div class="snap-flow-subtitle">On-chain BNPL · no Web2 equivalent yet · Klarna / Afterpay / Affirm = $180B+ market</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Three separate gaps stack. (1) Credit underwriting requires FICO/bureau data and identity binding — wallets are pseudonymous. (2) Chains are push-only; USDT (the largest consumer stablecoin) has no <code>permit()</code> standard to enable merchant-side pulls. (3) Default recovery requires legal recourse; pseudonymous wallets can be abandoned costlessly. Klarna's response: launch KlarnaUSD on Stripe's Tempo chain — a permissioned issuer-controlled stablecoin — which re-introduces off-chain identity, not an open-chain solution.</p>
     </div>
 
+    <!-- B2 Tap to pay -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Self-custody subscription pull (set-and-forget)</div>
-      <div class="snap-flow-chain">Merchant → recurring debit → user wallet allowance</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Chains are pull-unfriendly; allowance UX and revocation risk; banks do not treat on-chain pulls as ACH-equivalent.</p>
+      <div class="snap-flow-title">Tap your phone at any checkout terminal and pay directly in stablecoin</div>
+      <div class="snap-flow-subtitle">Tap-to-pay stablecoin at existing POS · no card scheme · NFC direct</div>
+      <p class="snap-why"><strong>Why blocked:</strong> The ~150M installed-base Visa/Mastercard-certified POS terminals run EMV kernels that only read ISO 7816 / 14443 card payloads. They physically cannot interpret a Solana Pay URL or EIP-3009 authorization. New crypto-capable hardware exists (Arx Burner Terminal, Ingenico × WalletConnect) but requires net-new terminal deployment or firmware updates — it cannot piggyback the existing installed base. On iPhone, Apple's Secure Element NFC remained closed to non-Apple-Pay flows in most markets until EU DMA pressure in 2025, but rollout is still limited.</p>
     </div>
 
+    <!-- B3 Subscriptions -->
     <div class="snap-flow">
-      <div class="snap-flow-title">Universal chargeback / dispute layer on-chain</div>
-      <div class="snap-flow-chain">Buyer → payment → reversible finality → merchant</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Finality models differ from card networks; no shared dispute arbiter with merchant adoption.</p>
+      <div class="snap-flow-title">Set up a monthly subscription that automatically charges your crypto wallet</div>
+      <div class="snap-flow-subtitle">Recurring pull payments from self-custody · merchant-initiated debit · ACH equivalent</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Blockchains are push-only by design. USDC on EVM supports EIP-3009 <code>transferWithAuthorization</code> and EIP-2612 <code>permit</code>, enabling pull-style flows via relayers — but USDT (the largest retail stablecoin at ~$80B on Tron) explicitly does not implement these standards. Even with permit-enabled tokens: no native on-chain scheduler (chains don't run timers), no overdraft when the wallet is empty on charge day, and no ACH-style NSF retry. Stripe launched USDC subscription billing on Base/Polygon in October 2025 — live but limited to USDC-only, with explicit documentation that empty-wallet involuntary churn is a new uncovered category.</p>
     </div>
+
+    <!-- B4 Chargebacks -->
+    <div class="snap-flow">
+      <div class="snap-flow-title">Dispute a crypto payment and get your money back if the merchant fails to deliver</div>
+      <div class="snap-flow-subtitle">Buyer protection / chargeback · on-chain finality conflict · Visa / PayPal Buyer Protection equivalent</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Card chargebacks exist because card networks are private, contractual, identity-based systems that can compel acquirers to debit merchants. A confirmed on-chain transaction is irreversible by design. Smart-contract escrow (Coinbase/Shopify Commerce Payments Protocol) handles authorized refunds by honest merchants, but disputes still require a trusted off-chain arbiter — no decentralized substitute for Visa's dispute committee exists at scale. Pseudonymous wallets also prevent the identity-bound enforcement that makes fraud recovery possible. Stripe's stablecoin docs explicitly state: "you won't have disputes that turn into chargebacks."</p>
+    </div>
+
   </section>
 
   <p class="br-article-meta"><a href="index.html">← Sector Snapshot</a> · <a href="../blog/a-look-into-consumer-payments-april-2026.html">Longer April 2026 note (blog)</a></p>

@@ -33,29 +33,74 @@
 <main class="snap-wrap" data-reveal>
   <div class="snap-eyebrow">Sector Snapshot</div>
   <h1>Institutional payments</h1>
-  <p class="snap-dek">April 2026 · B2B and bank rails that already clear value, versus atomic institutional settlement still out of reach.</p>
+  <p class="snap-dek">April 2026 · B2B stablecoin payments hit $226B in 2025 — 733% YoY growth (McKinsey/Artemis). These are the flows live in production, and the gaps that still require off-chain infrastructure.</p>
 
   <section class="snap-block" aria-labelledby="today">
     <h2 id="today">Flows possible today</h2>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Cross-border supplier invoice (SWIFT)</div>
-      <div class="snap-flow-chain">Corporate AP → originating bank → correspondent network → beneficiary bank → supplier account</div>
+      <div class="snap-flow-title">Pay an overseas supplier in minutes, not days — at a fraction of the wire cost</div>
+      <div class="snap-flow-subtitle">Cross-border B2B stablecoin payment · "stablecoin sandwich" · fiat on-ramp → chain → fiat off-ramp</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">BVNK (~$15B ann.)</span>
+        <span class="snap-provider-chip hi">Conduit (~$10B ann.)</span>
+        <span class="snap-provider-chip hi">Bridge (Stripe · $1.1B acq.)</span>
+        <span class="snap-provider-chip">Mural Pay</span>
+        <span class="snap-provider-chip">Fireblocks ($200B/mo vol.)</span>
+        <span class="snap-provider-chip">USDT-TRC20</span>
+        <span class="snap-provider-chip">USDC</span>
+      </div>
     </div>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">High-value domestic wire (RTGS)</div>
-      <div class="snap-flow-chain">Payer bank → central bank RTGS → payee bank (same currency, business-day windows)</div>
+      <div class="snap-flow-title">Run corporate treasury in stablecoins — 24/7, no cut-off times, earning yield</div>
+      <div class="snap-flow-subtitle">On-chain corporate treasury · working capital in USDC · yield deployed to tokenized T-bills</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Fireblocks (2,400+ clients)</span>
+        <span class="snap-provider-chip hi">BlackRock BUIDL ($2.5B AUM)</span>
+        <span class="snap-provider-chip">Anchorage Digital</span>
+        <span class="snap-provider-chip">BitGo</span>
+        <span class="snap-provider-chip">Coinbase Prime</span>
+        <span class="snap-provider-chip">Aave</span>
+        <span class="snap-provider-chip">Morpho</span>
+      </div>
     </div>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Tokenised money-market fund as collateral (within existing custody)</div>
-      <div class="snap-flow-chain">Investor → transfer agent / custodian → triparty repo rail → bank balance sheet</div>
+      <div class="snap-flow-title">Pay global employees and contractors instantly — any country, any currency</div>
+      <div class="snap-flow-subtitle">Stablecoin payroll · employer funds in USD · workers withdraw in 90+ local currencies</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Toku ($1B+ ann. on Polygon)</span>
+        <span class="snap-provider-chip hi">Rise</span>
+        <span class="snap-provider-chip">Bitwage</span>
+        <span class="snap-provider-chip">Deel (crypto payouts)</span>
+        <span class="snap-provider-chip">Remote</span>
+        <span class="snap-provider-chip">Polygon</span>
+      </div>
     </div>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Trade finance with bank-issued digital instrument + SWIFT data</div>
-      <div class="snap-flow-chain">Exporter → advising bank → messages (MT/MX) → importer bank → settlement leg (cash or credit)</div>
+      <div class="snap-flow-title">Post a tokenized money-market fund as collateral — earn yield while it's pledged</div>
+      <div class="snap-flow-subtitle">Tokenized MMF as live collateral · real-time transfer · replaces idle cash margin</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">BlackRock BUIDL ($2.5B)</span>
+        <span class="snap-provider-chip hi">JPMorgan TCN</span>
+        <span class="snap-provider-chip">Franklin BENJI</span>
+        <span class="snap-provider-chip">Ondo USDY / OUSG</span>
+        <span class="snap-provider-chip">Securitize</span>
+      </div>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Settle FX trades between banks simultaneously — eliminating the risk one side defaults</div>
+      <div class="snap-flow-subtitle">Interbank FX Payment-vs-Payment (PvP) · DLT shared ledger · eliminates Herstatt risk</div>
+      <div class="snap-providers">
+        <span class="snap-provider-chip hi">Baton Systems Core-FX ($8.1T+ settled)</span>
+        <span class="snap-provider-chip hi">HSBC FX Everywhere ($2.5T+ intrabank)</span>
+        <span class="snap-provider-chip">OSTTRA</span>
+        <span class="snap-provider-chip">Partior</span>
+        <span class="snap-provider-chip">Fnality</span>
+      </div>
     </div>
   </section>
 
@@ -63,21 +108,27 @@
     <h2 id="blocked">High demand · not yet practical</h2>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Atomic DvP: public-chain leg with same-day CBDC / reserve finality</div>
-      <div class="snap-flow-chain">Security token + cash token → simultaneous settlement → RTGS recognition</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Legal finality and CSD interfaces remain RTGS-centric; public-chain legs rarely treated as settlement-grade without new law + bridges.</p>
+      <div class="snap-flow-title">Settle a securities trade and its cash payment at exactly the same moment, on-chain</div>
+      <div class="snap-flow-subtitle">Atomic DvP · public-chain security token + CBDC/stablecoin cash · replaces T+1 CSD settlement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> CSDs and RTGS systems are the legal record of title and settlement finality. On-chain transfer is not legal title transfer without rule changes or law reform. Wholesale CBDC pilots exist, but not broad production equivalence to central bank settlement money.</p>
     </div>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Real-time nostro-free multicurrency netting across Tier-1 peers</div>
-      <div class="snap-flow-chain">Bank A ↔ Bank B ↔ Bank C → single shared ledger position → EoD not required</div>
-      <p class="snap-why"><strong>Why blocked:</strong> Bilateral credit and prefunding rules; CBDC / tokenised reserves not interoperable across all jurisdictions yet.</p>
+      <div class="snap-flow-title">Banks settle with each other in real time across currencies — without pre-funding accounts in every country</div>
+      <div class="snap-flow-subtitle">Nostro-free multicurrency netting · replaces pre-funded correspondent balances</div>
+      <p class="snap-why"><strong>Why blocked:</strong> True nostro elimination needs interoperable settlement-grade central bank assets across jurisdictions. No universal wholesale CBDC exists; consortium models still rely on prefunding and limited participant sets.</p>
     </div>
 
     <div class="snap-flow">
-      <div class="snap-flow-title">Programmable B2B payment from ERP with on-chain condition (delivery oracle)</div>
-      <div class="snap-flow-chain">SAP / Oracle → payment intent → oracle attestation → settlement</div>
-      <p class="snap-why"><strong>Why blocked:</strong> ERP payment files expect bank APIs; oracle liability and reversibility expectations do not map 1:1 to chain finality.</p>
+      <div class="snap-flow-title">ERP automatically pays supplier on delivery confirmation from sensor/certificate</div>
+      <div class="snap-flow-subtitle">Programmable B2B payment · oracle trigger · automated AP settlement</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Oracle liability remains unresolved, ERP systems are bank-API/ISO-native, and on-chain irreversibility conflicts with standard corporate AP recovery expectations.</p>
+    </div>
+
+    <div class="snap-flow">
+      <div class="snap-flow-title">Issue a corporate bond on public chain with atomic coupons and open secondary trading</div>
+      <div class="snap-flow-subtitle">On-chain issuance · ERC-1400/Polymesh style rails · replaces legacy CSD issuance stack</div>
+      <p class="snap-why"><strong>Why blocked:</strong> Legal ownership still ties to CSD registers in most jurisdictions, while transfer-level compliance needs permissioned identity enforcement that public permissionless rails do not natively provide.</p>
     </div>
   </section>
 

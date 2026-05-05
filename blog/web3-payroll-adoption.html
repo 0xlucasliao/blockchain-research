@@ -62,6 +62,8 @@
 
   <p>Stablecoin infrastructure is, by most technical measures, ready. Transaction costs on modern L1s and L2s are fractions of a cent. Settlement is near-instant. The dollar-pegged instruments that eliminate volatility concerns — USDC, USDT, PYUSD — are liquid, regulated, and available. And yet mainstream consumer adoption of crypto payments remains stubbornly low.</p>
 
+  <p>The gap between infrastructure and adoption is jarring. Stablecoins processed <strong>$27.6 trillion</strong> in total settlement volume in 2024 — surpassing Visa and Mastercard combined. Yet of that, only an estimated <strong>~$390 billion (~1%) represents genuine end-user payments</strong>. Card-linked stablecoin spending, despite 673% year-on-year growth, amounts to just <strong>$4.5 billion annually</strong>. The rails carry everything. The commerce runs on almost nothing.</p>
+
   <p>The honest explanation is a structural one: the chicken-and-egg problem.</p>
 
   <div class="pull-quote">
@@ -97,6 +99,8 @@
       </div>
     </div>
   </div>
+
+  <p>The infrastructure-adoption gap is not a technology problem. It was diagnosed clearly by the former PayPal VP of Crypto, José Fernández Da Ponte: <em>"Stablecoin payments are indeed much cheaper than traditional payments, but I have yet to see a merchant prioritize adopting them simply because they are cheaper."</em> Merchants care about incremental revenue, not cost reduction. And without a compelling reason to reach <em>existing</em> stablecoin holders, there is no revenue argument. The network needs people with stablecoin balances before merchants have reason to care.</p>
 
   <p>To break the deadlock, we have to choose: chicken first, or egg first? Consumer adoption first, or supply-side seeding first? This note argues the answer is clear — and that payroll is the mechanism that makes it work.</p>
 </section>
@@ -148,6 +152,8 @@
 
   <p>The target shifts from millions of individual consumers making an active purchasing decision to thousands of employers making a payroll infrastructure decision. That is a far more tractable B2B problem with clearer incentives, more concentrated decision-makers, and a single action that automatically onboards every person on their payroll.</p>
 
+  <p>The data supports this sequencing. Individual crypto salary adoption grew from <strong>3% in 2023 to 9.6% by end of 2024</strong> — a tripling in a single year driven almost entirely by employer-side decisions. Business adoption of stablecoin payroll went from <strong>15% (2023) to 25% (2025)</strong>, with platforms like Rise projecting <strong>35–40% by end of 2026</strong>. Meanwhile, B2B stablecoin flows — payroll, treasury, contractor payments — now account for <strong>58% of all genuine stablecoin payment volume</strong>, growing 733% year-on-year. The employer side is already moving. The question is whether the infrastructure is there to accelerate it.</p>
+
   <div class="diagram">
     <div class="diagram-title">Payroll as the Seeding Mechanism</div>
     <div class="stack">
@@ -197,18 +203,19 @@
   <p>The payroll-first thesis only holds if employers have genuine, independent incentives to make the move. Fortunately, they do — and those incentives are strong enough to stand on their own, separate from any desire to advance Web3 adoption.</p>
 
   <h3>1. On-Chain Treasury Yield</h3>
-  <p>Corporate treasury management is one of the least innovative areas of business finance. Excess cash typically sits in money market funds, short-duration Treasuries, or commercial bank deposits earning yields that are often below the risk-free rate once fees and friction are stripped out. On-chain stablecoin protocols offer an alternative: deployed USDC or USDT can earn yields of 4–8% APY on transparent, auditable DeFi lending protocols (Aave, Compound, Sky/MakerDAO's DSR), without the operational overhead of traditional fixed-income management.</p>
+  <p>Corporate treasury management is one of the least innovative areas of business finance. Excess cash typically sits in money market funds, short-duration Treasuries, or commercial bank deposits earning yields that are often below the risk-free rate once fees and friction are stripped out. On-chain stablecoin protocols offer a materially better alternative. T-bill-backed stablecoin tokens (such as Ondo's USDY) yield <strong>4.5–5% APY</strong>. Savings-rate tokens like sUSDS yield approximately <strong>4.75%</strong>. Aave lending markets return <strong>4–7% APY</strong> depending on utilization. Delta-neutral instruments reach higher still.</p>
 
-  <p>For a business with a $10M payroll reserve sitting idle between disbursal cycles, this represents $400,000–$800,000 in incremental annual yield that would otherwise go uncaptured. The payroll operating account becomes a yield-bearing asset, not a dead weight on the balance sheet.</p>
+  <p>For a business with a $10M payroll reserve sitting idle between disbursal cycles, this represents $400,000–$800,000 in incremental annual yield that would otherwise go uncaptured. The payroll operating account becomes a yield-bearing asset, not a dead weight on the balance sheet. Rise launched <strong>Rise Earn</strong> in March 2026 — built-in yield on idle USDC payroll balances via Aave vaults on Arbitrum — making this the first productized version of payroll treasury yield available to non-crypto-native businesses, with no DeFi interaction required.</p>
 
   <h3>2. Cross-Border Payroll Cost Savings</h3>
-  <p>Businesses with global or distributed teams face compounding costs on cross-border payroll: correspondent banking fees, currency conversion spreads, intermediary charges, and receiving-bank fees. A SWIFT international wire from the US to Southeast Asia or Africa typically costs $25–$50 per transaction on the sending side and extracts 1–3% in FX spread, with the receiving employee potentially paying additional conversion fees on their end.</p>
+  <p>Businesses with global or distributed teams face compounding costs on cross-border payroll: correspondent banking fees, currency conversion spreads, intermediary charges, and receiving-bank fees. The global average remittance fee stands at <strong>6.49%</strong> (World Bank, Q1 2025) — more than double the UN's SDG target of 3%. A SWIFT international wire typically costs <strong>$25–$75</strong> on the sending side plus a <strong>~6% average FX markup</strong>, with 1–5 business days to settle, and the receiving employee potentially paying additional conversion fees on their end.</p>
 
-  <p>A stablecoin payroll disbursement to the same employee costs a fraction of a cent in network fees and settles in seconds. For companies paying 50 international contractors monthly, this represents thousands of dollars per year in eliminated banking overhead — and eliminates the 2–5 day settlement delay that creates treasury management complexity.</p>
+  <p>A stablecoin payroll disbursement to the same employee costs a fraction of a cent in network fees and settles in seconds. Solana transactions run at <strong>$0.00025</strong>. Arbitrum transactions on platforms like Rise settle in under 2 minutes for under <strong>$0.50</strong>. Rise's own data shows a <strong>95% reduction in international payroll costs</strong> vs. traditional banking for their customers. For companies paying 50 international contractors monthly, this represents thousands of dollars per year in eliminated banking overhead — and eliminates the settlement delay that creates treasury management complexity.</p>
 
   <div class="callout" data-label="Cross-Border Cost Comparison">
-    <p><strong>SWIFT Wire:</strong> $25–50 flat fee + 1–3% FX spread + 2–5 day settlement + receiver fees<br>
-    <strong>Stablecoin (on modern L1/L2):</strong> &lt;$0.01 network fee + 0% FX spread (if USD-denominated) + &lt;30 second finality + zero receiver fees</p>
+    <p><strong>SWIFT Wire:</strong> $25–75 flat fee + ~6% average FX spread + 1–5 day settlement + receiver fees<br>
+    <strong>Stablecoin (modern L1/L2):</strong> &lt;$0.50 network fee + 0% FX spread (if USD-denominated) + &lt;2 minute finality + zero receiver fees<br>
+    <strong>Observed savings:</strong> 95% reduction in cross-border payroll cost (Rise, 2026)</p>
   </div>
 
   <h3>3. Programmable Payroll and Benefits</h3>
@@ -240,40 +247,47 @@
       <div class="intent-card active">
         <div class="intent-role">Enterprise Payroll</div>
         <div class="intent-product">Deel</div>
-        <div class="intent-desc">Global contractor and employee payroll with crypto disbursement to 150+ countries. Handles compliance, KYC, and tax documentation. One of the largest on-ramp platforms for companies paying global teams in stablecoins.</div>
+        <div class="intent-desc">Processes $22B annually to 40,000+ customers across 150+ countries. Launched stablecoin payroll via MoonPay Iron in February 2026, initially in UK/EU. The largest traditional HR platform retrofitting stablecoin disbursement.</div>
       </div>
       <div class="intent-card active">
         <div class="intent-role">Crypto-native Payroll</div>
         <div class="intent-product">Request Finance</div>
-        <div class="intent-desc">Invoice and payroll management platform built natively on-chain. Supports batch payments to multiple recipients in a single transaction. Has processed over $1B in crypto-denominated business payments.</div>
+        <div class="intent-desc">Natively on-chain invoicing and payroll for 2,000+ Web3 teams. Supports 140+ cryptocurrencies across 18 networks. Total processed volume exceeded $1.2B by early 2025; processing ~$30M/month by November 2025.</div>
       </div>
       <div class="intent-card active">
         <div class="intent-role">Streaming Salary</div>
         <div class="intent-product">Superfluid</div>
-        <div class="intent-desc">Real-time money streaming protocol enabling continuous salary flows. Salary accrues per second rather than in periodic lump sums. Used by DAOs and crypto-native companies for contributor compensation.</div>
+        <div class="intent-desc">Real-time money streaming protocol enabling continuous per-second salary flows. Minimizes gas costs for recurring payments vs. batch transfers. Raised $5.1M in strategic funding (Feb 2024) and $2M public token sale (Aug 2025).</div>
       </div>
       <div class="intent-card">
         <div class="intent-role">Vesting &amp; Streaming</div>
         <div class="intent-product">Sablier</div>
-        <div class="intent-desc">Token vesting and payment streaming protocol. Commonly used for token team allocations, advisor grants, and structured compensation plans that unlock over defined schedules.</div>
+        <div class="intent-desc">First streaming protocol in the Ethereum ecosystem. Over 297,500 all-time users and 552,800 streams created. Median TVL of $250M in 2024. Used for token vesting, advisor grants, and structured compensation schedules.</div>
       </div>
       <div class="intent-card">
-        <div class="intent-role">Crypto Wages</div>
+        <div class="intent-role">Crypto Wages (OG)</div>
         <div class="intent-product">Bitwage</div>
-        <div class="intent-desc">Converts traditional fiat payroll into Bitcoin or stablecoin disbursements at the point of payment. Enables employees to receive crypto wages without requiring the employer to hold crypto.</div>
+        <div class="intent-desc">Founded July 2014 — the original Bitcoin payroll platform. Has processed $400M+ across 90,000+ workers and 4,500+ businesses in ~200 countries. Zero security breaches in over a decade of operation.</div>
       </div>
       <div class="intent-card">
         <div class="intent-role">Global Payroll</div>
         <div class="intent-product">Rise</div>
-        <div class="intent-desc">Web3-native payroll platform for DAOs and crypto companies. Supports multi-chain batch payroll in stablecoins, compliance management, and contractor onboarding with on-chain identity verification.</div>
+        <div class="intent-desc">Web3-native employer-of-record covering 190+ countries. Processed $1B+ in stablecoin payroll (USDC + USDT). Launched Rise Earn in March 2026 — first integrated yield product on idle payroll balances via Aave vaults on Arbitrum.</div>
       </div>
     </div>
   </div>
 
   <h3>Adoption Signals</h3>
-  <p>Adoption is most visible in three categories of employer: crypto-native companies and DAOs (for whom on-chain payroll is a natural operational fit), technology companies with large contractor bases in emerging markets (for whom the cost savings on cross-border payments are immediate and material), and financial services companies in digital-asset-progressive jurisdictions experimenting with pilot programs.</p>
+  <p>Adoption is most visible in three categories of employer: crypto-native companies and DAOs (for whom on-chain payroll is a natural operational fit), technology companies with large contractor bases in emerging markets (for whom the cost savings on cross-border payments are immediate and material), and financial services companies in digital-asset-progressive jurisdictions experimenting with pilot programs. Among individual employees, <strong>60% of freelancers globally have been paid in cryptocurrency at least once</strong>, and <strong>53% choose to withdraw earnings in crypto</strong> even when initially paid in fiat — a strong signal that the demand for on-chain wage storage exists and is growing.</p>
 
-  <p>The geography of crypto payroll adoption clusters around three corridors: Latin America (Brazil, Argentina, Colombia — driven by currency instability and large tech talent pools), Southeast Asia (Philippines, Vietnam — driven by remittance dynamics and mobile-first banking patterns), and Sub-Saharan Africa (Nigeria, Kenya — driven by underbanked populations and high cross-border payment costs).</p>
+  <p>Among stablecoins used in payroll, <strong>USDC accounts for 63% of all crypto payroll transactions</strong> and USDT for 28.6% — combined, dollar-pegged stablecoins represent 91.6% of the market. Volatile assets (ETH, SOL) account for under 4% — confirming that payroll use overwhelmingly prefers price stability over speculation.</p>
+
+  <p>The geography of crypto payroll adoption clusters around three corridors: <strong>Latin America</strong> (Brazil received $318.8B in crypto value over the most recent 12-month period, with 90%+ stablecoin-denominated; Argentina's peso instability drives 93.9% USDC dominance), <strong>Southeast Asia</strong> (43% of B2B cross-border payments in the region already use stablecoins; 70% of adults remain unbanked or underbanked), and <strong>Sub-Saharan Africa</strong> (Nigeria alone processed $92.1B in crypto transactions, leading Africa's 43% stablecoin share of all crypto activity).</p>
+
+  <h3>Regulatory Readiness</h3>
+  <p>The regulatory environment for crypto payroll has shifted materially in the past 12 months. The US <strong>GENIUS Act</strong> (signed July 2025) established a federal framework for payment stablecoins — mandating 1:1 reserves, regular disclosures, and on-demand redemption — which is expected to unlock enterprise treasury adoption by removing the primary regulatory uncertainty. Hong Kong's <strong>Stablecoin Bill</strong> passed in May 2026. The EU's <strong>MiCA framework</strong> has had stablecoin provisions in force since mid-2024. Switzerland has allowed crypto salary payments with written agreement under cantonal law for several years. The UAE (ADGM and DIFC) explicitly permits digital asset salary payments. Brazil passed legislation in 2025 allowing partial crypto compensation. The regulatory tailwind is real — the major markets are now providing frameworks, not obstacles.</p>
+
+  <p>For compliance-sensitive employers, the regulatory trajectory reduces the risk argument against crypto payroll. The question is increasingly not "is this legal?" but "is there tooling that makes compliance manageable?" That gap is what the chain-level infrastructure stack addresses.</p>
 
   <h3>What the Landscape Is Missing</h3>
   <p>The current platforms are effective for crypto-native employers and technically sophisticated users. The gap that remains is the layer beneath them: the chain-level infrastructure that would make on-chain payroll as easy for a non-crypto-native mid-market business as running payroll through ADP or Gusto. That infrastructure layer is what this note addresses next.</p>
@@ -317,13 +331,15 @@
 
   <p>Stage four is merchant response. Merchants observe transaction volume from wallets that are clearly not crypto-native speculators — they are employees spending their salaries. This is a different demand profile than ICO-era crypto holders. It is predictable, recurring, and structurally linked to employment cycles. Merchants who integrate stablecoin acceptance are not betting on speculation; they are serving a payroll-funded customer base.</p>
 
-  <p>The historical parallel is precise. WeChat Pay's dominance in China was not built by convincing consumers to change how they spend. It was built by making WeChat the place where money arrived — through red envelopes, P2P transfers, and eventually payroll. Once money flows in, spending follows without any additional persuasion required.</p>
+  <p>The historical parallel is precise. WeChat Pay's dominance in China was not built by convincing consumers to change how they spend. It was built by making WeChat the place where money arrived — through red envelopes, P2P transfers, and eventually payroll. Once money flows in, spending follows without any additional persuasion required. Together, Alipay and WeChat Pay now handle approximately 94% of all Chinese mobile payments — built entirely on the principle of money-in-first.</p>
 
   <div class="callout" data-label="The WeChat Parallel">
-    <p>WeChat Pay's breakthrough came from money flowing <em>into</em> the platform — digital red envelopes at Chinese New Year 2014 put $3.3B into WeChat wallets in 24 hours. That supply of in-platform balance turned hundreds of millions of people into potential spenders. Crypto payroll is the same mechanism: create the in-wallet balance first, and spending follows. The difference is that payroll creates it <em>every month</em>, automatically, at scale.</p>
+    <p>WeChat Pay's breakthrough came from money flowing <em>into</em> the platform — digital red envelopes at Chinese New Year 2014 put <strong>$3.3B into WeChat wallets in 24 hours</strong>. That supply of in-platform balance turned hundreds of millions of people into potential spenders without any payment adoption campaign. Crypto payroll is the same mechanism, with one structural advantage: payroll replenishes the balance <em>every month</em>, automatically, for every employee on the payroll run.</p>
   </div>
 
-  <p>The objection most often raised is: what if workers just off-ramp immediately? This is a reasonable concern, and the answer is that some will. But off-ramping is not a failure mode — it is still a use case that generates on-chain volume, demonstrates utility, and reduces the friction cost of holding crypto for the workers who don't off-ramp. More importantly, as on-chain merchant infrastructure matures and on-chain spending options expand, the incentive to off-ramp decreases. The flywheel does not require 100% retention — it only requires enough in-wallet activity to create a meaningful demand signal for merchants.</p>
+  <p>Consumer demand for spending stablecoins already exists when the wallet balance does. A BVNK/YouGov study found <strong>71% of individuals said they would use a linked debit card to spend stablecoins</strong>. Stablecoin debit card monthly spend grew from approximately <strong>$100M in early 2023 to over $1.5B by late 2025</strong> — a 15x increase — driven primarily by holders who use cards as the spending interface for payroll- or yield-funded balances. Visa's stablecoin-linked card network reached a <strong>$3.5B annualized run-rate</strong> by Q4 FY2025, growing 460% year-on-year. The spending infrastructure is ready. The missing ingredient is a regular, recurring source of consumer stablecoin balances at scale — and payroll provides exactly that.</p>
+
+  <p>The objection most often raised is: what if workers just off-ramp immediately? This is a reasonable concern, and the answer is that some will. But off-ramping is not a failure mode — it is still a use case that generates on-chain volume, demonstrates utility, and reduces the friction cost of holding crypto for the workers who don't off-ramp. More importantly, as on-chain merchant infrastructure matures and yield products like Rise Earn reward workers for keeping balances on-chain, the incentive to off-ramp decreases. The flywheel does not require 100% retention — it only requires enough in-wallet activity to create a meaningful demand signal for merchants.</p>
 </section>
 
 <!-- SECTION 7 -->
@@ -513,6 +529,17 @@
   </table>
 
   <p>The chain-level infrastructure stack described in Section 07 is the enabling layer. Payroll SDK, streaming salary protocol, yield-bearing treasury vault, worker wallet onboarding kit, compliance hooks, vesting contracts, and a robust off-ramp partner stack. Together, they lower the integration cost for non-crypto-native businesses to the point where on-chain payroll competes with ADP and Gusto on convenience, not just cost.</p>
+
+  <div class="callout" data-label="The Numbers That Make the Case">
+    <p>
+      <strong>$27.6T</strong> in stablecoin settlement in 2024 — but only ~1% is genuine consumer commerce.<br>
+      <strong>$226B</strong> in annual B2B stablecoin flows (733% YoY growth) proving the employer side is already moving.<br>
+      <strong>9.6%</strong> individual crypto salary adoption by end of 2024, tripling in a single year.<br>
+      <strong>95%</strong> reduction in cross-border payroll costs on-chain vs. SWIFT (Rise, 2026).<br>
+      <strong>71%</strong> of consumers say they would spend stablecoins via a linked debit card — if they had the balance.<br>
+      <strong>$1.5B/month</strong> in stablecoin debit card spend — 15x growth in two years, driven by holders, not campaigners.
+    </p>
+  </div>
 
   <p>When that happens, the flywheel is self-sustaining. Employers move for yield and cost. Employees arrive as passive crypto holders. Workers spend; merchants see demand; merchants integrate. The chicken-and-egg problem resolves itself — because payroll planted the egg first.</p>
 </section>

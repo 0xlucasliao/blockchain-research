@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Use cases — blockchain research</title>
+  <title>Vision — blockchain research</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/theme.css">
   <link rel="stylesheet" href="../css/motion.css">
@@ -78,6 +78,20 @@
       font-size: 12px;
       color: var(--muted);
     }
+    .uc-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
     @media (prefers-reduced-motion: reduce) {
       .uc-list a:hover { transform: none; }
     }
@@ -89,9 +103,9 @@
   <a href="../index.html" class="br-masthead-brand">Blockchain research</a>
   <div class="br-masthead-nav">
     <a href="../index.html">Home</a>
-    <a href="index.html">Use cases</a>
+    <a href="../use_cases/index.html">Use cases</a>
     <a href="../blog/index.html">Blog</a>
-    <a href="../vision/index.html">Vision</a>
+    <a href="index.html">Vision</a>
     <details class="br-sectors">
       <summary>Sector Snapshot</summary>
       <div class="br-sectors-panel" role="group" aria-label="Sector snapshot">
@@ -105,25 +119,19 @@
 </header>
 <div class="br-masthead-spacer" aria-hidden="true"></div>
 
-<main data-reveal>
-  <div class="uc-eyebrow">/use_cases/</div>
-  <h1>Use cases</h1>
-  <p class="uc-lead">Single-issue application notes. Add a new HTML file in this folder and link it from the list below.</p>
-  <p class="br-article-meta" style="margin-bottom:20px">Written 10 April 2026 · Last updated 29 April 2026</p>
+<main class="br-is-visible">
+  <div class="uc-eyebrow">/vision/</div>
+  <h1>Vision</h1>
+  <p class="uc-lead">Interactive demos and forward-looking prototypes — click through flows that show where agentic payments, agent wallets, and on-chain commerce could land.</p>
+  <p class="br-article-meta" style="margin-bottom:20px">July 2026</p>
 
   <ul class="uc-list">
     <li>
-      <a href="blockchain-testamentary-trust.html">
-        <strong>Blockchain testamentary trust</strong>
-        <span>The autonomous trust — oracle gap, RWA &amp; stablecoins, legal wrappers, privacy law collision, gains vs risks, timelines, charts.</span>
-        <span class="br-article-meta" style="display:block;margin-top:10px">Written 22 April 2026 · Last updated 22 April 2026</span>
-      </a>
-    </li>
-    <li>
-      <a href="unsecured-credit-web3.html">
-        <strong>Unsecured credit on Web3</strong>
-        <span>Why unsecured credit matters, BNPL progressive trust, Web3 advantages, missing identity/income rails, and rollout path.</span>
-        <span class="br-article-meta" style="display:block;margin-top:10px">Written 29 April 2026 · Last updated 29 April 2026</span>
+      <a href="agentic-payment-demo.html">
+        <span class="uc-tag">Demo</span>
+        <strong>Agentic Payment</strong>
+        <span>ChatGPT-style UI with Agent Wallet, MCP tool calls, and autonomous purchases — powerbank buy and Da Nang travel booking with policy limits.</span>
+        <span class="br-article-meta" style="display:block;margin-top:10px">July 2026 · vision/agentic-payment-demo.html</span>
       </a>
     </li>
   </ul>

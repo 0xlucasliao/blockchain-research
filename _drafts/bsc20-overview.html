@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSC20 — Product Overview & Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1b1e; --muted:#6b6e76; --paper:#fafaf7; --panel:#ffffff; --line:#e7e5de;
+    --gold:#c99400; --gold-soft:#f7edd2; --gold-bright:#f0b90b; --dark:#14161a; --dark-fg:#e6e3d8;
+    --ok:#2f8f63; --no:#c05a44; --sidebar-w:266px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.75;}
+
+  /* Sidebar */
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:var(--panel);
+    border-right:1px solid var(--line);padding:30px 0 24px;overflow-y:auto;z-index:10;}
+  .sidebar .brand{padding:0 24px 18px;border-bottom:1px solid var(--line);}
+  .brand .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;}
+  .brand h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:24px;line-height:1.2;margin-top:6px;}
+  .brand .sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+  nav.toc{padding:12px 0;}
+  .toc .grp{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);font-weight:700;padding:16px 24px 5px;}
+  .toc a{display:flex;gap:9px;align-items:baseline;padding:6px 24px;color:var(--muted);text-decoration:none;
+    font-size:13px;line-height:1.45;border-left:3px solid transparent;transition:.15s;}
+  .toc a .no{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);opacity:.8;}
+  .toc a:hover{color:var(--ink);background:var(--gold-soft);}
+  .toc a.active{color:var(--ink);border-left-color:var(--gold-bright);background:var(--gold-soft);}
+
+  /* Layout */
+  .main{margin-left:var(--sidebar-w);}
+  .wrap{max-width:900px;margin:0 auto;padding:52px 40px 120px;}
+  .doc-head{margin-bottom:10px;}
+  .doc-head .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;}
+  .doc-head h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:48px;line-height:1.1;margin:10px 0 14px;letter-spacing:-.01em;}
+  .doc-head .subtitle{font-size:18px;color:var(--muted);max-width:660px;}
+
+  /* Part divider */
+  .part{margin:56px 0 30px;}
+  .part .lbl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+  .part h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:32px;margin-top:4px;padding-bottom:14px;border-bottom:3px solid var(--ink);}
+  .part p.intro{color:var(--muted);font-size:15.5px;margin-top:14px;max-width:680px;}
+
+  /* ---- Highlight blocks (product overview) ---- */
+  .hl{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:22px;scroll-margin-top:20px;}
+  .hl .top{height:5px;background:var(--gold-bright);}
+  .hl .body{padding:26px 28px;}
+  .hl .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);}
+  .hl h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:26px;margin:5px 0 16px;}
+  .hl .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;}
+  .prob{background:#fbf1ef;border-left:3px solid var(--no);border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;margin-bottom:14px;}
+  .prob b{color:#9c3f2c;}
+  .hl p.exp{font-size:15px;margin-bottom:14px;}
+  .hl .win{font-size:14.5px;background:var(--gold-soft);border-radius:8px;padding:11px 15px;}
+  .hl .win b{color:#5c4a12;}
+  .diagram{background:#faf8f2;border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .diagram svg{display:block;width:100%;height:auto;}
+  .dcap{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);text-align:center;margin-top:8px;letter-spacing:.02em;}
+
+  /* plain feature cards */
+  .pfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .pfeat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;border-top:3px solid var(--gold-bright);}
+  .pfeat h4{font-family:'Noto Serif SC',serif;font-size:19px;margin-bottom:10px;}
+  .pfeat .p{font-size:14px;margin-bottom:8px;}
+  .pfeat .p b{color:#9c3f2c;}
+  .pfeat .p.win b{color:#5c4a12;}
+
+  /* ---- Deep dive catalog ---- */
+  section.cat{margin-bottom:42px;scroll-margin-top:20px;}
+  .sec-head{display:flex;align-items:baseline;gap:13px;margin-bottom:8px;padding-bottom:12px;border-bottom:2px solid var(--ink);}
+  .sec-head .no{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);font-weight:700;}
+  .sec-head h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:24px;}
+  .sec-intro{color:var(--muted);font-size:15px;margin:10px 0 18px;}
+  h4.sub{font-family:'Noto Serif SC',serif;font-size:18px;margin:26px 0 10px;font-weight:700;}
+  .role-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;background:var(--gold-soft);color:#6b5510;padding:1px 6px;border-radius:4px;white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:13.5px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  thead th{background:#f3f1ea;text-align:left;padding:9px 12px;font-weight:700;font-size:12px;color:#55524a;border-bottom:1px solid var(--line);}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#faf8f2;}
+  code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:#f0eee7;padding:1px 5px;border-radius:4px;color:#3a3730;white-space:nowrap;}
+  td .warn{color:#b45309;font-weight:700;}
+  .variant-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 4px;}
+  .vcard{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--panel);}
+  .vcard.asset{border-top:4px solid var(--gold-bright);}
+  .vcard.stable{border-top:4px solid #4a5568;}
+  .vcard h4{font-family:'Noto Serif SC',serif;font-size:19px;margin-bottom:4px;}
+  .vcard .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);}
+  .vcard ul{list-style:none;margin-top:10px;}
+  .vcard li{position:relative;padding-left:16px;font-size:13.5px;margin-bottom:6px;line-height:1.5;}
+  .vcard li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
+  .callout{background:var(--gold-soft);border-radius:10px;padding:15px 20px;margin:16px 0;font-size:14px;}
+  .callout strong{color:#5c4a12;}
+  pre.flow{background:var(--dark);color:var(--dark-fg);border-radius:10px;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;margin:12px 0;white-space:pre;}
+  pre.flow .c{color:#e8c35a;} pre.flow .m{color:#7d8590;}
+
+  footer{margin-left:var(--sidebar-w);border-top:1px solid var(--line);padding:26px 40px;color:var(--muted);font-size:13px;text-align:center;}
+
+  @media (max-width:920px){
+    .sidebar{display:none;}
+    .main,footer{margin-left:0;}
+    .wrap{padding:34px 20px 80px;}
+    .doc-head h1{font-size:33px;}
+    .hl .cols{grid-template-columns:1fr;gap:18px;}
+    .variant-cards,.pfeat-grid{grid-template-columns:1fr;}
+    table{font-size:12.5px;} code{white-space:normal;}
+  }
+  ::selection{background:var(--gold-soft);}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="kicker">BNB Smart Chain</div>
+    <h1>BSC20</h1>
+    <div class="sub">Product overview &amp; deep dive</div>
+  </div>
+  <nav class="toc" id="toc">
+    <div class="grp">Part 1 · Understanding the product</div>
+    <a href="#composability"><span class="no">◆</span>Composability</a>
+    <a href="#lists"><span class="no">◆</span>Blacklist &amp; whitelist</a>
+    <a href="#lane"><span class="no">◆</span>Payment Lane</a>
+    <a href="#multiplier"><span class="no">◆</span>Multiplier</a>
+    <a href="#more"><span class="no">＋</span>More features that matter</a>
+    <div class="grp">Part 2 · Deep dive</div>
+    <a href="#variants"><span class="no">01</span>Two variants</a>
+    <a href="#base"><span class="no">02</span>Base methods</a>
+    <a href="#asset-ext"><span class="no">03</span>Asset extensions</a>
+    <a href="#stable-ext"><span class="no">04</span>Stablecoin extension</a>
+    <a href="#factory"><span class="no">05</span>Factory</a>
+    <a href="#policy"><span class="no">06</span>Policy Registry</a>
+    <a href="#rbac"><span class="no">07</span>RBAC roles</a>
+    <a href="#together"><span class="no">08</span>How it fits together</a>
+  </nav>
+</aside>
+
+<div class="main">
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="kicker">Token Standard</div>
+  <h1>BSC20</h1>
+  <p class="subtitle">A plain-language overview for marketing and BD, followed by a full technical deep dive for the builders.</p>
+</header>
+
+<!-- ============================================================= -->
+<!-- PART 1 — UNDERSTANDING THE PRODUCT -->
+<!-- ============================================================= -->
+<div class="part" id="part1">
+  <div class="lbl">Part 1</div>
+  <h2>Understanding the product</h2>
+  <p class="intro">The four capabilities we lead with, each framed as the problem it solves and shown with a simple diagram — no blockchain background needed. A short tour of other features worth knowing follows at the end.</p>
+</div>
+
+<!-- Composability -->
+<div class="hl" id="composability">
+  <div class="top"></div>
+  <div class="body">
+    <div class="eyebrow">Highlight · Composability</div>
+    <h3>Primitives that snap together</h3>
+    <div class="cols">
+      <div>
+        <div class="prob"><b>The problem:</b> Launching a real, compliant token normally means bolting together separate contracts and services — slow, fragile, and different every time.</div>
+        <p class="exp">BSC20 is a set of building blocks — a base token, compliance lists, role permissions, payment memos, an optional value multiplier — that combine into exactly the token you need, deployed and fully configured in a single step. Better still, one compliance list can feed a whole family of tokens: a customer clears KYC once and is recognized everywhere.</p>
+        <div class="win"><b>What we achieve:</b> issuers assemble a production-ready token like Lego, and reuse the same compliance setup across every product they launch.</div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 520 250" role="img" aria-label="Building blocks combining into one token">
+          <g font-family="'Noto Sans SC',sans-serif">
+            <!-- modules -->
+            <g font-size="12.5" fill="#1a1b1e">
+              <rect x="8" y="18" width="176" height="32" rx="7" fill="#fff" stroke="#e0ddd4"/><text x="24" y="38">Base token</text>
+              <rect x="8" y="60" width="176" height="32" rx="7" fill="#fff" stroke="#e0ddd4"/><text x="24" y="80">Blacklist / whitelist</text>
+              <rect x="8" y="102" width="176" height="32" rx="7" fill="#fff" stroke="#e0ddd4"/><text x="24" y="122">Role permissions</text>
+              <rect x="8" y="144" width="176" height="32" rx="7" fill="#fff" stroke="#e0ddd4"/><text x="24" y="164">Payment memos</text>
+              <rect x="8" y="186" width="176" height="32" rx="7" fill="#fff" stroke="#e0ddd4"/><text x="24" y="206">Value multiplier</text>
+            </g>
+            <!-- converging lines -->
+            <g stroke="#c99400" stroke-width="1.4" fill="none" opacity="0.75">
+              <path d="M184 34 C 250 34, 270 118, 330 122"/>
+              <path d="M184 76 C 250 76, 275 118, 330 124"/>
+              <path d="M184 118 L 330 125"/>
+              <path d="M184 160 C 250 160, 275 132, 330 126"/>
+              <path d="M184 202 C 250 202, 270 132, 330 128"/>
+            </g>
+            <!-- token -->
+            <rect x="330" y="92" width="176" height="66" rx="12" fill="#14161a"/>
+            <text x="418" y="120" text-anchor="middle" fill="#f0b90b" font-size="15" font-weight="700">Your BSC20 token</text>
+            <text x="418" y="140" text-anchor="middle" fill="#c3c1b8" font-size="11">ready to use</text>
+            <text x="418" y="192" text-anchor="middle" fill="#6b6e76" font-size="12" font-family="'JetBrains Mono',monospace">deployed + configured in ONE transaction</text>
+          </g>
+        </svg>
+        <div class="dcap">many building blocks → one token, one step</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Blacklist / whitelist -->
+<div class="hl" id="lists">
+  <div class="top"></div>
+  <div class="body">
+    <div class="eyebrow">Highlight · Compliance lists</div>
+    <h3>Blacklist &amp; whitelist, built in</h3>
+    <div class="cols">
+      <div>
+        <div class="prob"><b>The problem:</b> Regulated money movement needs the ability to screen who can send and receive — but most tokens have no native way to do it, forcing risky workarounds.</div>
+        <p class="exp">Every BSC20 token can enforce address rules directly, in two modes. A <b>blacklist</b> keeps circulation open to everyone and blocks only flagged addresses — the model for a mass-market stablecoin screening sanctioned wallets. A <b>whitelist</b> flips it: closed by default, only approved (e.g. KYC-cleared) addresses can hold or trade — the model for institutional and securities-style assets. Both are optional; a token with neither is simply open.</p>
+        <div class="win"><b>What we achieve:</b> compliance that satisfies regulators and institutions is a native switch, not a custom engineering project.</div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 520 250" role="img" aria-label="Blacklist versus whitelist filtering">
+          <g font-family="'Noto Sans SC',sans-serif" font-size="12">
+            <!-- Blacklist panel -->
+            <text x="120" y="24" text-anchor="middle" font-weight="700" font-size="14" fill="#1a1b1e">Blacklist</text>
+            <text x="120" y="42" text-anchor="middle" fill="#6b6e76" font-size="11">open · block the flagged</text>
+            <line x1="150" y1="60" x2="150" y2="230" stroke="#14161a" stroke-width="2"/>
+            <text x="150" y="250" text-anchor="middle" fill="#6b6e76" font-size="10">token</text>
+            <!-- allowed -->
+            <circle cx="35" cy="95" r="11" fill="#2f8f63"/><path d="M150 95 H 250" stroke="#2f8f63" stroke-width="2" marker-end="url(#agold)"/>
+            <circle cx="35" cy="140" r="11" fill="#2f8f63"/><path d="M150 140 H 250" stroke="#2f8f63" stroke-width="2" marker-end="url(#agold)"/>
+            <!-- blocked -->
+            <circle cx="35" cy="188" r="11" fill="#c05a44"/>
+            <line x1="46" y1="188" x2="138" y2="188" stroke="#c05a44" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="150" y="192" text-anchor="middle" fill="#c05a44" font-size="15" font-weight="700">✕</text>
+
+            <!-- divider -->
+            <line x1="270" y1="60" x2="270" y2="230" stroke="#e7e5de" stroke-width="1"/>
+
+            <!-- Whitelist panel -->
+            <text x="400" y="24" text-anchor="middle" font-weight="700" font-size="14" fill="#1a1b1e">Whitelist</text>
+            <text x="400" y="42" text-anchor="middle" fill="#6b6e76" font-size="11">closed · allow the approved</text>
+            <line x1="430" y1="60" x2="430" y2="230" stroke="#14161a" stroke-width="2"/>
+            <text x="430" y="250" text-anchor="middle" fill="#6b6e76" font-size="10">token</text>
+            <!-- approved -->
+            <circle cx="315" cy="95" r="11" fill="#c99400"/><path d="M430 95 H 500" stroke="#c99400" stroke-width="2" marker-end="url(#agold)"/>
+            <!-- blocked greys -->
+            <circle cx="315" cy="140" r="11" fill="#b7b4ab"/>
+            <line x1="326" y1="140" x2="418" y2="140" stroke="#c05a44" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="430" y="144" text-anchor="middle" fill="#c05a44" font-size="15" font-weight="700">✕</text>
+            <circle cx="315" cy="188" r="11" fill="#b7b4ab"/>
+            <line x1="326" y1="188" x2="418" y2="188" stroke="#c05a44" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="430" y="192" text-anchor="middle" fill="#c05a44" font-size="15" font-weight="700">✕</text>
+          </g>
+          <defs>
+            <marker id="agold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#2f8f63"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="dcap">green = allowed · gold = approved · grey = not listed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment lane -->
+<div class="hl" id="lane">
+  <div class="top"></div>
+  <div class="body">
+    <div class="eyebrow">Highlight · Settlement priority</div>
+    <h3>A Payment Lane reserved for BSC20</h3>
+    <div class="cols">
+      <div>
+        <div class="prob"><b>The problem:</b> When speculation spikes (a meme-coin or NFT rush), it bids up network fees and crowds ordinary payments out of blocks — so transfers and withdrawals stall exactly when markets are busiest.</div>
+        <p class="exp">The Payment Lane sets aside a guaranteed slice of every block for payments during congestion. Our version is scoped on purpose: <b>only BSC20 tokens are registered, and only BSC20 transactions get the reserved space.</b> Everything else keeps competing in the open lane as it does today.</p>
+        <div class="win"><b>What we achieve:</b> reliable settlement becomes a property of the BSC20 standard itself — a concrete reason to issue and transact on BSC20 rather than elsewhere.</div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 520 240" role="img" aria-label="Reserved payment lane during congestion">
+          <g font-family="'Noto Sans SC',sans-serif">
+            <text x="260" y="20" text-anchor="middle" font-size="12" fill="#6b6e76">One block, during congestion</text>
+            <!-- reserved lane -->
+            <rect x="40" y="34" width="440" height="52" rx="8" fill="#fbeec4" stroke="#f0b90b"/>
+            <text x="52" y="56" font-size="11.5" font-weight="700" fill="#8a6d0a">BSC20 Payment Lane — reserved</text>
+            <g fill="#c99400">
+              <circle cx="300" cy="72" r="7"/><circle cx="330" cy="72" r="7"/><circle cx="360" cy="72" r="7"/>
+            </g>
+            <path d="M300 72 H 470" stroke="#c99400" stroke-width="2" marker-end="url(#lgold)" opacity="0.8"/>
+            <text x="470" y="60" text-anchor="end" font-size="10" fill="#8a6d0a">flows freely</text>
+            <!-- general lane -->
+            <rect x="40" y="96" width="440" height="118" rx="8" fill="#14161a"/>
+            <text x="52" y="118" font-size="11.5" font-weight="700" fill="#c3c1b8">General lane — congested</text>
+            <g fill="#4b4e56">
+              <circle cx="120" cy="150" r="7"/><circle cx="145" cy="168" r="7"/><circle cx="170" cy="150" r="7"/>
+              <circle cx="195" cy="172" r="7"/><circle cx="220" cy="152" r="7"/><circle cx="250" cy="170" r="7"/>
+              <circle cx="280" cy="150" r="7"/><circle cx="310" cy="172" r="7"/><circle cx="340" cy="152" r="7"/>
+              <circle cx="370" cy="170" r="7"/><circle cx="400" cy="150" r="7"/><circle cx="430" cy="168" r="7"/>
+            </g>
+            <text x="260" y="200" text-anchor="middle" font-size="10.5" fill="#7d8590">meme / NFT traffic jams here</text>
+          </g>
+          <defs>
+            <marker id="lgold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#c99400"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="dcap">BSC20 payments keep moving while everything else queues</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Multiplier -->
+<div class="hl" id="multiplier">
+  <div class="top"></div>
+  <div class="body">
+    <div class="eyebrow">Highlight · Real-world assets</div>
+    <h3>The multiplier</h3>
+    <div class="cols">
+      <div>
+        <div class="prob"><b>The problem:</b> Asset-backed tokens (funds, treasuries, staking receipts) change in value daily — but updating thousands of balances one by one is impractical and error-prone.</div>
+        <p class="exp">The multiplier moves everyone's value at once with a single number. Each holder's <em>share count</em> never changes; their <em>displayed balance</em> is shares × the multiplier. A fund posts its daily net-asset-value, a stock split doubles it, interest rolls in — one update, applied uniformly to all holders.</p>
+        <div class="win"><b>What we achieve:</b> tokenized funds and RWAs behave correctly on-chain with no mass airdrops or rebasing hacks. <em>Note: this is asset value, not stablecoin interest — the stablecoin type has no multiplier.</em></div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 520 210" role="img" aria-label="Multiplier scaling displayed balance while shares stay fixed">
+          <g font-family="'Noto Sans SC',sans-serif" font-size="12.5" fill="#1a1b1e">
+            <!-- state A -->
+            <rect x="10" y="34" width="96" height="44" rx="8" fill="#fff" stroke="#e0ddd4"/>
+            <text x="58" y="53" text-anchor="middle" font-weight="700">100</text>
+            <text x="58" y="69" text-anchor="middle" font-size="10" fill="#6b6e76">shares</text>
+            <text x="132" y="61" text-anchor="middle" font-size="13" fill="#6b6e76">× 1.00</text>
+            <text x="170" y="61" font-size="13" fill="#6b6e76">=</text>
+            <rect x="188" y="44" width="120" height="24" rx="5" fill="#f0b90b"/>
+            <text x="320" y="61" font-size="12.5" fill="#1a1b1e">shows $100</text>
+
+            <!-- arrow -->
+            <text x="150" y="108" text-anchor="middle" font-size="11" fill="#6b6e76" font-family="'JetBrains Mono',monospace">NAV update ↓</text>
+
+            <!-- state B -->
+            <rect x="10" y="126" width="96" height="44" rx="8" fill="#fff" stroke="#c99400" stroke-width="2"/>
+            <text x="58" y="145" text-anchor="middle" font-weight="700">100</text>
+            <text x="58" y="161" text-anchor="middle" font-size="10" fill="#6b6e76">shares (same)</text>
+            <text x="132" y="153" text-anchor="middle" font-size="13" fill="#c99400" font-weight="700">× 1.05</text>
+            <text x="170" y="153" font-size="13" fill="#6b6e76">=</text>
+            <rect x="188" y="136" width="180" height="24" rx="5" fill="#f0b90b"/>
+            <text x="380" y="153" font-size="12.5" fill="#1a1b1e">shows $105</text>
+          </g>
+        </svg>
+        <div class="dcap">share count fixed · one number scales every holder at once</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- More features -->
+<div class="part" id="more" style="margin-top:44px;">
+  <div class="lbl">Also worth knowing</div>
+  <h2 style="font-size:26px;border-bottom-width:2px;">More features that matter</h2>
+  <p class="intro">A few other capabilities, in plain terms — the kind of thing that gives BD real talking points with partners.</p>
+</div>
+<div class="pfeat-grid">
+  <div class="pfeat">
+    <h4>Payments that reconcile themselves</h4>
+    <div class="p"><b>Problem:</b> When money moves on-chain, matching each payment to the right invoice, order, or customer is manual and error-prone.</div>
+    <div class="p">Any BSC20 payment can carry a short <strong>memo</strong> — an invoice number, order ID, or customer reference — recorded as its own record on-chain. Back-office systems read it and match payments automatically. The same works on issuance and redemption.</div>
+    <div class="p win"><b>Achieve:</b> enterprise-grade, self-reconciling payments — a genuine reason for merchants and businesses to settle on BSC20.</div>
+  </div>
+  <div class="pfeat">
+    <h4>Approve without sending a transaction</h4>
+    <div class="p"><b>Problem:</b> Granting a service permission to move your funds normally means sending (and paying for) an on-chain approval yourself.</div>
+    <div class="p">With a <strong>signed approval</strong>, the owner just signs a message and anyone can submit it for them — no separate approval transaction from the user.</div>
+    <div class="p win"><b>Achieve:</b> smoother first-time flows and one-click app experiences, with fewer steps that make newcomers give up.</div>
+  </div>
+  <div class="pfeat">
+    <h4>A kill switch you can trust</h4>
+    <div class="p"><b>Problem:</b> If a key is compromised or an exploit appears, you need to stop the bleeding instantly — yet a single "stop everything" button is itself a risk if that key is stolen.</div>
+    <div class="p">Transfers, minting, and burning can each be <strong>paused independently</strong>. Crucially, pausing and un-pausing are held by <strong>different teams</strong>, so a stolen pause key can't also switch things back on to manipulate.</div>
+    <div class="p win"><b>Achieve:</b> a credible safety story for regulators and partners — fast response without a single point of failure.</div>
+  </div>
+  <div class="pfeat">
+    <h4>Freeze &amp; seize, by the book</h4>
+    <div class="p"><b>Problem:</b> Regulated issuers must be able to act on court orders and sanctions — but arbitrary seizure powers are dangerous and hard to trust.</div>
+    <div class="p">The protocol enforces a strict <strong>two-step</strong>: an address must first be blacklisted (frozen), and only then can its balance be seized. Every action leaves an on-chain audit record.</div>
+    <div class="p win"><b>Achieve:</b> enforcement that's both effective and auditable — no back doors, every step on the record.</div>
+  </div>
+</div>
+
+<!-- ============================================================= -->
+<!-- PART 2 — DEEP DIVE -->
+<!-- ============================================================= -->
+<div class="part" id="part2">
+  <div class="lbl">Part 2</div>
+  <h2>Deep dive</h2>
+  <p class="intro">The complete method surface for builders and integrators. "Anyone" means no role is required (transfers still pass compliance and pause checks); a gold tag marks a role that must be held to call.</p>
+</div>
+
+<!-- 01 Variants -->
+<section class="cat" id="variants">
+  <div class="sec-head"><span class="no">01</span><h3>Two variants</h3></div>
+  <p class="sec-intro">Every token is one of two variants, chosen at creation. Both share all base methods; each adds a few of its own. You can tell them apart from the address alone — the 11th byte is <code>00</code> for Asset, <code>01</code> for Stablecoin.</p>
+  <div class="variant-cards">
+    <div class="vcard asset">
+      <h4>Asset</h4>
+      <div class="tag">RWA · funds · equity</div>
+      <ul>
+        <li>Decimals selectable 6–18 (fixed at creation)</li>
+        <li>Adds: multiplier, announce (disclosure), batchMint, custom metadata</li>
+        <li>Extra role: OPERATOR</li>
+      </ul>
+    </div>
+    <div class="vcard stable">
+      <h4>Stablecoin</h4>
+      <div class="tag">fiat-pegged coins</div>
+      <ul>
+        <li>Fixed 6 decimals; immutable currency code (USD, EUR…)</li>
+        <li>Deliberately narrow: no multiplier, announce, or batchMint</li>
+        <li>Adds only: <code>currency()</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Base methods -->
+<section class="cat" id="base">
+  <div class="sec-head"><span class="no">02</span><h3>Base methods — both variants</h3></div>
+
+  <h4 class="sub">A · Queries <span style="font-weight:400;font-size:13px;color:var(--muted)">— read-only, anyone, gas-free</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>Returns / meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>name()</code> / <code>symbol()</code></td><td>Name / symbol. Editable by METADATA — don't hard-code.</td></tr>
+      <tr><td><code>decimals()</code></td><td>Asset: 6–18 set at creation; Stablecoin: always 6. Never changes.</td></tr>
+      <tr><td><code>totalSupply()</code></td><td>Current total supply.</td></tr>
+      <tr><td><code>balanceOf(account)</code></td><td>Balance. For Asset this is the raw share count — use <code>scaledBalanceOf</code> to display net value.</td></tr>
+      <tr><td><code>allowance(owner, spender)</code></td><td>Approved amount.</td></tr>
+      <tr><td><code>supplyCap()</code></td><td>Supply ceiling. <code>uint128.max</code> means uncapped.</td></tr>
+      <tr><td><code>contractURI()</code></td><td>Metadata link (site, icon, docs). Re-fetch on <code>ContractURIUpdated</code>.</td></tr>
+      <tr><td><code>pausedFeatures()</code> / <code>isPaused(f)</code></td><td>Pause state. TRANSFER / MINT / BURN pause independently.</td></tr>
+      <tr><td><code>policyId(scope)</code></td><td>Policy attached to a compliance scope. <code>0</code> = unrestricted.</td></tr>
+      <tr><td><code>hasRole(role, acct)</code> / <code>getRoleAdmin(role)</code></td><td>Role queries (see RBAC).</td></tr>
+      <tr><td><code>nonces(owner)</code> / <code>DOMAIN_SEPARATOR()</code> / <code>eip712Domain()</code></td><td>Params for building gasless signed-approval signatures.</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">B · Transfer &amp; approval <span style="font-weight:400;font-size:13px;color:var(--muted)">— anyone; subject to policy + pause</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>transfer(to, amount)</code></td><td>Send tokens</td><td>Passes sender + receiver compliance; blocked when TRANSFER is paused.</td></tr>
+      <tr><td><code>transferFrom(from, to, amount)</code></td><td>Spend an allowance on behalf of <code>from</code></td><td><code>uint256.max</code> = infinite (non-decreasing) approval; a third-party caller also passes the executor check.</td></tr>
+      <tr><td><code>approve(spender, amount)</code></td><td>Set an allowance</td><td><strong>Never</strong> paused or policy-gated — callable anytime.</td></tr>
+      <tr><td><code>transferWithMemo(to, amount, memo)</code></td><td>Transfer + 32-byte memo</td><td>Memo emitted as its own event for auto-reconciliation. Recommended for all business payments.</td></tr>
+      <tr><td><code>transferFromWithMemo(...)</code></td><td>Allowance transfer + memo</td><td>Same as <code>transferFrom</code>.</td></tr>
+      <tr><td><code>permit(owner, spender, value, deadline, v,r,s)</code></td><td>Gasless approval via off-chain signature</td><td>Anyone may submit. EOA/ECDSA signatures only — <span class="warn">no contract wallets</span>. <span class="warn">updateName invalidates all unused permits.</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">C · Mint &amp; burn <span style="font-weight:400;font-size:13px;color:var(--muted)">— role-gated</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Caller</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>mint(to, amount)</code></td><td>Issue new tokens</td><td><span class="role-tag">MINT</span></td><td>Receiver passes mint-receiver policy; can't exceed supply cap.</td></tr>
+      <tr><td><code>mintWithMemo(...)</code></td><td>Mint + memo</td><td><span class="role-tag">MINT</span></td><td>Ties each issuance to a subscription order.</td></tr>
+      <tr><td><code>burn(amount)</code></td><td>Destroy your own tokens</td><td><span class="role-tag">BURN</span></td><td>Self-balance only (redemption).</td></tr>
+      <tr><td><code>burnWithMemo(...)</code></td><td>Burn + memo</td><td><span class="role-tag">BURN</span></td><td>Ties to a redemption order.</td></tr>
+      <tr><td><code>burnBlocked(from, amount)</code></td><td><strong>Seize</strong> a blacklisted account's balance</td><td><span class="role-tag">BURN_BLOCKED</span></td><td><span class="warn">Requires <code>from</code> already blacklisted</span> — protocol forces freeze-then-seize.</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">D · Pause <span style="font-weight:400;font-size:13px;color:var(--muted)">— emergency switch</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Caller</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>pause(features[])</code></td><td>Halt TRANSFER / MINT / BURN (any subset)</td><td><span class="role-tag">PAUSE</span></td><td>Additive; idempotent; empty set rejected.</td></tr>
+      <tr><td><code>unpause(features[])</code></td><td>Resume</td><td><span class="role-tag">UNPAUSE</span></td><td>Deliberately a <strong>separate</strong> role from PAUSE.</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">E · Token config <span style="font-weight:400;font-size:13px;color:var(--muted)">— admin operations</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Caller</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>updateSupplyCap(newCap)</code></td><td>Change supply ceiling</td><td><span class="role-tag">DEFAULT_ADMIN</span></td><td>Can't drop below current supply; <code>uint128.max</code> removes cap.</td></tr>
+      <tr><td><code>updatePolicy(scope, id)</code></td><td>Attach / swap a compliance policy</td><td><span class="role-tag">DEFAULT_ADMIN</span></td><td>Hot-swap, effective next operation; policy must exist.</td></tr>
+      <tr><td><code>updateName(newName)</code></td><td>Rename</td><td><span class="role-tag">METADATA</span></td><td><span class="warn">Invalidates all unused permit signatures.</span></td></tr>
+      <tr><td><code>updateSymbol(newSymbol)</code></td><td>Change symbol</td><td><span class="role-tag">METADATA</span></td><td>—</td></tr>
+      <tr><td><code>updateContractURI(uri)</code></td><td>Change metadata link</td><td><span class="role-tag">METADATA</span></td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">F · Role management</h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>grantRole(role, acct)</code></td><td>Grant a role</td><td>Caller must hold that role's admin role.</td></tr>
+      <tr><td><code>revokeRole(role, acct)</code></td><td>Revoke a role</td><td>Can't remove the last DEFAULT_ADMIN.</td></tr>
+      <tr><td><code>renounceRole(role, confirm)</code></td><td>Give up your own role</td><td>Confirmation must equal caller (mis-sign guard).</td></tr>
+      <tr><td><code>renounceLastAdmin()</code></td><td>Permanently give up all governance</td><td><span class="warn">Irreversible</span> — token becomes ungovernable forever.</td></tr>
+      <tr><td><code>setRoleAdmin(role, newAdmin)</code></td><td>Set which role administers a role</td><td>Builds custom role hierarchies.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 03 Asset extensions -->
+<section class="cat" id="asset-ext">
+  <div class="sec-head"><span class="no">03</span><h3>Asset variant extensions</h3></div>
+  <p class="sec-intro">Only on Asset tokens (RWA / funds / equity).</p>
+
+  <h4 class="sub">Net-value multiplier <span style="font-weight:400;font-size:13px;color:var(--muted)">— see the Multiplier highlight above</span></h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Caller</th></tr></thead>
+    <tbody>
+      <tr><td><code>multiplier()</code></td><td>Current net-value multiplier (1e18 = 1.0×)</td><td>Anyone</td></tr>
+      <tr><td><code>scaledBalanceOf(account)</code></td><td>Net-value balance (shares × multiplier) — <strong>use this for display</strong></td><td>Anyone</td></tr>
+      <tr><td><code>toScaledBalance</code> / <code>toRawBalance</code></td><td>Convert shares ↔ net value (rounds down)</td><td>Anyone</td></tr>
+      <tr><td><code>updateMultiplier(new)</code></td><td>Update the multiplier (doesn't touch share counts; can't be 0)</td><td><span class="role-tag">OPERATOR</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">Announcements, batch issuance &amp; metadata</h4>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Caller</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>announce(calls, id, desc, uri)</code></td><td>Publish a disclosure and atomically run a set of operations</td><td><span class="role-tag">OPERATOR</span></td><td>Wrap <code>batchMint</code> / <code>updateMultiplier</code> to bind disclosure to action. All-or-nothing.</td></tr>
+      <tr><td><code>isAnnouncementIdUsed(id)</code></td><td>Check if an announcement id was used</td><td>Anyone</td><td>Each id is single-use for life.</td></tr>
+      <tr><td><code>batchMint(recipients[], amounts[])</code></td><td>Mint to many addresses in one tx</td><td><span class="role-tag">MINT</span></td><td>All-or-nothing; best wrapped in <code>announce</code>.</td></tr>
+      <tr><td><code>extraMetadata(key)</code> / <code>updateExtraMetadata(k,v)</code></td><td>Read / write custom fields (e.g. <code>isin</code>, <code>region</code>)</td><td>read: anyone · write: <span class="role-tag">METADATA</span></td><td>Empty value deletes the key.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 04 Stablecoin extension -->
+<section class="cat" id="stable-ext">
+  <div class="sec-head"><span class="no">04</span><h3>Stablecoin variant extension</h3></div>
+  <p class="sec-intro">The Stablecoin variant is intentionally minimal — one added method.</p>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>currency()</code></td><td>The pegged currency code (USD, EUR, JPY…)</td><td>Set at creation, permanently immutable. Self-declared — format is validated, reserves are not.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 05 Factory -->
+<section class="cat" id="factory">
+  <div class="sec-head"><span class="no">05</span><h3>Factory — issuer entry point</h3></div>
+  <p class="sec-intro">One fixed factory deploys and initializes every BSC20 token.</p>
+  <table>
+    <thead><tr><th>Method</th><th>What it does</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>createBSC20(variant, salt, params, initCalls)</code></td><td>Create a token — <strong>deploy + full initial config in one tx</strong></td><td>Roles, policies, cap, and initial mint all applied via <code>initCalls</code>. <code>initialAdmin = 0</code> → a permanently ownerless, immutable token.</td></tr>
+      <tr><td><code>getBSC20Address(variant, sender, salt)</code></td><td>Pre-compute the future token address</td><td>Address is fixed by creator + variant + salt; can be written into docs before deploy.</td></tr>
+      <tr><td><code>isBSC20(token)</code> / <code>isBSC20Initialized(token)</code></td><td>Verify an address is a genuine (initialized) BSC20 token</td><td>For integrators checking authenticity.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 06 Policy registry -->
+<section class="cat" id="policy">
+  <div class="sec-head"><span class="no">06</span><h3>Policy Registry — compliance</h3></div>
+  <p class="sec-intro">The engine behind the blacklist / whitelist highlight. Compliance lives in a chain-shared registry; each token references policies in four independent slots.</p>
+
+  <div class="callout">
+    <strong>The model:</strong> a <em>policy</em> = one address list + one type, living independently (anyone can create one; its admin maintains the list). A <em>token</em> points four compliance slots at whichever policies it wants. Default policy <code>0</code> = no restriction, so an unconfigured BSC20 is a fully open ERC-20.
+  </div>
+
+  <h4 class="sub">Two policy types</h4>
+  <table>
+    <thead><tr><th>Type</th><th>Semantics</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BLOCKLIST</strong> (blacklist)</td><td>Open to all; listed addresses are blocked</td><td>Mass-market stablecoin — screen only sanctioned addresses</td></tr>
+      <tr><td><strong>ALLOWLIST</strong> (whitelist)</td><td>Blocked by default; only listed addresses allowed</td><td>Institutional / securities assets — only KYC-cleared addresses hold or trade</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">Who can do what</h4>
+  <table>
+    <thead><tr><th>Action</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Create a policy</td><td>Anyone (permissionless)</td><td>Sets the policy's admin and type at creation.</td></tr>
+      <tr><td>Add / remove list members</td><td>The policy's admin</td><td>Up to 64 addresses per batch; one list reusable across many tokens — edit once, all applied instantly.</td></tr>
+      <tr><td>Transfer policy admin</td><td>Nominate → nominee confirms (2-step)</td><td>Guards against sending control to a wrong address.</td></tr>
+      <tr><td>Permanently freeze a policy</td><td>The policy's admin (by renouncing)</td><td>List locked forever — a "genesis list never expands" commitment.</td></tr>
+      <tr><td>Attach / swap on a token slot</td><td>The token's <span class="role-tag">DEFAULT_ADMIN</span></td><td>Hot-swap, effective immediately.</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">Four compliance scopes</h4>
+  <table>
+    <thead><tr><th>Scope</th><th>Checks</th><th>On</th><th>Typical use</th></tr></thead>
+    <tbody>
+      <tr><td>TRANSFER_SENDER</td><td>the <code>from</code></td><td>transfer / transferFrom</td><td>Freeze accounts; holder KYC</td></tr>
+      <tr><td>TRANSFER_RECEIVER</td><td>the <code>to</code></td><td>transfer / transferFrom</td><td>Block sanctioned recipients; restrict to eligible investors</td></tr>
+      <tr><td>TRANSFER_EXECUTOR</td><td>the caller (when ≠ from)</td><td>transferFrom only</td><td>Only licensed brokers/clearers may move client funds</td></tr>
+      <tr><td>MINT_RECEIVER</td><td>the mint <code>to</code></td><td>mint / batchMint</td><td>New units only to custody / primary subscribers</td></tr>
+    </tbody>
+  </table>
+  <p class="sec-intro" style="margin-top:12px;">Not gated by any policy: <code>approve</code>, <code>burn</code> (your own), all queries. Four independent slots = a naturally composable compliance posture.</p>
+
+  <h4 class="sub">Worked example A — mass-market USD stablecoin (blacklist)</h4>
+<pre class="flow"><span class="m">— one-time —</span>
+createPolicy(complianceMultisig, BLOCKLIST)     <span class="c">→ policy #5</span>
+token.updatePolicy(TRANSFER_SENDER,  5)
+token.updatePolicy(TRANSFER_RECEIVER, 5)         <span class="m"># executor / mint-receiver stay 0</span>
+
+<span class="m">— ongoing —</span>
+registry.updateBlocklist(5, true, [0xBad1, ...]) <span class="c"># instantly blocked across every token using #5</span>
+
+<span class="m">— court seizure order —</span>
+token.burnBlocked(0xBad1, fullBalance)           <span class="c"># only works because 0xBad1 is already blacklisted</span></pre>
+
+  <h4 class="sub">Worked example B — institutional tokenized fund (whitelist, Asset)</h4>
+<pre class="flow"><span class="m">— one-time —</span>
+createPolicy(investorTeam, ALLOWLIST) → #10   <span class="m"># eligible investors</span>
+createPolicy(partnerTeam,  ALLOWLIST) → #11   <span class="m"># licensed brokers</span>
+createPolicy(opsTeam,      ALLOWLIST) → #12   <span class="m"># custody accounts</span>
+updatePolicy(SENDER 10, RECEIVER 10, EXECUTOR 11, MINT_RECEIVER 12)
+
+<span class="m">— ongoing —</span>
+updateAllowlist(10, true,  [newInvestor])     <span class="c"># KYC passed → can hold/trade</span>
+updateAllowlist(10, false, [exited])          <span class="c"># soft-freeze; balance stays</span>
+
+<span class="m">— second fund —</span>reuse #10/#11/#12  <span class="c"># KYC once, cleared across the whole product family</span></pre>
+</section>
+
+<!-- 07 RBAC -->
+<section class="cat" id="rbac">
+  <div class="sec-head"><span class="no">07</span><h3>RBAC — roles</h3></div>
+  <p class="sec-intro">Each token has seven built-in roles (eight on Asset), each governing a non-overlapping set of operations, plus arbitrary custom roles.</p>
+  <table>
+    <thead><tr><th>Role</th><th>Governs</th><th>Suggested holder</th></tr></thead>
+    <tbody>
+      <tr><td><span class="role-tag">DEFAULT_ADMIN</span></td><td>Grant/revoke roles, swap policies, supply cap, role hierarchy</td><td>Cold multisig, rarely touched</td></tr>
+      <tr><td><span class="role-tag">MINT</span></td><td><code>mint</code> / <code>mintWithMemo</code> / <code>batchMint</code></td><td>Treasury / issuance automation</td></tr>
+      <tr><td><span class="role-tag">BURN</span></td><td><code>burn</code> (self only)</td><td>Redemption system</td></tr>
+      <tr><td><span class="role-tag">BURN_BLOCKED</span></td><td><code>burnBlocked</code> (seizure)</td><td>Compliance multisig</td></tr>
+      <tr><td><span class="role-tag">PAUSE</span></td><td><code>pause</code></td><td>Auto-monitoring + security (fast)</td></tr>
+      <tr><td><span class="role-tag">UNPAUSE</span></td><td><code>unpause</code></td><td>Exec multisig (deliberate)</td></tr>
+      <tr><td><span class="role-tag">METADATA</span></td><td>Name / symbol / URIs / custom metadata</td><td>Operations team</td></tr>
+      <tr><td><span class="role-tag">OPERATOR</span> <span style="font-size:11px;color:var(--muted)">(Asset only)</span></td><td><code>updateMultiplier</code>, <code>announce</code></td><td>Fund operations / investment mgmt</td></tr>
+    </tbody>
+  </table>
+  <p class="sec-intro" style="margin-top:12px;">Plus <strong>custom roles</strong> (any 32-byte id): no built-in effect, but usable as an on-chain membership roster or to build multi-tier authority via <code>setRoleAdmin</code>.</p>
+
+  <h4 class="sub">Four rules worth knowing</h4>
+  <table>
+    <thead><tr><th>#</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Every role has an admin role (default DEFAULT_ADMIN) — you need it to grant that role.</td></tr>
+      <tr><td>2</td><td>PAUSE and UNPAUSE are split on purpose: pausing is fast/low-threshold, resuming is slow/high-threshold. A stolen key gets only one-way power.</td></tr>
+      <tr><td>3</td><td>The last admin is protected — normal revoke/renounce can't remove it. Only the explicit, <span class="warn">irreversible</span> <code>renounceLastAdmin()</code> can.</td></tr>
+      <tr><td>4</td><td>Born ownerless is possible: <code>initialAdmin = 0</code> + everything set in <code>initCalls</code> → a permanently immutable token.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 08 Together -->
+<section class="cat" id="together">
+  <div class="sec-head"><span class="no">08</span><h3>How it fits together</h3></div>
+  <p class="sec-intro">The three systems combine on every operation — the composability story made concrete.</p>
+<pre class="flow">      RBAC (roles)                  Policy Registry (lists)
+   "who may initiate"            "which addresses may be acted on"
+         │                                │
+         └───────────────┬────────────────┘
+                         ▼
+                  every method =
+          <span class="c">role gate  +  policy gate  +  pause gate</span>
+
+  e.g.  mint(to, 100) →  caller has MINT?  +  to on mint whitelist?  +  MINT not paused?</pre>
+</section>
+
+</div><!-- /wrap -->
+</div><!-- /main -->
+
+<footer>BSC20 · product overview &amp; deep dive · internal reference</footer>
+
+<script>
+  const links=[...document.querySelectorAll('#toc a')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const byId=id=>links.find(a=>a.getAttribute('href')==='#'+id);
+  const spy=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove('active'));
+        const l=byId(e.target.id); if(l) l.classList.add('active');
+      }
+    });
+  },{rootMargin:'-12% 0px -80% 0px'});
+  targets.forEach(t=>spy.observe(t));
+</script>
+</body>
+</html>

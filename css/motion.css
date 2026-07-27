@@ -152,6 +152,16 @@
   flex-shrink: 0;
 }
 
+/* Masthead hamburger toggle — hidden on desktop, shown + wired up (js/motion.js) on mobile */
+.br-masthead .br-menu-btn {
+  display: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+}
+
 /* Masthead sector links (details/summary) */
 .br-masthead .br-sectors {
   position: relative;
@@ -211,12 +221,7 @@ html[data-br-theme='dark'] .br-masthead .br-sectors-panel {
     padding: 0 10px 0 12px;
     gap: 6px;
     font-size: 10px;
-    height: auto;
-    min-height: 44px;
-    flex-wrap: wrap;
-    row-gap: 4px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    height: 44px;
   }
 
   .br-masthead .br-masthead-brand {
@@ -239,6 +244,76 @@ html[data-br-theme='dark'] .br-masthead .br-sectors-panel {
     right: 0;
     left: auto;
     max-width: min(11rem, calc(100vw - 24px));
+  }
+
+  /* Nav collapses behind a hamburger toggle so it can never overflow the row */
+  .br-masthead .br-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0;
+    transition: background var(--br-duration-instant) var(--br-ease-standard);
+  }
+
+  .br-masthead .br-menu-btn:hover,
+  .br-masthead.br-nav-open .br-menu-btn {
+    background: var(--masthead-hover-bg);
+  }
+
+  .br-masthead .br-menu-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .br-masthead .br-masthead-nav {
+    display: none;
+  }
+
+  .br-masthead.br-nav-open .br-masthead-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 10px;
+    min-width: 12rem;
+    max-width: calc(100vw - 20px);
+    gap: 2px;
+    padding: 8px;
+    background: var(--masthead-bg);
+    border: 1px solid var(--masthead-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  html[data-br-theme='dark'] .br-masthead.br-nav-open .br-masthead-nav {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .br-masthead.br-nav-open .br-masthead-nav a,
+  .br-masthead.br-nav-open .br-masthead-nav button.br-theme-toggle {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .br-masthead.br-nav-open .br-masthead-nav .br-sectors > summary {
+    width: 100%;
+  }
+
+  .br-masthead.br-nav-open .br-masthead-nav .br-sectors-panel {
+    position: static;
+    box-shadow: none;
+    border: none;
+    max-width: none;
+    padding: 2px 0 2px 14px;
+    min-width: 0;
   }
 }
 

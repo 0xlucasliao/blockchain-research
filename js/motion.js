@@ -65,6 +65,38 @@
 
   markCurrentNav();
 
+  (function setUpMobileNav() {
+    var masthead = document.querySelector('.br-masthead');
+    var menuBtn = masthead && masthead.querySelector('.br-menu-btn');
+    if (!masthead || !menuBtn) return;
+
+    function closeNav() {
+      masthead.classList.remove('br-nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', function () {
+      var open = masthead.classList.toggle('br-nav-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!masthead.classList.contains('br-nav-open')) return;
+      if (masthead.contains(e.target)) return;
+      closeNav();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && masthead.classList.contains('br-nav-open')) {
+        closeNav();
+      }
+    });
+
+    masthead.querySelectorAll('.br-masthead-nav > a').forEach(function (a) {
+      a.addEventListener('click', closeNav);
+    });
+  })();
+
   function syncMastheadHeight() {
     var bar = document.querySelector('.br-masthead');
     if (!bar) return;
